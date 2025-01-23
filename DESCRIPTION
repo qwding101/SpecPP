@@ -1,0 +1,32 @@
+Package: fspp
+Title: Fourier Analysis for Spatial Point Processes
+Version: 0.0.1.0000
+Authors@R: c(
+    person("Qi-Wen", "Ding", email = "r07227101@ntu.edu.tw", role = c("aut"),
+           comment = c(ORCID = "YOUR-ORCID-ID")),
+    person("Junho", "Yang", email = "junhoyang@stat.sinica.edu.tw", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+           )
+Description: Frequency-domain method for multivariate (multitype) inhomogeneous
+    spatial point processes on rectangle region. Given a multivariate point patterns
+    and parametric model of the intensity function, this package provides the kernel
+    spectral estimate of the pseudo-spectrum, the frequency-domain representation of
+    inhomogeneous point process. Functions for bandwidth selection, visualization, 
+    and coherence analysis for inhomogeneous point processes are also provided.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports: 
+    cowplot (>= 1.1.1),
+    doParallel (>= 1.0.17),
+    dplyr (>= 1.1.2),
+    foreach (>= 1.5.2),
+    ggplot2 (>= 3.5.0),
+    magrittr,
+    parallel,
+    spatstat,
+    spatstat.explore,
+    spatstat.geom,
+    spatstat.model,
+    stats
