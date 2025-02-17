@@ -21,4 +21,6 @@ You can install the development version of fspp from
 pak::pak("qwding101/fspp")
 ```
 
-<!-- You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN. -->
+- For technical details, please read our manuscript.
+- Package tutorial (under construction).
+  <!-- You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN. -->
