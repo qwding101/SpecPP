@@ -30,3 +30,5 @@ Imports:
     spatstat.geom,
     spatstat.model,
     stats
+URL: https://github.com/qwding101/fspp
+BugReports: https://github.com/qwding101/fspp/issues
