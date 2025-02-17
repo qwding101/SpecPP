@@ -14,7 +14,7 @@ select_band(
   A1 = NULL,
   A2 = A1,
   endpt = 1.5,
-  equal = FALSE,
+  equal = TRUE,
   kern = bartlett_uni
 )
 }
@@ -36,7 +36,7 @@ intensity function, which is passed to \code{\link{ppm}}. The default is constan
 
 \item{endpt}{A positive value indicating the scale factor of the endpoint frequency.}
 
-\item{equal}{Logical. Whether to use the same bandwidth for both x and y axis. The default is \code{FALSE}.}
+\item{equal}{Logical. Whether to use the same bandwidth for both x and y axis. The default is \code{TRUE}.}
 
 \item{kern}{Univariate scaled kernel function, e.g., Barlett kernel (default).}
 }

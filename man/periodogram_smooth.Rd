@@ -16,7 +16,7 @@ periodogram_smooth(
   A1 = NULL,
   A2 = A1,
   endpt = 1.5,
-  equal = FALSE,
+  equal = TRUE,
   kern = bartlett_uni
 )
 }
@@ -43,7 +43,7 @@ Default is \code{a = 0.025}.}
 
 \item{endpt}{A positive value indicating the scale factor of the endpoint frequency.}
 
-\item{equal}{Logical. If \code{TRUE}, then use the same bandwidth for both x and y direction. Default is \code{FALSE}.}
+\item{equal}{Logical. If \code{TRUE}, then use the same bandwidth for both x and y direction.}
 
 \item{kern}{Univariate scaled kernel function, e.g., Barrlett kernel (default).}
 }

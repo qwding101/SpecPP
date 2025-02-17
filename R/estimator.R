@@ -121,7 +121,7 @@ periodogram = function(i, j, ppp,
 #'  Default is `a = 0.025`.
 #' @param A1,A2 Optional. Side lengths of the observation window.
 #' @param endpt A positive value indicating the scale factor of the endpoint frequency.
-#' @param equal Logical. If `TRUE`, then use the same bandwidth for both x and y direction. Default is `FALSE`.
+#' @param equal Logical. If `TRUE`, then use the same bandwidth for both x and y direction.
 #' @param kern Univariate scaled kernel function, e.g., Barrlett kernel (default).
 #'
 #' @return
@@ -150,7 +150,7 @@ periodogram = function(i, j, ppp,
 periodogram_smooth = function(ppp, i = NULL, j = i,
                               inten.formula = "~1", data.covariate = NULL,
                               bandwidth, correct = TRUE, a = 0.025,
-                              A1 = NULL, A2 = A1, endpt = 1.5, equal = FALSE,
+                              A1 = NULL, A2 = A1, endpt = 1.5, equal = TRUE,
                               kern = bartlett_uni){
   ### To please R CMD check
   r = j = k = NULL

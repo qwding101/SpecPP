@@ -16,7 +16,7 @@ Description: Frequency-domain method for multivariate (multitype) inhomogeneous
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports: 
     cowplot (>= 1.1.1),
     doParallel (>= 1.0.17),

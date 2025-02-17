@@ -9,7 +9,7 @@
 #' @param correct Logical. If `TRUE` (default), conduct edge correction when computing the kernel spectral estimator.
 #' @param A1,A2 Optional. Side lengths of the observation window.
 #' @param endpt A positive value indicating the scale factor of the endpoint frequency.
-#' @param equal Logical. Whether to use the same bandwidth for both x and y axis. The default is `FALSE`.
+#' @param equal Logical. Whether to use the same bandwidth for both x and y axis. The default is `TRUE`.
 #' @param kern Univariate scaled kernel function, e.g., Barlett kernel (default).
 #'
 #' @return
@@ -29,7 +29,7 @@
 #' @export
 select_band = function(ppp, inten.formula = NULL, data.covariate = NULL,
                        a = 0.025, band.range, correct = TRUE, A1 = NULL, A2 = A1,
-                       endpt = 1.5, equal = FALSE, kern = bartlett_uni){
+                       endpt = 1.5, equal = TRUE, kern = bartlett_uni){
   # To please R CMD check
   r = j = k = NULL
   # Crate frequency index array (freq.idx.df) to sum in likelihood calculation
