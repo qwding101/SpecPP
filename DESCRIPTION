@@ -8,7 +8,7 @@ Authors@R: c(
            comment = c(ORCID = "YOUR-ORCID-ID"))
            )
 Description: Frequency-domain method for multivariate (multitype) inhomogeneous
-    spatial point processes on rectangle region. Given a multivariate point patterns
+    spatial point processes on rectangle region. Given a multivariate point pattern
     and parametric model of the intensity function, this package provides the kernel
     spectral estimate of the pseudo-spectrum, the frequency-domain representation of
     inhomogeneous point process. Functions for bandwidth selection, visualization, 
