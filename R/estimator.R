@@ -173,7 +173,7 @@ periodogram_smooth = function(ppp, i = NULL, j = i,
     }else{ # Multivariate point pattern
       cate = levels(spatstat.geom::marks(ppp))
     }
-    cate.comb = pair_cate(cate)
+    cate.comb = generate_cate(cate)
   }
 
   ### Spectral estimation

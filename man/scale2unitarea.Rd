@@ -7,9 +7,10 @@
 scale2unitarea(im, length.x, length.y, return.fun = TRUE)
 }
 \arguments{
-\item{im}{Image object.}
+\item{im}{Pixel image object of class \code{"im"} or function of spatial location
+of class \code{"funxy"} from spatstat package.}
 
-\item{length.x, length.y}{Side lengths.}
+\item{length.x, length.y}{Numeric. Side lengths.}
 
 \item{return.fun}{Logical. If \code{TRUE}, convert the scaled image to function.
 Otherwise, return the image itself.}

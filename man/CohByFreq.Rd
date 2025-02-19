@@ -30,7 +30,7 @@ compute coherence}
 calculated by \code{\link[=IRspec]{IRspec()}}. If this argument is specified, then \code{w1}, \code{w2}, \code{H.list},
 \code{ppp} are not required.}
 
-\item{H.list}{Optional. The list from \code{Hmatrix()}. This argument is only required
+\item{H.list}{Optional. A list from \code{\link[=Hmatrix]{Hmatrix()}}. This argument is only required
 if \code{sp.IR} is unspecified.}
 
 \item{ppp}{Optional. Point pattern. This argument is only required if \code{H.list}

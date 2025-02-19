@@ -21,24 +21,30 @@ select_band(
 \arguments{
 \item{ppp}{A point pattern of class \code{"ppp"}.}
 
-\item{inten.formula}{A \code{\link{formula}} syntax in character format specifying the log-liner model for the
-intensity function, which is passed to \code{\link{ppm}}. The default is constant intensity \code{inten.formula = "~1"}.}
+\item{inten.formula}{A \code{\link{formula}} syntax in character format specifying the
+log-liner model for the intensity function, which is passed to \code{\link{ppm}}. The
+default is constant intensity \code{inten.formula = "~1"}.}
 
-\item{data.covariate}{Optional. The values of spatial covariates passed to the \code{data} argument in \code{\link{ppm}}.}
+\item{data.covariate}{Optional. The values of spatial covariates passed to
+the \code{data} argument in \code{\link{ppm}}.}
 
-\item{a}{Taper coefficient, a value within unit interval. If \code{a = 1}, then no data taper is used.}
+\item{a}{Taper coefficient, a value within unit interval. If \code{a = 1}, then
+taper is not applied.}
 
 \item{band.range}{Numeric vector. Search space for the optimal bandwidth.}
 
-\item{correct}{Logical. If \code{TRUE} (default), conduct edge correction when computing the kernel spectral estimator.}
+\item{correct}{Logical. If \code{TRUE} (default), conduct edge correction when
+computing the kernel spectral estimator.}
 
 \item{A1, A2}{Optional. Side lengths of the observation window.}
 
-\item{endpt}{A positive value indicating the scale factor of the endpoint frequency.}
+\item{endpt}{A positive value indicating the scale factor of the endpoint
+frequency.}
 
-\item{equal}{Logical. Whether to use the same bandwidth for both x and y axis. The default is \code{TRUE}.}
+\item{equal}{Logical. Whether to use the same bandwidth for both x and y axis.
+The default is \code{TRUE}.}
 
-\item{kern}{Univariate scaled kernel function, e.g., Barlett kernel (default).}
+\item{kern}{Univariate scaled kernel function. The default is Barlett kernel.}
 }
 \value{
 A list.

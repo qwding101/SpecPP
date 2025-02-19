@@ -7,14 +7,15 @@
 smoother(w, period.mat, w.k1, w.k2, b1 = 1, b2 = b1, loo = FALSE, kernel_uni)
 }
 \arguments{
-\item{w}{The single frequency to be smoothed.}
+\item{w}{Single frequency to be smoothed.}
 
-\item{period.mat}{The whole matrix, could be complex-valued.}
+\item{period.mat}{Matrix. The naive spectral estimate (i.e., periodogram),
+could be complex-valued.}
 
 \item{w.k1, w.k2}{Vectors containing the whole frequencies at horizontal and
 vertical directions.}
 
-\item{b1, b2}{Bandwidths at horizontal and vertical direction, respectively.}
+\item{b1, b2}{Numeric. Bandwidths at horizontal and vertical direction, respectively.}
 
 \item{loo}{Logical. If \code{TRUE}, conduct leave-one-out kernel smoothing (the
 center \code{w} will be excluded when averaging). Otherwise, keep the center \code{w}

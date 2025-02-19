@@ -4,7 +4,6 @@
 #' @param a A value in unit interval. If `a = 1`, then taper is not applied.
 
 taper = function(x, a){
-  # x is vectorized, while a is a value
   if (a == 0){
     result = rep(1, length(x))
   }else{

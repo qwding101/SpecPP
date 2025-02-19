@@ -13,7 +13,7 @@ IRspec(w1, w2, sp.est, i = NULL, j = NULL, H.list = NULL, ppp)
 
 \item{i, j}{Optional. Index of the multivariate point process.}
 
-\item{H.list}{Optional. The list from \code{Hmatrix()}.}
+\item{H.list}{Optional. A list from \code{\link[=Hmatrix]{Hmatrix()}}.}
 
 \item{ppp}{Point pattern.}
 }

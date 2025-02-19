@@ -3,7 +3,7 @@
 #' @param w1,w2 Frequency vector (only allow frequency values evaluated in `sp.est`)
 #' @param sp.est A list of kernel spectral estimate matrices of the point pattern.
 #' @param i,j Optional. Index of the multivariate point process.
-#' @param H.list Optional. The list from `Hmatrix()`.
+#' @param H.list Optional. A list from [`Hmatrix()`].
 #' @param ppp Point pattern.
 
 IRspec = function(w1, w2, sp.est, i = NULL, j = NULL, H.list = NULL, ppp){

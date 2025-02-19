@@ -1,9 +1,10 @@
 #' Smooth an element from a matrix by averaging its neighbors
-#' @param w The single frequency to be smoothed.
-#' @param period.mat The whole matrix, could be complex-valued.
+#' @param w Single frequency to be smoothed.
+#' @param period.mat Matrix. The naive spectral estimate (i.e., periodogram),
+#' could be complex-valued.
 #' @param w.k1,w.k2 Vectors containing the whole frequencies at horizontal and
 #' vertical directions.
-#' @param b1,b2 Bandwidths at horizontal and vertical direction, respectively.
+#' @param b1,b2 Numeric. Bandwidths at horizontal and vertical direction, respectively.
 #' @param loo Logical. If `TRUE`, conduct leave-one-out kernel smoothing (the
 #' center `w` will be excluded when averaging). Otherwise, keep the center `w`
 #' for averaging.

@@ -6,9 +6,9 @@
 #'  compute coherence
 #' @param i,j Optional. Index of the multivariate point process.
 #' @param sp.IR Optional. Spectrum estimate of the intensity reweighted process, which is
-#' calculated by [IRspec()]. If this argument is specified, then `w1`, `w2`, `H.list`,
+#' calculated by [`IRspec()`]. If this argument is specified, then `w1`, `w2`, `H.list`,
 #' `ppp` are not required.
-#' @param H.list Optional. The list from `Hmatrix()`. This argument is only required
+#' @param H.list Optional. A list from [`Hmatrix()`]. This argument is only required
 #' if `sp.IR` is unspecified.
 #' @param ppp Optional. Point pattern. This argument is only required if `H.list`
 #'  is unspecified.

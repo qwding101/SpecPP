@@ -1,16 +1,22 @@
 #' Bandwidth selection procedure for kernel spectral estimator
 #'
 #' @param ppp A point pattern of class `"ppp"`.
-#' @param inten.formula A [`formula`] syntax in character format specifying the log-liner model for the
-#'  intensity function, which is passed to [`ppm`]. The default is constant intensity `inten.formula = "~1"`.
-#' @param data.covariate Optional. The values of spatial covariates passed to the `data` argument in [`ppm`].
-#' @param a Taper coefficient, a value within unit interval. If `a = 1`, then no data taper is used.
+#' @param inten.formula A [`formula`] syntax in character format specifying the
+#' log-liner model for the intensity function, which is passed to [`ppm`]. The
+#' default is constant intensity `inten.formula = "~1"`.
+#' @param data.covariate Optional. The values of spatial covariates passed to
+#' the `data` argument in [`ppm`].
+#' @param a Taper coefficient, a value within unit interval. If `a = 1`, then
+#' taper is not applied.
 #' @param band.range Numeric vector. Search space for the optimal bandwidth.
-#' @param correct Logical. If `TRUE` (default), conduct edge correction when computing the kernel spectral estimator.
+#' @param correct Logical. If `TRUE` (default), conduct edge correction when
+#' computing the kernel spectral estimator.
 #' @param A1,A2 Optional. Side lengths of the observation window.
-#' @param endpt A positive value indicating the scale factor of the endpoint frequency.
-#' @param equal Logical. Whether to use the same bandwidth for both x and y axis. The default is `TRUE`.
-#' @param kern Univariate scaled kernel function, e.g., Barlett kernel (default).
+#' @param endpt A positive value indicating the scale factor of the endpoint
+#' frequency.
+#' @param equal Logical. Whether to use the same bandwidth for both x and y axis.
+#'  The default is `TRUE`.
+#' @param kern Univariate scaled kernel function. The default is Barlett kernel.
 #'
 #' @return
 #' A list.
@@ -59,7 +65,7 @@ select_band = function(ppp, inten.formula = NULL, data.covariate = NULL,
   }else{ # Multivariate point pattern
     cate = levels(spatstat.geom::marks(ppp))
   }
-  cate.comb = pair_cate(cate)
+  cate.comb = generate_cate(cate)
   period.mat.list = period.mat.ext.list = vector("list", nrow(cate.comb))
 
 

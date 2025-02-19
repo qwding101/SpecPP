@@ -1,4 +1,5 @@
 #' Scaled Battlett kernel (univariate)
+#'
 #' @param v Input value.
 #' @param b Bandwidth.
 bartlett_uni = function(v, b){

@@ -7,7 +7,7 @@
 Hmatrix(sp.est, ppp)
 }
 \arguments{
-\item{sp.est}{A list of kernel spectral estimate matrices of the point pattern.}
+\item{sp.est}{A list of kernel spectral estimate matrices of \code{ppp}.}
 
 \item{ppp}{Point pattern.}
 }
