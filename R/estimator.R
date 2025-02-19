@@ -1,7 +1,3 @@
-bartlett_uni = function(v, b){
-  return(ifelse(abs(v/b) > 1, 0, (1-abs(v/b))/b))
-}
-
 # Periodogram of a univatiate point pattern
 # Return a matrix if `return.DFT = FALSE`; a list consisting of the periodogram and DFT if `return.DFT = TRUE`.
 periodogram = function(i, j, ppp,

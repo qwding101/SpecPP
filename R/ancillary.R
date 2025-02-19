@@ -1,3 +1,7 @@
+bartlett_uni = function(v, b){
+  return(ifelse(abs(v/b) > 1, 0, (1-abs(v/b))/b))
+}
+
 fixpd_fun = function(mat){
   min.eigen = min(eigen(mat, only.values = TRUE)$values)
   if (min.eigen <= 0){
