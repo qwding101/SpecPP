@@ -7,9 +7,9 @@
 <!-- badges: end -->
 
 A R package to conduct spectral analysis for multivariate spatial point
-pattern on rectangle region. Given a multivariate point pattern and
+pattern on rectangle region. Given a multivariate point pattern and a
 parametric model of the intensity function, this package enables you to
-depict the frequency-domain feature of your data by kernel smoothing.
+depict the frequency domain feature of your data by kernel smoothing.
 Functions for bandwidth selection, visualization, and coherence analysis
 are provided in this package.
 
@@ -18,7 +18,7 @@ You can install the development version of fspp from
 
 ``` r
 # install.packages("pak")
-pak::pak("qwding101/specpp")
+pak::pak("qwding101/SpecPP")
 ```
 
 - For technical details, please read [our
