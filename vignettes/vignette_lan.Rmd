@@ -1,0 +1,52 @@
+---
+title: "vignette_lan"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{vignette_lan}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+# Import package and data
+
+```{r setup}
+library(fspp)
+library(spatstat)
+plot(lansing)
+plot(split.ppp(lansing), pch = 20, cex = .1)
+summary(lansing)
+```
+
+
+
+```{r}
+scale.factor = 1/20
+spp = rescale(lansing, scale.factor)
+Window(spp)
+```
+
+
+# Estimate pseudo-spectrum
+
+-   Bandwidth selection
+```{r}
+# cv = select_band(ppp = spp,
+#                  inten.formula = "~ x + y + x*y",
+#                  data.covariate = NULL,
+#                  band.range = seq(0.5, 0.8, .01))
+```
+
+
+
+# Coherence analysis
+
+

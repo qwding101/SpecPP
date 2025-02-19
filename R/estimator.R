@@ -103,7 +103,7 @@ periodogram = function(i, j, ppp,
 #' @param data.covariate Optional. The values of spatial covariates passed to the `data` argument in [`ppm`].
 #' @param bandwidth A positive value indicating the bandwidth of kernel, determined by [select_band()].
 #' @param correct Logical. If `TRUE` (default), conduct edge correction when computing the kernel spectral estimator.
-#' @param a taper coefficient, a value within unit interval. If `a = 1`, then no data taper is used.
+#' @param a Taper coefficient, a value within unit interval. If `a = 1`, then no data taper is used.
 #'  Default is `a = 0.025`.
 #' @param A1,A2 Optional. Side lengths of the observation window.
 #' @param endpt A positive value indicating the scale factor of the endpoint frequency.
@@ -115,7 +115,7 @@ periodogram = function(i, j, ppp,
 #'
 #' @details
 #' The minimal required arguments are `ppp`, `inten.formula`, and `bandwidth`.
-#' If you use any spatial covariate (other than the Cartesian coordinates) in `inten.formula`, then
+#' If you use any spatial covariate other than the Cartesian coordinates in `inten.formula`, then
 #' `data.covariate` is also needed. All the other arguments can be left by default setting.
 #' `periodogram_smooth()` computes all the pairwise (marginal and cross-) kernel spectral estimators
 #' automatically when the mark indices `i` and `j` are unspecified. If `i` and `j` are specified,

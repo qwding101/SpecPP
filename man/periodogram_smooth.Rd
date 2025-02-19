@@ -36,7 +36,7 @@ intensity function, which is passed to \code{\link{ppm}}. The default is constan
 
 \item{correct}{Logical. If \code{TRUE} (default), conduct edge correction when computing the kernel spectral estimator.}
 
-\item{a}{taper coefficient, a value within unit interval. If \code{a = 1}, then no data taper is used.
+\item{a}{Taper coefficient, a value within unit interval. If \code{a = 1}, then no data taper is used.
 Default is \code{a = 0.025}.}
 
 \item{A1, A2}{Optional. Side lengths of the observation window.}
@@ -55,7 +55,7 @@ Computes the kernel spectral estimator for a multivatiate (multitype) point patt
 }
 \details{
 The minimal required arguments are \code{ppp}, \code{inten.formula}, and \code{bandwidth}.
-If you use any spatial covariate (other than the Cartesian coordinates) in \code{inten.formula}, then
+If you use any spatial covariate other than the Cartesian coordinates in \code{inten.formula}, then
 \code{data.covariate} is also needed. All the other arguments can be left by default setting.
 \code{periodogram_smooth()} computes all the pairwise (marginal and cross-) kernel spectral estimators
 automatically when the mark indices \code{i} and \code{j} are unspecified. If \code{i} and \code{j} are specified,

@@ -92,3 +92,13 @@ coherence = function(sp.est, ppp, type = "partial", all = FALSE){
 
   return(max.coh.mat)
 }
+
+#' @export
+print.SuppAttr = function(x, ...){
+  print(matrix(as.numeric(x),
+               nrow = attributes(x)$dim[1],
+               ncol = attributes(x)$dim[2],
+               dimnames = list(attributes(x)$dimnames[[1]],
+                               attributes(x)$dimnames[[2]])),
+        ...)
+}
