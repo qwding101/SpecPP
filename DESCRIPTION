@@ -27,8 +27,8 @@ Imports:
     spatstat.geom,
     spatstat.model,
     stats
-URL: https://github.com/qwding101/specpp
-BugReports: https://github.com/qwding101/specpp/issues
+URL: https://github.com/qwding101/SpecPP
+BugReports: https://github.com/qwding101/SpecPP/issues
 Suggests: 
     knitr,
     rmarkdown
