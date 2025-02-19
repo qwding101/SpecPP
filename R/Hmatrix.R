@@ -1,6 +1,6 @@
 #' Compute the the H matrix used in coherence.R
 #'
-#' @param sp.est A list of kernel spectral estimate matrices of the point pattern.
+#' @param sp.est A list of kernel spectral estimate matrices of `ppp`.
 #' @param ppp Point pattern.
 
 Hmatrix = function(sp.est, ppp){

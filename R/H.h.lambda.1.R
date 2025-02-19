@@ -2,8 +2,8 @@
 #'
 #' @param w1,w2 A numeric value or vector of frequency values at horizontal and
 #' vertical directions, respective.
-#' @param a Taper coefficient, a value within unit interval. If `a = 1`, then no
-#'  data taper is used.
+#' @param a Taper coefficient, a value within unit interval. If `a = 1`, then
+#'  taper is not applied.
 #' @param taper Data taper function.
 #' @param A1,A2 Side lengths of the observation window.
 #' @param inten.fitted Intensity function of individual point pattern.

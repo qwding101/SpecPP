@@ -1,6 +1,7 @@
 #' Recale the rectangular image to unit square
-#' @param im Image object.
-#' @param length.x,length.y Side lengths.
+#' @param im Pixel image object of class `"im"` or function of spatial location
+#' of class `"funxy"` from spatstat package.
+#' @param length.x,length.y Numeric. Side lengths.
 #' @param return.fun Logical. If `TRUE`, convert the scaled image to function.
 #' Otherwise, return the image itself.
 
