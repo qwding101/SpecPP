@@ -1,5 +1,5 @@
-Package: fspp
-Title: Fourier Analysis for Spatial Point Processes
+Package: SpecPP
+Title: Spectral Analysis for Point Processes
 Version: 0.1.0.0000
 Authors@R: c(
     person("Qi-Wen", "Ding", email = "r07227101@ntu.edu.tw", role = c("aut")),
@@ -27,8 +27,8 @@ Imports:
     spatstat.geom,
     spatstat.model,
     stats
-URL: https://github.com/qwding101/fspp
-BugReports: https://github.com/qwding101/fspp/issues
+URL: https://github.com/qwding101/specpp
+BugReports: https://github.com/qwding101/specpp/issues
 Suggests: 
     knitr,
     rmarkdown

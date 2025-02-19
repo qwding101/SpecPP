@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 # Import package and data
 
 ```{r setup}
-library(fspp)
+library(SpecPP)
 library(spatstat)
 plot(lansing)
 plot(split.ppp(lansing), pch = 20, cex = .1)

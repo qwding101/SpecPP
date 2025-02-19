@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# fspp
+# SpecPP
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -18,7 +18,7 @@ You can install the development version of fspp from
 
 ``` r
 # install.packages("pak")
-pak::pak("qwding101/fspp")
+pak::pak("qwding101/specpp")
 ```
 
 - For technical details, please read [our
