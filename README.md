@@ -13,7 +13,7 @@ depict the frequency domain feature of your data by kernel smoothing.
 Functions for bandwidth selection, visualization, and coherence analysis
 are provided in this package.
 
-You can install the development version of fspp from
+You can install the development version of SpecPP from
 [GitHub](https://github.com/) with:
 
 ``` r
