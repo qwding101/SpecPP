@@ -133,12 +133,12 @@ select_band = function(ppp, inten.formula = NULL, data.covariate = NULL,
   doParallel::registerDoParallel(cl)
 
   DFT.list = foreach::foreach(k = seq_along(cate),
-                     .export = c('periodogram', 'generate_freq', 'taper'),
+                     .export = c('periodogram', 'generate_freq', 'taper', 'H.h.lambda.1'),
                      .packages = 'spatstat') %dopar%{
                        periodogram(i = cate[k], j = cate[k], ppp = ppp,
                                   inten.formula = inten.formula, data.covariate = data.covariate,
                                   a = a, A1 = A1, A2 = A2, ext.factor = 2, return.DFT = TRUE, endpt = endpt,
-                                  generate_freq. = generate_freq, taper. = taper)$DFT
+                                  generate_freq. = generate_freq, taper. = taper, H.h.lambda.1. = H.h.lambda.1)$DFT
                      }
   names(DFT.list) = cate
 

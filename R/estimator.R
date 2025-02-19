@@ -4,7 +4,7 @@ periodogram = function(i, j, ppp,
                        inten.formula = "~1", data.covariate = NULL,
                        a = 0.025, return.DFT = FALSE, A1 = NULL, A2 = A1,
                        ext.factor = NULL, endpt = 1.5,
-                       generate_freq. = generate_freq, taper. = taper){
+                       generate_freq. = generate_freq, taper. = taper, H.h.lambda.1. = H.h.lambda.1){
   # Shift the observation window to the origin
   ppp = spatstat.geom::shift(ppp, origin = "centroid")
 
@@ -18,19 +18,7 @@ periodogram = function(i, j, ppp,
   freq.list = generate_freq.(A1, A2, ext.factor = ext.factor, return.comb = TRUE,
                              endpt = endpt)
 
-  exp_term = function(w, x, a, A){
-    return(taper.(x/A, a)*exp(-1i*x*w))
-  }
-
-  H.h.lambda.1 = Vectorize(function(w2, w1, a, A1, A2, inten.fitted){
-    surface = spatstat.geom::as.im(X = function(x,y,a,A1,A2,w1,w2) taper.(x,a)*taper.(y,a)*inten.fitted(x*A1,y*A2)*exp(-1i*(A1*x*w1+A2*y*w2)),
-                    W = spatstat.geom::owin(xrange = c(-.5,.5), yrange = c(-.5,.5)),
-                    a = a, A1 = A1, A2 = A2, w1 = w1, w2 = w2)
-    return(spatstat.geom::integral.im(surface)) # This part is the computation bottleneck, which takes most of the time
-  }, vectorize.args = c("w2","w1") # Vectorize the argument w1 & w2 for `outer()` to use
-  )
-
-  Jh_fun = function(i){
+  center_DFT = function(i){
     pppi = ppp[spatstat.geom::marks(ppp) == i] # Select data from ith process
 
     if (is.null(inten.formula)){ # Estimate intensity function by kernel smoothing
@@ -48,16 +36,18 @@ periodogram = function(i, j, ppp,
 
     # Compute DFT
     const = ((2*pi)^(-2/2))*(spatstat.geom::area(pppi)^(-1/2))/(1+a*(5/(4*pi^2) - 4/3))
-    V1 = outer(freq.list$omega1, pppi$x, exp_term, a=a, A=A1)
-    V2 = outer(freq.list$omega2, pppi$y, exp_term, a=a, A=A2)
+    V1 = outer(freq.list$omega1, pppi$x, function(w, x, a, A) taper.(x/A, a)*exp(-1i*x*w),
+               a=a, A=A1)
+    V2 = outer(freq.list$omega2, pppi$y, function(w, x, a, A) taper.(x/A, a)*exp(-1i*x*w),
+               a=a, A=A2)
     J_h.woconst = V2 %*% t(V1)
-    mat.left = outer(freq.list$omega2, freq.list$omega1[freq.list$omega1 < 0], H.h.lambda.1,
-                     a=a, A1=A1, A2=A2, inten.fitted=inten.fitted)
-    mat.center = outer(freq.list$omega2, 0, H.h.lambda.1,
-                       a=a, A1=A1, A2=A2, inten.fitted=inten.fitted)
+    mat.left = outer(freq.list$omega2, freq.list$omega1[freq.list$omega1 < 0], H.h.lambda.1.,
+                     a=a, taper=taper., A1=A1, A2=A2, inten.fitted=inten.fitted)
+    mat.center = outer(freq.list$omega2, 0, H.h.lambda.1.,
+                       a=a, taper=taper., A1=A1, A2=A2, inten.fitted=inten.fitted)
     mat.right = Conj(matrix(rev(as.vector(mat.left)), ncol = ncol(mat.left), nrow = nrow(mat.left)))
     C_h.woconst = spatstat.geom::area(pppi)*cbind(mat.left, mat.center, mat.right)
-
+    # Center the DFT
     DFT = const * (J_h.woconst - C_h.woconst)
     attr(DFT, "inten.fitted") = inten.fitted
     return(DFT)
@@ -70,7 +60,7 @@ periodogram = function(i, j, ppp,
 
   if (i == j){
 
-    DFT = Jh_fun(i) # Centered DFT
+    DFT = center_DFT(i) # Centered DFT
     colnames(DFT) = freq.list$omega1
     rownames(DFT) = freq.list$omega2
     period.mat = Mod(DFT)^2 # Periodogram for ith process
@@ -89,7 +79,7 @@ periodogram = function(i, j, ppp,
   }
   else{
     # Calculate the cross-spectrum directly
-    period.mat = Jh_fun(i)*Conj(Jh_fun(j))
+    period.mat = center_DFT(i)*Conj(center_DFT(j))
     colnames(period.mat) = freq.list$omega1
     rownames(period.mat) = freq.list$omega2
     attr(period.mat, "freq.list") = freq.list
@@ -113,7 +103,7 @@ periodogram = function(i, j, ppp,
 #' @param data.covariate Optional. The values of spatial covariates passed to the `data` argument in [`ppm`].
 #' @param bandwidth A positive value indicating the bandwidth of kernel, determined by [select_band()].
 #' @param correct Logical. If `TRUE` (default), conduct edge correction when computing the kernel spectral estimator.
-#' @param a Taper coefficient, a value within unit interval. If `a = 1`, then no data taper is used.
+#' @param a taper coefficient, a value within unit interval. If `a = 1`, then no data taper is used.
 #'  Default is `a = 0.025`.
 #' @param A1,A2 Optional. Side lengths of the observation window.
 #' @param endpt A positive value indicating the scale factor of the endpoint frequency.
@@ -217,12 +207,12 @@ periodogram_smooth = function(ppp, i = NULL, j = i,
     doParallel::registerDoParallel(cl)
 
     DFT.list = foreach::foreach(k = seq_along(cate),
-                       .export = c('periodogram', 'generate_freq', 'taper'),
+                       .export = c('periodogram', 'generate_freq', 'taper', 'H.h.lambda.1'),
                        .packages = 'spatstat') %dopar%{
                          periodogram(i = cate[k], j = cate[k], ppp = ppp,
                                     inten.formula = inten.formula, data.covariate = data.covariate,
                                     a = a, A1 = A1, A2 = A2, ext.factor = 2, return.DFT = TRUE, endpt = endpt,
-                                    generate_freq. = generate_freq, taper. = taper)$DFT
+                                    generate_freq. = generate_freq, taper. = taper, H.h.lambda.1. = H.h.lambda.1)$DFT
                        }
     names(DFT.list) = cate
 

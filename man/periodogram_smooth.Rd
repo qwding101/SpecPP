@@ -36,7 +36,7 @@ intensity function, which is passed to \code{\link{ppm}}. The default is constan
 
 \item{correct}{Logical. If \code{TRUE} (default), conduct edge correction when computing the kernel spectral estimator.}
 
-\item{a}{Taper coefficient, a value within unit interval. If \code{a = 1}, then no data taper is used.
+\item{a}{taper coefficient, a value within unit interval. If \code{a = 1}, then no data taper is used.
 Default is \code{a = 0.025}.}
 
 \item{A1, A2}{Optional. Side lengths of the observation window.}

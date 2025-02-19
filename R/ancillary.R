@@ -90,6 +90,13 @@ taper = function(x, a){
   return(result)
 }
 
+H.h.lambda.1 = Vectorize(function(w2, w1, a, taper, A1, A2, inten.fitted){
+  surface = spatstat.geom::as.im(X = function(x,y,a,A1,A2,w1,w2) taper(x,a)*taper(y,a)*inten.fitted(x*A1,y*A2)*exp(-1i*(A1*x*w1+A2*y*w2)),
+                                 W = spatstat.geom::owin(xrange = c(-.5,.5), yrange = c(-.5,.5)),
+                                 a = a, A1 = A1, A2 = A2, w1 = w1, w2 = w2)
+  return(spatstat.geom::integral.im(surface)) # This part is the computation bottleneck, which takes most of the time
+}, vectorize.args = c("w2","w1") # Vectorize the argument w1 & w2 for `outer()` to use
+)
 
 smoother = function(w, period.mat, w.k1, w.k2, b1=1, b2=b1,
                     loo = FALSE, kernel_uni){
