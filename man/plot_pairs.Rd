@@ -21,7 +21,7 @@ plot_pairs(
 \item{xnorm}{Logical. If \code{TRUE} (default), plot the radially-averaged spectral
 estimates. Otherwise, plot the raw values by heatmap.}
 
-\item{freq.list}{List. Output from \code{generate_freq()} with \code{return.comb = TRUE}.}
+\item{freq.list}{List. Output from \code{\link[=generate_freq]{generate_freq()}} with \code{return.comb = TRUE}.}
 
 \item{shared.legend}{Logical. Whether to share the legend across all plots.}
 

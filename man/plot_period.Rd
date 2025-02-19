@@ -16,7 +16,7 @@ plot_period(
 \arguments{
 \item{period}{Matrix. Output from \code{periodogram()} or \code{\link[=periodogram_smooth]{periodogram_smooth()}}.}
 
-\item{freq.list}{List. Output from \code{generate_freq()} with \code{return.comb = TRUE}.}
+\item{freq.list}{List. Output from \code{\link[=generate_freq]{generate_freq()}} with \code{return.comb = TRUE}.}
 
 \item{remove}{An experimental feature. Please ignore.}
 

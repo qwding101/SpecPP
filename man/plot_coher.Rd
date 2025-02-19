@@ -13,8 +13,8 @@ plot_coher(sp.est, coh.mat, partial.coh.mat, xnorm = TRUE, ylim = NULL)
 
 \item{partial.coh.mat}{Partial coherence matrix from \code{\link[=coherence]{coherence()}} with \code{type = "partial"}.}
 
-\item{xnorm}{Logical. If \code{TRUE} (default), plot the radial averaged values. If \code{FALSE}, plot
-the raw coherence and partial coherence values via heatmap.}
+\item{xnorm}{Logical. If \code{TRUE} (default), plot the radial averaged values.
+If \code{FALSE}, plot the raw coherence and partial coherence values via heatmap.}
 
 \item{ylim}{A numeric vector \code{c(lower, upper)} to specify the range to draw for the
 radially-averaged plot. Not required if \code{xnorm = FALSE}.}

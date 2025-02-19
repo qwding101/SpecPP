@@ -1,5 +1,32 @@
-# Periodogram of a univatiate point pattern
-# Return a matrix if `return.DFT = FALSE`; a list consisting of the periodogram and DFT if `return.DFT = TRUE`.
+#' Periodogram of a univatiate point pattern
+#'
+#' @description
+#'
+#' Given a multivariate point pattern `ppp`, compute the periodograms for each
+#' marginal point pattern.
+#'
+#' @param i Mark index. An element in `marks(ppp)`.
+#' @param j Mark index. An element in `marks(ppp)`.
+#' @param ppp A point pattern of class `"ppp"`.
+#' @param inten.formula A [`formula`] syntax in character format specifying the
+#' log-liner model for the intensity function, which is passed to [`ppm()`]. The
+#' default is constant intensity `inten.formula = "~1"`.
+#' @param data.covariate Optional. The values of spatial covariates passed to
+#' the `data` argument in [`ppm()`].
+#' @param a Taper coefficient, a value within unit interval. If `a = 1`, then
+#' taper is not applied. Default is `a = 0.025`.
+#' @param A1,A2 Optional. Side lengths of the observation window.
+#' @param ext.factor Optional. If `NULL` (default), the frequency grid for the
+#' periodogram is not extended. Please keep this `NULL` unless you know what you
+#' are doing.
+#' @param endpt A positive value indicating the scale factor of the endpoint frequency.
+#' @param return.DFT If `TRUE`, also return the centered discrete Fourier
+#' transform (DFT).
+#' @param generate_freq.,taper.,H.h.lambda.1. Functions in their respective .R files.
+#'
+#' @return
+#' A matrix if `return.DFT = FALSE`; a list consisting of the periodogram and the
+#' centered DFT if `return.DFT = TRUE`.
 periodogram = function(i, j, ppp,
                        inten.formula = "~1", data.covariate = NULL,
                        a = 0.025, return.DFT = FALSE, A1 = NULL, A2 = A1,
@@ -98,17 +125,21 @@ periodogram = function(i, j, ppp,
 #' @param i Mark index. An element in `marks(ppp)`.
 #' @param j Mark index. An element in `marks(ppp)`.
 #' @param ppp A point pattern of class `"ppp"`.
-#' @param inten.formula A [`formula`] syntax in character format specifying the log-liner model for the
-#'  intensity function, which is passed to [`ppm`]. The default is constant intensity `inten.formula = "~1"`.
-#' @param data.covariate Optional. The values of spatial covariates passed to the `data` argument in [`ppm`].
-#' @param bandwidth A positive value indicating the bandwidth of kernel, determined by [select_band()].
-#' @param correct Logical. If `TRUE` (default), conduct edge correction when computing the kernel spectral estimator.
-#' @param a Taper coefficient, a value within unit interval. If `a = 1`, then no data taper is used.
-#'  Default is `a = 0.025`.
+#' @param inten.formula A [`formula`] syntax in character format specifying the
+#' log-liner model for the intensity function, which is passed to [`ppm`]. The
+#' default is constant intensity `inten.formula = "~1"`.
+#' @param data.covariate Optional. The values of spatial covariates passed to
+#' the `data` argument in [`ppm`].
+#' @param bandwidth A positive value indicating the bandwidth of kernel,
+#' determined by [select_band()].
+#' @param correct Logical. If `TRUE` (default), conduct edge correction when
+#' computing the kernel spectral estimator.
+#' @param a Taper coefficient, a value within unit interval. If `a = 1`, then
+#' taper is not applied. Default is `a = 0.025`.
 #' @param A1,A2 Optional. Side lengths of the observation window.
 #' @param endpt A positive value indicating the scale factor of the endpoint frequency.
 #' @param equal Logical. If `TRUE`, then use the same bandwidth for both x and y direction.
-#' @param kern Univariate scaled kernel function, e.g., Barrlett kernel (default).
+#' @param kern Univariate scaled kernel function. The default is Barrlett kernel.
 #'
 #' @return
 #' A list of matrices, or a single matrix if `i` and `j` are specified.
@@ -117,9 +148,10 @@ periodogram = function(i, j, ppp,
 #' The minimal required arguments are `ppp`, `inten.formula`, and `bandwidth`.
 #' If you use any spatial covariate other than the Cartesian coordinates in `inten.formula`, then
 #' `data.covariate` is also needed. All the other arguments can be left by default setting.
-#' `periodogram_smooth()` computes all the pairwise (marginal and cross-) kernel spectral estimators
-#' automatically when the mark indices `i` and `j` are unspecified. If `i` and `j` are specified,
-#' then it only computes the result for that mark combination.
+#' [`periodogram_smooth()`] computes all the pairwise (marginal and cross-) kernel
+#' spectral estimators automatically when the mark indices `i` and `j` are
+#' unspecified. If `i` and `j` are specified, then it only computes the result
+#' for that mark combination.
 #'
 #' The bandwidth can be determined by [select_band()].
 #'

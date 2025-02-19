@@ -27,17 +27,21 @@ periodogram_smooth(
 
 \item{j}{Mark index. An element in \code{marks(ppp)}.}
 
-\item{inten.formula}{A \code{\link{formula}} syntax in character format specifying the log-liner model for the
-intensity function, which is passed to \code{\link{ppm}}. The default is constant intensity \code{inten.formula = "~1"}.}
+\item{inten.formula}{A \code{\link{formula}} syntax in character format specifying the
+log-liner model for the intensity function, which is passed to \code{\link{ppm}}. The
+default is constant intensity \code{inten.formula = "~1"}.}
 
-\item{data.covariate}{Optional. The values of spatial covariates passed to the \code{data} argument in \code{\link{ppm}}.}
+\item{data.covariate}{Optional. The values of spatial covariates passed to
+the \code{data} argument in \code{\link{ppm}}.}
 
-\item{bandwidth}{A positive value indicating the bandwidth of kernel, determined by \code{\link[=select_band]{select_band()}}.}
+\item{bandwidth}{A positive value indicating the bandwidth of kernel,
+determined by \code{\link[=select_band]{select_band()}}.}
 
-\item{correct}{Logical. If \code{TRUE} (default), conduct edge correction when computing the kernel spectral estimator.}
+\item{correct}{Logical. If \code{TRUE} (default), conduct edge correction when
+computing the kernel spectral estimator.}
 
-\item{a}{Taper coefficient, a value within unit interval. If \code{a = 1}, then no data taper is used.
-Default is \code{a = 0.025}.}
+\item{a}{Taper coefficient, a value within unit interval. If \code{a = 1}, then
+taper is not applied. Default is \code{a = 0.025}.}
 
 \item{A1, A2}{Optional. Side lengths of the observation window.}
 
@@ -45,7 +49,7 @@ Default is \code{a = 0.025}.}
 
 \item{equal}{Logical. If \code{TRUE}, then use the same bandwidth for both x and y direction.}
 
-\item{kern}{Univariate scaled kernel function, e.g., Barrlett kernel (default).}
+\item{kern}{Univariate scaled kernel function. The default is Barrlett kernel.}
 }
 \value{
 A list of matrices, or a single matrix if \code{i} and \code{j} are specified.
@@ -57,9 +61,10 @@ Computes the kernel spectral estimator for a multivatiate (multitype) point patt
 The minimal required arguments are \code{ppp}, \code{inten.formula}, and \code{bandwidth}.
 If you use any spatial covariate other than the Cartesian coordinates in \code{inten.formula}, then
 \code{data.covariate} is also needed. All the other arguments can be left by default setting.
-\code{periodogram_smooth()} computes all the pairwise (marginal and cross-) kernel spectral estimators
-automatically when the mark indices \code{i} and \code{j} are unspecified. If \code{i} and \code{j} are specified,
-then it only computes the result for that mark combination.
+\code{\link[=periodogram_smooth]{periodogram_smooth()}} computes all the pairwise (marginal and cross-) kernel
+spectral estimators automatically when the mark indices \code{i} and \code{j} are
+unspecified. If \code{i} and \code{j} are specified, then it only computes the result
+for that mark combination.
 
 The bandwidth can be determined by \code{\link[=select_band]{select_band()}}.
 }
