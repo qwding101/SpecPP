@@ -3,14 +3,14 @@
 #' @description
 #' Use `ggplot2` package to plot the heatmap of a single periodogram or kernel spectral estimate.
 #'
-#' @param period Matrix. Output from `periodogram()` or [periodogram_smooth()].
+#' @param period Matrix. Output from `periodogram()` or [`periodogram_smooth()`].
 #' @param freq.list List. Output from [`generate_freq()`] with `return.comb = TRUE`.
 #' @param remove An experimental feature. Please ignore.
 #' @param title Character. The title of the plot.
 #' @param palette Color schemes for visualization. Type `?scale_fill_distiller()`
 #'  to check available options.
 #' @param legend.range Input `c(lower, upper)` to manually set the lower and upper limit of the spectral density to visualize.
-#' @seealso [plot_pairs()]
+#' @seealso [`plot_pairs()`]
 #' @examples
 #' library(spatstat)
 #' lam <- function(x, y, m) {(x^2 + y) * ifelse(m == "A", 2, 1)}
@@ -71,7 +71,7 @@ plot_period = function(period, freq.list = NULL, remove=NULL,
 #' Given a multivariate (multitype) point pattern, use `ggplot2` package to
 #' visualize all (marginal and joint) kernel spectral estimates.
 #'
-#' @param est.list List. Output from [periodogram_smooth()].
+#' @param est.list List. Output from [`periodogram_smooth()`].
 #' @param ppp A point pattern of class `"ppp"`.
 #' @param xnorm Logical. If `TRUE` (default), plot the radially-averaged spectral
 #' estimates. Otherwise, plot the raw values by heatmap.
@@ -186,15 +186,15 @@ plot_pairs = function(est.list, ppp, xnorm = TRUE, freq.list = NULL,
 #' @description
 #' Use `ggplot2` package to visualize the coherence and partial coherence.
 #'
-#' @param sp.est List. The kernel spectral estimate from [periodogram_smooth()].
-#' @param coh.mat Coherence matrix from [coherence()] with `type = "normal"`.
-#' @param partial.coh.mat Partial coherence matrix from [coherence()] with `type = "partial"`.
+#' @param sp.est List. The kernel spectral estimate from [`periodogram_smooth()`].
+#' @param coh.mat Coherence matrix from [`coherence()`] with `type = "normal"`.
+#' @param partial.coh.mat Partial coherence matrix from [`coherence()`] with `type = "partial"`.
 #' @param xnorm Logical. If `TRUE` (default), plot the radial averaged values.
 #' If `FALSE`, plot the raw coherence and partial coherence values via heatmap.
 #' @param ylim A numeric vector `c(lower, upper)` to specify the range to draw for the
 #' radially-averaged plot. Not required if `xnorm = FALSE`.
 #'
-#' @seealso [coherence()]
+#' @seealso [`coherence()`]
 #' @examples
 #' library(spatstat)
 #' lam <- function(x, y, m) {(x^2 + y) * ifelse(m == "A", 2, 1)}

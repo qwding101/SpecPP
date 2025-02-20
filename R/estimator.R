@@ -126,12 +126,12 @@ periodogram = function(i, j, ppp,
 #' @param j Mark index. An element in `marks(ppp)`.
 #' @param ppp A point pattern of class `"ppp"`.
 #' @param inten.formula A [`formula`] syntax in character format specifying the
-#' log-liner model for the intensity function, which is passed to [`ppm`]. The
+#' log-liner model for the intensity function, which is passed to [`ppm()`]. The
 #' default is constant intensity `inten.formula = "~1"`.
 #' @param data.covariate Optional. The values of spatial covariates passed to
 #' the `data` argument in [`ppm`].
 #' @param bandwidth A positive value indicating the bandwidth of kernel,
-#' determined by [select_band()].
+#' determined by [`select_band()`].
 #' @param correct Logical. If `TRUE` (default), conduct edge correction when
 #' computing the kernel spectral estimator.
 #' @param a Taper coefficient, a value within unit interval. If `a = 1`, then
@@ -153,7 +153,7 @@ periodogram = function(i, j, ppp,
 #' unspecified. If `i` and `j` are specified, then it only computes the result
 #' for that mark combination.
 #'
-#' The bandwidth can be determined by [select_band()].
+#' The bandwidth can be determined by [`select_band()`].
 #'
 #' @examples
 #' library(spatstat)
