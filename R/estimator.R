@@ -5,8 +5,8 @@
 #' Given a multivariate point pattern `ppp`, compute the periodograms for each
 #' marginal point pattern.
 #'
-#' @param i Mark index. An element in `marks(ppp)`.
-#' @param j Mark index. An element in `marks(ppp)`.
+#' @param i Mark index. An element in `levels(spatstat.geom::marks(ppp))`.
+#' @param j Mark index. An element in `levels(spatstat.geom::marks(ppp))`.
 #' @param ppp A point pattern of class `"ppp"`.
 #' @param inten.formula A [`formula`] syntax in character format specifying the
 #' log-liner model for the intensity function, which is passed to [`ppm()`]. The
@@ -122,8 +122,8 @@ periodogram = function(i, j, ppp,
 #'
 #' Computes the kernel spectral estimator for a multivatiate (multitype) point pattern.
 #'
-#' @param i Mark index. An element in `marks(ppp)`.
-#' @param j Mark index. An element in `marks(ppp)`.
+#' @param i Mark index. An element in `levels(spatstat.geom::marks(ppp))`.
+#' @param j Mark index. An element in `levels(spatstat.geom::marks(ppp))`.
 #' @param ppp A point pattern of class `"ppp"`.
 #' @param inten.formula A [`formula`] syntax in character format specifying the
 #' log-liner model for the intensity function, which is passed to [`ppm()`]. The
