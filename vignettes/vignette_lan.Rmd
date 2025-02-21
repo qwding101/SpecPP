@@ -19,11 +19,17 @@ knitr::opts_chunk$set(
 # Import package and data
 
 Here we use the Lansing Woods dataset from `spatstat` package, which consisting of the locations of six different types of trees.
-```{r setup}
+
+```{r include=FALSE}
+# install.packages("pak")
+pak::pak("qwding101/SpecPP")
+```
+
+```{r setup, message=FALSE}
 library(SpecPP)
 library(spatstat)
-plot(lansing)
-plot(split.ppp(lansing), pch = 20, cex = .1)
+2
+plot(split(lansing), pch = 20, cex = .1, main = "Point pattern of Lansing Woods")
 summary(lansing)
 ```
 
@@ -43,24 +49,62 @@ Window(spp)
 
 
 # Estimate pseudo-spectrum
-
 We use the kernel spectral density estimator (KSDE) to estimate the pseudo-spectrum of `spp`. The calculation of KSDE involves two critical intermediate steps: intensity function estimation and bandwidth selection.
 
 ## Intensity function estimation
-Although we can estimate the intensity function nonparametrically (`spatstat::density.ppp()` does that!), the nice asymptotic properties of our KSDE are established under the parametric form of the intensity function. Hence, here we fit a log-liner model:
+Although we can estimate the intensity function nonparametrically (`spatstat::density.ppp()` does that!), the nice asymptotic properties of our KSDE are established under the parametric form of the intensity functions. Hence, for each tree species, we fit a log-liner model based on the Cartesian coordinates:
 ```{r}
+spps = split(spp)
+fit.lambda = vector("list", length(spps))
+names(fit.lambda) = names(spps)
+for (i in seq_along(spps)){
+  fit.lambda[[i]] = predict.ppm(ppm(spps[[i]] ~ x + y + x:y))
+}
+```
 
+Then, plot the fitted intensity to make sure it captures the spatial inhomogeneity of the data well. Below figure suggests that our model `~ x + y + x:y` might be too simple, but for pedagogical purpose, we'll give it a pass here. 
+```{r}
+plot(as.solist(fit.lambda), main = "Estimated intensity")
+```
+
+In practice, we may include other spatial covariates into the model to better depict the inhomogeneity. To do that, please specify the names of covariates in the model syntax, and assign the object storing covariates to the `data` argument of `ppm()`. For example, if you have two covariates `pH` and `gradient`, you need to store them into a single list and assign it to the `data` argument (check `?ppm` for more details about the format of the covariates):
+```{r eval=FALSE}
+# Just an example. This dataset from spatstat doesn't have any covariate.
+covars = 
+for (i in seq_along(spps)){
+  fit.lambda[[i]] = predict.ppm(ppm(spps[[i]] ~ x + y + x:y + pH + gradient,
+                                    data = covars))
+}
 ```
 
 
 ## Bandwidth selection
+To ensure better estimation performance, we need to select a good bandwidth for the KSDE, which is done by `select_band()`. The required arguments for `select_band()` are:
+-   `ppp`: The point pattern
+-   `inten.formula`: The model for the intensity (mentioned in previous section), in our example, is `"~ x + y + x:y"`. Note that here you need to enclose the syntax in quotation marks to make sure it is a string.
+-   `band.range`: A numeric vector indicating the search space for the optimal bandwidth. 
+
+Another argument `data.covariate`, which is used to store the covariate data, is also required if you specify any spatial covariate other than Cartesian coordinates in `inten.formula`. All the other arguments of `select_band()` can be safely ignored.
 
 ```{r}
-# cv = select_band(ppp = spp,
-#                  inten.formula = "~ x + y + x*y",
-#                  data.covariate = NULL,
-#                  band.range = seq(0.5, 0.8, .01))
+cv = select_band(ppp = spp,
+                 inten.formula = "~ x + y + x:y",
+                 band.range = seq(0.7, 1.1, .01))
+
+plot(x = cv$Result[1,], y = cv$Result[2,], type = "l",
+     xlab = "Bandwidth", ylab = "Spectral divergence")
+abline(v = cv$`Optimal bandwidth`, col = "blue", lwd = 2, lty = "dashed")
 ```
+As you see in above figure, the `select_band()` calculate the spectral divergence for all bandwidth specified in `band.range`. The bandwidth minimizing the spectral divergence is the optimal bandwidth we select, which is `cv$`Optimal bandwidth`` = `r cv$`Optimal bandwidth`` (marked by the blue dashed line).
+
+
+There are two caveats for bandwidth selection.
+-   The *resolution* of the bandwidth search space `band.range` should not be either too fine or too coarse. It is a trade-off between the computational time and accuracy of your result.
+-   The *length* of your search space should not be too narrow; otherwise then there is a high chance that it can not cover the "global" minimum. Sometimes the "minimum" happens at the boundary of your search space, where `select_band()` would give you a warning message to tell you to try a longer search range. Sometimes warning message does not pop out but you still might be wrong, because you find a local minimum which does not lie on the boundary, such as specifying `band.range = seq(0.96, 1.05, .01)`.
+
+Due to above reasons, in practice, you may run `select_band()` and plot the result multiple times to check whether you have specified a good bandwidth search space.
+
+
 
 
 
