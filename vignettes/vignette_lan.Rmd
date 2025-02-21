@@ -14,9 +14,11 @@ knitr::opts_chunk$set(
 )
 ```
 
+In this tutorial, we use the Lansing Woods dataset to demonstrate how to extract frequency domain features from a multivariate inhomogeneous point pattern data by SpecPP.
+
 # Import package and data
 
-Here we use the Lansing Woods dataset from `spatstat` package, which consists of the locations of six different types of trees.
+The Lansing Woods dataset can be imported from the `spatstat` package, which consists of the spatial distributions of six different types of trees.
 
 ```{r setup, message=FALSE}
 library(SpecPP)
