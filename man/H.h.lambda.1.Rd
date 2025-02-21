@@ -8,7 +8,7 @@ H.h.lambda.1(w2, w1, a, taper, A1, A2, inten.fitted)
 }
 \arguments{
 \item{w1, w2}{A numeric value or vector of frequency values at horizontal and
-vertical directions, respective.}
+vertical directions, respectively.}
 
 \item{a}{Taper coefficient, a value within unit interval. If \code{a = 1}, then
 taper is not applied.}
