@@ -7,11 +7,12 @@
 <!-- badges: end -->
 
 A R package to conduct spectral analysis for multivariate spatial point
-pattern on rectangle region (Ding et al., 2025). Given a multivariate
-point pattern and a parametric model of the intensity function, this
-package enables you to depict the frequency domain feature of your data
-by kernel smoothing. Functions for bandwidth selection, visualization,
-and coherence analysis are provided in this package.
+pattern on rectangle region ([Ding et al.,
+2025](https://arxiv.org/abs/2502.09948)). Given a multivariate point
+pattern and a parametric model of the intensity function, this package
+enables you to depict the frequency domain feature of your data by
+kernel smoothing. Functions for bandwidth selection, visualization, and
+coherence analysis are provided in this package.
 
 ## Installation
 
