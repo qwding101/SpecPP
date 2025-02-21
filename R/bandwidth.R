@@ -2,10 +2,10 @@
 #'
 #' @param ppp A point pattern of class `"ppp"`.
 #' @param inten.formula A [`formula`] syntax in character format specifying the
-#' log-liner model for the intensity function, which is passed to [`ppm`]. The
+#' log-liner model for the intensity function, which is passed to [`ppm()`]. The
 #' default is constant intensity `inten.formula = "~1"`.
 #' @param data.covariate Optional. The values of spatial covariates passed to
-#' the `data` argument in [`ppm`].
+#' the `data` argument in [`ppm()`].
 #' @param a Taper coefficient, a value within unit interval. If `a = 1`, then
 #' taper is not applied.
 #' @param band.range Numeric vector. Search space for the optimal bandwidth.
@@ -27,10 +27,10 @@
 #' b <- seq(0.95, 1.8, 0.1) # You may use finer grid to search optimal bandwidth
 #'
 #' cv <- select_band(spp, inten.formula = "~ x + y", band.range = b)
-#' cv$`Optimal bandwidth` # Print the optimal bandwidth
+#' cv$OptimalBandwidth # Print the optimal bandwidth
 #' plot(cv$Result[1,], cv$Result[2,], type = "b", pch = 20, las = 1,
 #'      xlab = "Bandwidth", ylab = "Whittle likelihood")
-#' abline(v = cv$`Optimal bandwidth`, col = "blue")
+#' abline(v = cv$OptimalBandwidth, col = "blue")
 #' @importFrom foreach %dopar%
 #' @export
 select_band = function(ppp, inten.formula = NULL, data.covariate = NULL,
@@ -188,7 +188,7 @@ select_band = function(ppp, inten.formula = NULL, data.covariate = NULL,
 
   cv[[1]] = cv[[3]][1, which.min(cv[[3]][2,])]
   cv[[2]] = min(cv[[3]][2,])
-  names(cv) = c("Optimal bandwidth", "Likelihood", "Result")
+  names(cv) = c("OptimalBandwidth", "Likelihood", "Result")
 
   if (which.min(cv[[3]][2,]) %in% c(1, length(band.range))){
     warning(paste0("The optimal bandwidth lies on the endpoint of the `band.range`. ",

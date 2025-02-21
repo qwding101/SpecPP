@@ -22,11 +22,11 @@ select_band(
 \item{ppp}{A point pattern of class \code{"ppp"}.}
 
 \item{inten.formula}{A \code{\link{formula}} syntax in character format specifying the
-log-liner model for the intensity function, which is passed to \code{\link{ppm}}. The
+log-liner model for the intensity function, which is passed to \code{\link[=ppm]{ppm()}}. The
 default is constant intensity \code{inten.formula = "~1"}.}
 
 \item{data.covariate}{Optional. The values of spatial covariates passed to
-the \code{data} argument in \code{\link{ppm}}.}
+the \code{data} argument in \code{\link[=ppm]{ppm()}}.}
 
 \item{a}{Taper coefficient, a value within unit interval. If \code{a = 1}, then
 taper is not applied.}
@@ -59,8 +59,8 @@ spp <- rmpoispp(lambda = lam, win = square(5), types = c("A","B"))
 b <- seq(0.95, 1.8, 0.1) # You may use finer grid to search optimal bandwidth
 
 cv <- select_band(spp, inten.formula = "~ x + y", band.range = b)
-cv$`Optimal bandwidth` # Print the optimal bandwidth
+cv$OptimalBandwidth # Print the optimal bandwidth
 plot(cv$Result[1,], cv$Result[2,], type = "b", pch = 20, las = 1,
      xlab = "Bandwidth", ylab = "Whittle likelihood")
-abline(v = cv$`Optimal bandwidth`, col = "blue")
+abline(v = cv$OptimalBandwidth, col = "blue")
 }
