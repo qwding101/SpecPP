@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 
 # Import package and data
 
+Here we use the Lansing Woods dataset from `spatstat` package, which consisting of the locations of six different types of trees.
 ```{r setup}
 library(SpecPP)
 library(spatstat)
@@ -26,18 +27,34 @@ plot(split.ppp(lansing), pch = 20, cex = .1)
 summary(lansing)
 ```
 
+After importing the data, first we should check the side lengths of the observational window. If their values are too small, the spectral estimator would be evaluated at a coarse frequency grid, which can not capture the frequency domain characteristics of the point pattern thoroughly. On the other hand, if they are too large, it would make the computation unfeasible. We suggest that side lengths between 20 and 40 strike a good balance between computational burden and high level of granularity.
 
-
+As we see in `summary(lansing)`, the window is the unit square (because `spatstat` [document](https://search.r-project.org/CRAN/refmans/spatstat.data/html/lansing.html) rescaled the original window), which is too small for spectral analysis. Thus, we rescale it by a factor of 1/20:
 ```{r}
 scale.factor = 1/20
 spp = rescale(lansing, scale.factor)
+```
+
+Now the rescaled dataset `spp` with side lengths 20 is enough for our analysis.
+```{r}
 Window(spp)
 ```
 
 
+
 # Estimate pseudo-spectrum
 
--   Bandwidth selection
+We use the kernel spectral density estimator (KSDE) to estimate the pseudo-spectrum of `spp`. The calculation of KSDE involves two critical intermediate steps: intensity function estimation and bandwidth selection.
+
+## Intensity function estimation
+Although we can estimate the intensity function nonparametrically (`spatstat::density.ppp()` does that!), the nice asymptotic properties of our KSDE are established under the parametric form of the intensity function. Hence, here we fit a log-liner model:
+```{r}
+
+```
+
+
+## Bandwidth selection
+
 ```{r}
 # cv = select_band(ppp = spp,
 #                  inten.formula = "~ x + y + x*y",
