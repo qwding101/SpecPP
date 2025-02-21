@@ -22,9 +22,9 @@ periodogram(
 )
 }
 \arguments{
-\item{i}{Mark index. An element in \code{marks(ppp)}.}
+\item{i}{Mark index. An element in \code{levels(spatstat.geom::marks(ppp))}.}
 
-\item{j}{Mark index. An element in \code{marks(ppp)}.}
+\item{j}{Mark index. An element in \code{levels(spatstat.geom::marks(ppp))}.}
 
 \item{ppp}{A point pattern of class \code{"ppp"}.}
 

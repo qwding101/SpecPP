@@ -2,7 +2,7 @@
 % Please edit documentation in R/Hmatrix.R
 \name{Hmatrix}
 \alias{Hmatrix}
-\title{Compute the the H matrix used in coherence.R}
+\title{Compute the H matrix used in coherence.R}
 \usage{
 Hmatrix(sp.est, ppp)
 }
@@ -12,5 +12,5 @@ Hmatrix(sp.est, ppp)
 \item{ppp}{Point pattern.}
 }
 \description{
-Compute the the H matrix used in coherence.R
+Compute the H matrix used in coherence.R
 }

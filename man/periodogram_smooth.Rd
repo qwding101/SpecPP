@@ -23,12 +23,12 @@ periodogram_smooth(
 \arguments{
 \item{ppp}{A point pattern of class \code{"ppp"}.}
 
-\item{i}{Mark index. An element in \code{marks(ppp)}.}
+\item{i}{Mark index. An element in \code{levels(spatstat.geom::marks(ppp))}.}
 
-\item{j}{Mark index. An element in \code{marks(ppp)}.}
+\item{j}{Mark index. An element in \code{levels(spatstat.geom::marks(ppp))}.}
 
 \item{inten.formula}{A \code{\link{formula}} syntax in character format specifying the
-log-liner model for the intensity function, which is passed to \code{\link{ppm}}. The
+log-liner model for the intensity function, which is passed to \code{\link[=ppm]{ppm()}}. The
 default is constant intensity \code{inten.formula = "~1"}.}
 
 \item{data.covariate}{Optional. The values of spatial covariates passed to
