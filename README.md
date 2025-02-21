@@ -23,6 +23,10 @@ You can install the development version of SpecPP from
 pak::pak("qwding101/SpecPP")
 ```
 
+## Tutorial
+
+TBA
+
 ## References
 
 - Ding, Q. W., Yang, J., & Shin, J. (2025). Pseudo-spectra of

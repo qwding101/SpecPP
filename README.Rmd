@@ -28,6 +28,9 @@ You can install the development version of SpecPP from [GitHub](https://github.c
 pak::pak("qwding101/SpecPP")
 ```
 
+## Tutorial
+TBA
+
 ## References
 -   Ding, Q. W., Yang, J., & Shin, J. (2025). Pseudo-spectra of multivariate inhomogeneous spatial point processes. arXiv preprint [arXiv:2502.09948](https://arxiv.org/abs/2502.09948).
 -   Yang, J., & Guan, Y. (2024). Fourier analysis of spatial point processes. arXiv preprint [arXiv:2401.06403](https://arxiv.org/abs/2401.06403).
