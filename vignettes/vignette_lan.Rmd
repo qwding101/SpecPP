@@ -1,8 +1,8 @@
 ---
-title: "Introduction to SpecPP"
+title: "Analyzing Lansing Woods data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction to SpecPP}
+  %\VignetteIndexEntry{Analyzing Lansing Woods data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
