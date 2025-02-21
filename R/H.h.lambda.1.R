@@ -1,7 +1,7 @@
 #' Compute H.h.lambda.1 in the centered DFT
 #'
 #' @param w1,w2 A numeric value or vector of frequency values at horizontal and
-#' vertical directions, respective.
+#' vertical directions, respectively.
 #' @param a Taper coefficient, a value within unit interval. If `a = 1`, then
 #'  taper is not applied.
 #' @param taper Data taper function.
