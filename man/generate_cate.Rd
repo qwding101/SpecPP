@@ -11,6 +11,14 @@ generate_cate(cate)
 can be obtained from \code{levels(spatstat.geom::marks(ppp))}, where \code{ppp} is the
 point pattern.}
 }
+\value{
+A matrix.
+}
 \description{
 Generate all pairwise combinations of mark
+}
+\examples{
+library(spatstat)
+cate = levels(marks(lansing))
+generate_cate(cate)
 }
