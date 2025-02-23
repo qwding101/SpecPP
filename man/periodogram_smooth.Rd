@@ -75,5 +75,6 @@ spp <- rmpoispp(lambda = lam, win = square(5), types = c("A","B"))
 
 # Compute kernel spectral estimator with intensity fitted by log-linear model
 # with Cartesian coordinates
-periodogram_smooth(spp, inten.formula = "~ x + y", bandwidth = 1.2)
+ksde = periodogram_smooth(spp, inten.formula = "~ x + y", bandwidth = 1.2)
+round(ksde, 2)
 }

@@ -29,3 +29,6 @@ In \code{\link[=periodogram_smooth]{periodogram_smooth()}}, to correct the edge 
 is set to \code{2} by default. Suppose the original frequency ranges from \code{-1.5*π} to \code{1.5*π}. Then the
 extended frequency ranges from \code{-1.5*π*ext.factor} to \code{1.5*π*ext.factor}.
 }
+\examples{
+generate_freq(A1 = 8, A2 = 5, return.comb = TRUE)
+}

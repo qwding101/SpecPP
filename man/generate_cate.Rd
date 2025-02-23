@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_cate.R
 \name{generate_cate}
 \alias{generate_cate}
-\title{Generate all pairwise combinations of}
+\title{Generate all pairwise combinations of mark}
 \usage{
 generate_cate(cate)
 }
@@ -12,5 +12,5 @@ can be obtained from \code{levels(spatstat.geom::marks(ppp))}, where \code{ppp} 
 point pattern.}
 }
 \description{
-Generate all pairwise combinations of
+Generate all pairwise combinations of mark
 }

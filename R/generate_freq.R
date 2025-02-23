@@ -13,6 +13,8 @@
 #' In [periodogram_smooth()], to correct the edge effect, the `ext.factor` argument in [generate_freq()]
 #' is set to `2` by default. Suppose the original frequency ranges from `-1.5*π` to `1.5*π`. Then the
 #' extended frequency ranges from `-1.5*π*ext.factor` to `1.5*π*ext.factor`.
+#' @examples
+#' generate_freq(A1 = 8, A2 = 5, return.comb = TRUE)
 #' @export
 generate_freq = function(A1, A2, ext.factor = NULL, return.comb = FALSE, endpt = 1.5){
 

@@ -1,4 +1,4 @@
-#' Generate all pairwise combinations of
+#' Generate all pairwise combinations of mark
 #'
 #' @param cate Vector containing the categorical mark of a point process, which
 #' can be obtained from `levels(spatstat.geom::marks(ppp))`, where `ppp` is the
@@ -12,3 +12,11 @@ generate_cate = function(cate){
   }
   return(cbind(pos1, pos2))
 }
+
+#' @return
+#' A matrix.
+#'
+#' @examples
+#' library(spatstat)
+#' cate = levels(marks(lansing))
+#' generate_cate(cate)
