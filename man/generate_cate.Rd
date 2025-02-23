@@ -17,8 +17,3 @@ A matrix.
 \description{
 Generate all pairwise combinations of mark
 }
-\examples{
-library(spatstat)
-cate = levels(marks(lansing))
-generate_cate(cate)
-}
