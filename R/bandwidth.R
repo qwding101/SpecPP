@@ -23,8 +23,9 @@
 #' @examples
 #' library(spatstat)
 #' lam <- function(x, y, m) {(x^2 + y) * ifelse(m == "A", 2, 1)}
+#' set.seed(227823)
 #' spp <- rmpoispp(lambda = lam, win = square(5), types = c("A","B"))
-#' b <- seq(0.95, 1.8, 0.1) # You may use finer grid to search optimal bandwidth
+#' b <- seq(0.95, 1.4, 0.05) # You may use finer grid to search optimal bandwidth
 #'
 #' cv <- select_band(spp, inten.formula = "~ x + y", band.range = b)
 #' cv$OptimalBandwidth # Print the optimal bandwidth

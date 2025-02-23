@@ -163,7 +163,7 @@ periodogram = function(i, j, ppp,
 #' # Compute kernel spectral estimator with intensity fitted by log-linear model
 #' # with Cartesian coordinates
 #' ksde = periodogram_smooth(spp, inten.formula = "~ x + y", bandwidth = 1.2)
-#' round(ksde, 2)
+#' lapply(ksde, round, 2)
 #' @importFrom foreach %dopar%
 #' @export
 periodogram_smooth = function(ppp, i = NULL, j = i,
