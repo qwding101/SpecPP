@@ -16,7 +16,7 @@ reference:
 - title: "Ancillary functions"
   contents:
   - bartlett_uni
-  - CohbyFreq
+  - CohByFreq
   - fixpd_fun
   - starts_with("generate")
   - H.h.lambda.1
