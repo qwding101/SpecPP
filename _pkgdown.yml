@@ -4,4 +4,23 @@ template:
   light-switch: true
   theme: ayu-light
   theme-dark: ayu-dark
-
+reference:
+- title: Main functions
+- contents:
+  - periodogram_smooth
+  - select_band
+  - coherence
+- title: Ancillary functions
+  - bartlett_uni
+  - CohbyFreq
+  - fixpd_fun
+  - starts_with("generate")
+  - H.h.lambda.1
+  - Hmatrix
+  - IRspec
+  - periodogram
+  - scale2unitarea
+  - smoother
+  - taper
+- title: Plot functions
+  - starts_with("plot")
