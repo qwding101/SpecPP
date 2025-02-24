@@ -10,6 +10,8 @@ reference:
   - periodogram_smooth
   - select_band
   - coherence
+- title: Plot functions
+  - starts_with("plot")
 - title: Ancillary functions
   - bartlett_uni
   - CohbyFreq
@@ -22,5 +24,3 @@ reference:
   - scale2unitarea
   - smoother
   - taper
-- title: Plot functions
-  - starts_with("plot")
