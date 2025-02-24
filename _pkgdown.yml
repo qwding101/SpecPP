@@ -2,8 +2,8 @@ url: https://qwding101.github.io/SpecPP/
 template:
   bootstrap: 5
   light-switch: true
-  theme: ayu-light
-  theme-dark: ayu-dark
+  theme: github-light
+  theme-dark: github-dark
 reference:
 - title: "Main functions"
   contents:
