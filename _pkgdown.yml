@@ -6,15 +6,15 @@ template:
   theme-dark: ayu-dark
 reference:
 - title: Main functions
-- contents:
+  contents:
   - periodogram_smooth
   - select_band
   - coherence
 - title: Plot functions
-- contents:
+  contents:
   - starts_with("plot")
 - title: Ancillary functions
-- contents:
+  contents:
   - bartlett_uni
   - CohbyFreq
   - fixpd_fun
