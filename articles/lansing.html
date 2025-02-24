@@ -140,7 +140,8 @@ bandwidth selection.</p>
 <div class="section level3">
 <h3 id="intensity-function-estimation">Intensity function estimation<a class="anchor" aria-label="anchor" href="#intensity-function-estimation"></a>
 </h3>
-<p>Although we can estimate the intensity function nonparametrically
+<p>The KSDE involves the first-order intensity function, which needs to
+be estimated. Although it can be estimated nonparametrically
 (<code>spatstat::density.ppp()</code> does that!), the nice asymptotic
 properties of our KSDE are established under the parametric form of the
 intensity functions. Hence, for each tree species, we fit a log-liner
@@ -160,16 +161,17 @@ purpose, we’ll give it a pass here.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.solist.html" class="external-link">as.solist</a></span><span class="op">(</span><span class="va">fit.lambda</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Estimated intensity"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="lansing_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>In practice, we may include other spatial covariates into the model
-to better depict the inhomogeneity. To do that, please specify the names
-of covariates in the model syntax, and assign the object storing
-covariates to the <code>data</code> argument of <code><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html" class="external-link">ppm()</a></code>. For
-example, if you have two covariates <code>pH</code> and
-<code>gradient</code>, you need to store them into a single list and
-assign it to the <code>data</code> argument (check <code><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html" class="external-link">?ppm</a></code> for
-more details about the format of the covariates):</p>
+to better depict the inhomogeneity. To do that, specify the names of
+covariates in the model syntax, and assign the object storing covariates
+to the <code>data</code> argument of <code><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html" class="external-link">spatstat.model::ppm()</a></code>.
+For example, if you have two covariates <code>pH</code> and
+<code>gradient</code>, you need to combine them into a list and pass it
+to the <code>data</code> argument (check
+<code><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html" class="external-link">?spatstat.model::ppm</a></code> for more details about the format of
+the covariates):</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Just an example. This dataset from spatstat doesn't have any covariate.</span></span>
-<span><span class="va">covars</span> <span class="op">=</span> </span>
+<span><span class="va">covars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">pH</span>, <span class="va">gradient</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">spps</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">fit.lambda</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.model/man/predict.ppm.html" class="external-link">predict.ppm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html" class="external-link">ppm</a></span><span class="op">(</span><span class="va">spps</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x</span><span class="op">:</span><span class="va">y</span> <span class="op">+</span> <span class="va">pH</span> <span class="op">+</span> <span class="va">gradient</span>,</span>
 <span>                                    data <span class="op">=</span> <span class="va">covars</span><span class="op">)</span><span class="op">)</span></span>
@@ -213,6 +215,10 @@ the spectral divergence for all bandwidth specified in
 divergence is the optimal bandwidth we select, which is
 <code>cv$OptimalBandwidth</code> = 0.83 (marked by the blue dashed
 line).</p>
+</div>
+<div class="section level3">
+<h3 id="important">Important<a class="anchor" aria-label="anchor" href="#important"></a>
+</h3>
 <p>There are two caveats for bandwidth selection.</p>
 <ul>
 <li>The <em>resolution</em> of the bandwidth search space
@@ -231,6 +237,33 @@ minimum which does not lie on the boundary, such as specifying
 <p>Due to above reasons, in practice, you may run
 <code><a href="../reference/select_band.html">select_band()</a></code> and plot the result multiple times to check
 whether you have specified a good bandwidth search space.</p>
+</div>
+<div class="section level3">
+<h3 id="calculate-the-ksde">Calculate the KSDE<a class="anchor" aria-label="anchor" href="#calculate-the-ksde"></a>
+</h3>
+<p>Finally, we can calculate the KSDE with the fitted intensity and
+cross-validated bandwidth.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">KSDE</span> <span class="op">=</span> <span class="fu"><a href="../reference/periodogram_smooth.html">periodogram_smooth</a></span><span class="op">(</span>ppp <span class="op">=</span> <span class="va">spp</span>,</span>
+<span>                          inten.formula <span class="op">=</span> <span class="st">"~ x + y + x:y"</span>,</span>
+<span>                          bandwidth <span class="op">=</span> <span class="va">cv</span><span class="op">$</span><span class="va">OptimalBandwidth</span><span class="op">)</span></span></code></pre></div>
+<p>The output of <code><a href="../reference/periodogram_smooth.html">periodogram_smooth()</a></code> is a list of 6
+(marginal) + 15 (cross) = 21 KSDE matrices.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">KSDE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "blackoak, blackoak" "blackoak, hickory"  "blackoak, maple"   </span></span>
+<span><span class="co">#&gt;  [4] "blackoak, misc"     "blackoak, redoak"   "blackoak, whiteoak"</span></span>
+<span><span class="co">#&gt;  [7] "hickory, hickory"   "hickory, maple"     "hickory, misc"     </span></span>
+<span><span class="co">#&gt; [10] "hickory, redoak"    "hickory, whiteoak"  "maple, maple"      </span></span>
+<span><span class="co">#&gt; [13] "maple, misc"        "maple, redoak"      "maple, whiteoak"   </span></span>
+<span><span class="co">#&gt; [16] "misc, misc"         "misc, redoak"       "misc, whiteoak"    </span></span>
+<span><span class="co">#&gt; [19] "redoak, redoak"     "redoak, whiteoak"   "whiteoak, whiteoak"</span></span></code></pre></div>
+<p>Note that the KSDE for cross pseudo-spectrum is complex-valued. To
+visualize the result, we need to plot the real and imaginary parts
+separately.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">KSDE.real</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">KSDE</span>, <span class="va">Re</span><span class="op">)</span></span>
+<span><span class="va">KSDE.im</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">KSDE</span>, <span class="va">Im</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
