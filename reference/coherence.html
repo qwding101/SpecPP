@@ -98,24 +98,25 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> spatstat 3.3-1 </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> For an introduction to spatstat, type ‘beginner’ </span>
 <span class="r-in"><span><span class="va">lam</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">m</span><span class="op">)</span> <span class="op">{</span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">y</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">m</span> <span class="op">==</span> <span class="st">"A"</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">227823</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">spp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.random/man/rmpoispp.html" class="external-link">rmpoispp</a></span><span class="op">(</span>lambda <span class="op">=</span> <span class="va">lam</span>, win <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/square.html" class="external-link">square</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Compute kernel spectral estimator with fitted intensity by log-linear model:</span></span></span>
 <span class="r-in"><span><span class="co"># with Cartesian coordinates</span></span></span>
-<span class="r-in"><span><span class="va">spectra</span> <span class="op">&lt;-</span> <span class="fu"><a href="periodogram_smooth.html">periodogram_smooth</a></span><span class="op">(</span><span class="va">spp</span>, inten.formula <span class="op">=</span> <span class="st">"~ x + y"</span>, bandwidth <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">coh.partial</span> <span class="op">&lt;-</span> <span class="fu">coherence</span><span class="op">(</span><span class="va">spectra</span>, <span class="va">spp</span><span class="op">)</span> <span class="co"># Compute the maximum partial coherence</span></span></span>
+<span class="r-in"><span><span class="va">KSDE.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="periodogram_smooth.html">periodogram_smooth</a></span><span class="op">(</span><span class="va">spp</span>, inten.formula <span class="op">=</span> <span class="st">"~ x + y"</span>, bandwidth <span class="op">=</span> <span class="fl">1.15</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">coh.partial</span> <span class="op">&lt;-</span> <span class="fu">coherence</span><span class="op">(</span><span class="va">KSDE.list</span>, <span class="va">spp</span><span class="op">)</span> <span class="co"># Compute the maximum partial coherence</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of frequencies to pick the maximum partial coherence: 9 (this value should not be too small).</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">coh.partial</span>, <span class="st">"CohTable"</span><span class="op">)</span> <span class="co"># Print the partial coherence values for all frequencies</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             omega1    omega2             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> result.1 -2.827433 -2.827433 9.581547e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> result.2  0.000000 -2.827433 8.064383e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> result.3  2.827433 -2.827433 3.263729e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> result.4 -2.827433  0.000000 1.218888e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> result.5  0.000000  0.000000 2.185532e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> result.6  2.827433  0.000000 1.218888e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> result.7 -2.827433  2.827433 3.263729e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> result.8  0.000000  2.827433 8.064383e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> result.9  2.827433  2.827433 9.581547e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> result.1 -2.827433 -2.827433 0.0040862635</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> result.2  0.000000 -2.827433 0.0006695371</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> result.3  2.827433 -2.827433 0.0002041050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> result.4 -2.827433  0.000000 0.0001230843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> result.5  0.000000  0.000000 0.0002522640</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> result.6  2.827433  0.000000 0.0001230843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> result.7 -2.827433  2.827433 0.0002041050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> result.8  0.000000  2.827433 0.0006695371</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> result.9  2.827433  2.827433 0.0040862635</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
