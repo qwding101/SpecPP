@@ -56,7 +56,7 @@
 
 
 <dl><dt id="arg-sp-est">sp.est<a class="anchor" aria-label="anchor" href="#arg-sp-est"></a></dt>
-<dd><p>List. The kernel spectral estimate from <code><a href="periodogram_smooth.html">periodogram_smooth()</a></code>.</p></dd>
+<dd><p>List. The kernel spectral density estimate from <code><a href="periodogram_smooth.html">periodogram_smooth()</a></code>.</p></dd>
 
 
 <dt id="arg-coh-mat">coh.mat<a class="anchor" aria-label="anchor" href="#arg-coh-mat"></a></dt>
@@ -73,8 +73,8 @@ If <code>FALSE</code>, plot the raw coherence and partial coherence values via h
 
 
 <dt id="arg-ylim">ylim<a class="anchor" aria-label="anchor" href="#arg-ylim"></a></dt>
-<dd><p>A numeric vector <code>c(lower, upper)</code> to specify the range to draw for the
-radially-averaged plot. Not required if <code>xnorm = FALSE</code>.</p></dd>
+<dd><p>A numeric vector <code>c(lower, upper)</code> to specify the range to draw
+for the radially-averaged plot. Not required if <code>xnorm = FALSE</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -86,16 +86,15 @@ radially-averaged plot. Not required if <code>xnorm = FALSE</code>.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://spatstat.org/" class="external-link">spatstat</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">lam</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">m</span><span class="op">)</span> <span class="op">{</span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">y</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">m</span> <span class="op">==</span> <span class="st">"A"</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">227823</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">spp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.random/man/rmpoispp.html" class="external-link">rmpoispp</a></span><span class="op">(</span>lambda <span class="op">=</span> <span class="va">lam</span>, win <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/square.html" class="external-link">square</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Compute kernel spectral estimator with fitted intensity by log-linear model: HERE</span></span></span>
-<span class="r-in"><span><span class="co"># with Cartesian coordinates</span></span></span>
-<span class="r-in"><span><span class="va">spectra</span> <span class="op">&lt;-</span> <span class="fu"><a href="periodogram_smooth.html">periodogram_smooth</a></span><span class="op">(</span><span class="va">spp</span>, inten.formula <span class="op">=</span> <span class="st">"~ x + y"</span>, bandwidth <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">coh.partial</span> <span class="op">&lt;-</span> <span class="fu"><a href="coherence.html">coherence</a></span><span class="op">(</span><span class="va">spectra</span>, <span class="va">spp</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">KSDE.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="periodogram_smooth.html">periodogram_smooth</a></span><span class="op">(</span><span class="va">spp</span>, inten.formula <span class="op">=</span> <span class="st">"~ x + y"</span>, bandwidth <span class="op">=</span> <span class="fl">1.15</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">coh.partial</span> <span class="op">&lt;-</span> <span class="fu"><a href="coherence.html">coherence</a></span><span class="op">(</span><span class="va">KSDE.list</span>, <span class="va">spp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of frequencies to pick the maximum partial coherence: 9 (this value should not be too small).</span>
-<span class="r-in"><span><span class="va">coh</span> <span class="op">&lt;-</span> <span class="fu"><a href="coherence.html">coherence</a></span><span class="op">(</span><span class="va">spectra</span>, <span class="va">spp</span>, type <span class="op">=</span> <span class="st">"normal"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">coh</span> <span class="op">&lt;-</span> <span class="fu"><a href="coherence.html">coherence</a></span><span class="op">(</span><span class="va">KSDE.list</span>, <span class="va">spp</span>, type <span class="op">=</span> <span class="st">"normal"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of frequencies to pick the maximum coherence: 9 (this value should not be too small).</span>
-<span class="r-in"><span><span class="fu">plot_coher</span><span class="op">(</span><span class="va">spectra</span>, <span class="va">coh</span>, <span class="va">coh.partial</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">plot_coher</span><span class="op">(</span><span class="va">KSDE.list</span>, <span class="va">coh</span>, <span class="va">coh.partial</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_coher-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
