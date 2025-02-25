@@ -130,10 +130,14 @@ plot_pairs(est.list = KSDE, ppp = spp, type = "Im")
 ```
 
 # Coherence analysis
+Similar to spectral analysis in time series, we can calculate the coherence and partial coherence based on the pseudo-spectrum for point processes. The `coherence()` function computes these measures for all non-overlaping frequencies and extracts their maxima. By default (`type = "partial"`), it returns the maximal partial coherence between any two point processes. In the code below, we calculate the maximal coherence and partial coherence for all pairwise point processes.
+```{r}
+(coh.partial = coherence(sp.est = KSDE, ppp = spp)) # Maximal partial coherence
+(coh = coherence(sp.est = KSDE, ppp = spp, type = "normal")) # Maximal coherence
+```
 
+Instead of summarizing by a single value, the `plot_coher()` function allows us to visualize the coherence and partial coherence values across all non-overlapping frequencies.
 ```{r, fig.height = 9, fig.width = 9}
-coh.partial = coherence(sp.est = KSDE, ppp = spp)
-coh = coherence(sp.est = KSDE, ppp = spp, type = "normal")
 plot_coher(KSDE, coh, coh.partial)
 ```
 
