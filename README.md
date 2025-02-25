@@ -26,7 +26,10 @@ pak::pak("qwding101/SpecPP")
 
 ## Tutorial
 
-TBA
+[This
+tutorial](https://qwding101.github.io/SpecPP/articles/lansing.html)
+demonstrates how to use SpecPP to analyze multivariate point pattern
+data.
 
 ## References
 
