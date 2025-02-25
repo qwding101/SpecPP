@@ -2,26 +2,27 @@
 % Please edit documentation in R/visual.R
 \name{plot_pairs}
 \alias{plot_pairs}
-\title{Plot all possible spectral estimates}
+\title{Plot all possible spectral density estimates}
 \usage{
 plot_pairs(
   est.list,
   ppp,
   xnorm = TRUE,
-  freq.list = NULL,
+  type = "Re",
   shared.legend = TRUE,
   remove = NULL
 )
 }
 \arguments{
-\item{est.list}{List. Output from \code{\link[=periodogram_smooth]{periodogram_smooth()}}.}
+\item{est.list}{List. The kernel spectral density estimate from \code{\link[=periodogram_smooth]{periodogram_smooth()}}.}
 
 \item{ppp}{A point pattern of class \code{"ppp"}.}
 
 \item{xnorm}{Logical. If \code{TRUE} (default), plot the radially-averaged spectral
 estimates. Otherwise, plot the raw values by heatmap.}
 
-\item{freq.list}{List. Output from \code{\link[=generate_freq]{generate_freq()}} with \code{return.comb = TRUE}.}
+\item{type}{If \code{type = "Re"} (default), plot the real part of the estimates.
+If \code{type = "Im"}, plot the imaginary part.}
 
 \item{shared.legend}{Logical. Whether to share the legend across all plots.}
 
@@ -29,17 +30,17 @@ estimates. Otherwise, plot the raw values by heatmap.}
 }
 \description{
 Given a multivariate (multitype) point pattern, use \code{ggplot2} package to
-visualize all (marginal and joint) kernel spectral estimates.
+visualize all (marginal and joint) spectral density estimates.
 }
 \examples{
 library(spatstat)
 lam <- function(x, y, m) {(x^2 + y) * ifelse(m == "A", 2, 1)}
+set.seed(227823)
 spp <- rmpoispp(lambda = lam, win = square(5), types = c("A","B"))
-period.list <- periodogram_smooth(spp, inten.formula = "~ x + y", bandwidth = 1.2)
+KSDE.list <- periodogram_smooth(spp, inten.formula = "~ x + y", bandwidth = 1.15)
 
-# Only plot the real part of the periodogram
-period.list <- lapply(period.list, Re)
-freq.list <- generate_freq(A1 = diff(spp$window$xrange), A2 = diff(spp$window$yrange),
-                           return.comb = TRUE)
-plot_pairs(est.list = period.list, ppp = spp, freq.list = freq.list)
+plot_pairs(est.list = KSDE.list, ppp = spp)
+plot_pairs(est.list = KSDE.list, ppp = spp, type = "Im")
+plot_pairs(est.list = KSDE.list, ppp = spp, xnorm = FALSE)
+plot_pairs(est.list = KSDE.list, ppp = spp, xnorm = FALSE, type = "Im")
 }

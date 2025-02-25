@@ -2,11 +2,12 @@
 % Please edit documentation in R/visual.R
 \name{plot_period}
 \alias{plot_period}
-\title{Plot individual spectral estimate}
+\title{Plot individual spectral density estimate}
 \usage{
 plot_period(
   period,
   freq.list = NULL,
+  type = "Re",
   remove = NULL,
   title = NULL,
   palette = "Spectral",
@@ -18,6 +19,10 @@ plot_period(
 
 \item{freq.list}{List. Output from \code{\link[=generate_freq]{generate_freq()}} with \code{return.comb = TRUE}.}
 
+\item{type}{If \code{type = "Re"} (default), plot the real part of the estimate.
+If \code{type = "Im"}, plot the imaginary part. This argument is useful for cross-
+spectrum estimate, which is complex-valued.}
+
 \item{remove}{An experimental feature. Please ignore.}
 
 \item{title}{Character. The title of the plot.}
@@ -25,27 +30,29 @@ plot_period(
 \item{palette}{Color schemes for visualization. Type \code{?scale_fill_distiller()}
 to check available options.}
 
-\item{legend.range}{Input \code{c(lower, upper)} to manually set the lower and upper limit of the spectral density to visualize.}
+\item{legend.range}{Input \code{c(lower, upper)} to manually set the lower and upper
+limit of the spectral density to visualize.}
 }
 \description{
-Use \code{ggplot2} package to plot the heatmap of a single periodogram or kernel spectral estimate.
+Use \code{ggplot2} package to plot the heatmap of a single periodogram or kernel
+spectral density estimate.
 }
 \examples{
 library(spatstat)
 lam <- function(x, y, m) {(x^2 + y) * ifelse(m == "A", 2, 1)}
+set.seed(227823)
 spp <- rmpoispp(lambda = lam, win = square(5), types = c("A","B"))
-period.list <- periodogram_smooth(spp, inten.formula = "~ x + y", bandwidth = 1.2)
-names(period.list)
+KSDE.list <- periodogram_smooth(spp, inten.formula = "~ x + y", bandwidth = 1.15)
+names(KSDE.list)
 
-# Only plot the real part of the periodogram
-period.list <- lapply(period.list, Re)
-freq.list <- generate_freq(A1 = diff(spp$window$xrange), A2 = diff(spp$window$yrange),
-                           return.comb = TRUE)
-plot_period(period.list[[1]], freq.list = freq.list,
+freq.list <- attr(KSDE.list, "freq.list")
+plot_period(KSDE.list[[1]], freq.list = freq.list,
             title = "Kernel spectral estimate: type A")
-plot_period(period.list[[2]], freq.list = freq.list,
-            title = "Kernel spectral estimate: cross-spectrum")
-plot_period(period.list[[3]], freq.list = freq.list,
+plot_period(KSDE.list[[2]], freq.list = freq.list,
+            title = "Kernel spectral estimate: cross-spectrum (Real part)")
+plot_period(KSDE.list[[2]], freq.list = freq.list, type = "Im",
+            title = "Kernel spectral estimate: cross-spectrum (Imaginary part)")
+plot_period(KSDE.list[[3]], freq.list = freq.list,
             title = "Kernel spectral estimate: type B")
 }
 \seealso{
