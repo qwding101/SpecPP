@@ -104,7 +104,7 @@ As you see in above figure, the `select_band()` calculate the spectral divergenc
 There are two caveats for bandwidth selection.
 
 -  The *resolution* of the bandwidth search space `band.range` should not be either too fine or too coarse. It is a trade-off between the computational time and accuracy of your result.
--  The *length* of your search space should not be too narrow; otherwise then there is a high chance that it can not cover the "global" minimum. Sometimes the "minimum" happens at the boundary of your search space, where `select_band()` would give you a warning message to tell you to try a longer search range. Sometimes warning message does not pop out but you still might be wrong, because you find a local minimum which does not lie on the boundary, such as specifying `band.range = seq(0.96, 1.05, .01)`.
+-  The *length* of your search space should not be too narrow; otherwise then there is a high chance that it can not cover the "global" minimum. Sometimes the "minimum" happens at the boundary of your search space, where `select_band()` would give you a warning message to tell you to try a longer search range. Sometimes warning message does not pop out but you still might be wrong, because you find a local minimum which does not lie on the boundary, such as specifying `band.range = seq(0.96, 1.05, .01)` in this example.
 
 Due to above reasons, in practice, you may run `select_band()` and plot the result multiple times to check whether you have specified a good bandwidth search space.
 :::
