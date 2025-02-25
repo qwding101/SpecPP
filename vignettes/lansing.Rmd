@@ -44,10 +44,11 @@ Window(spp)
 ```
 
 # Estimate pseudo-spectrum
+
 To estimate the pseudo-spectrum of `spp`, we use the kernel spectral density estimator (KSDE). This calculation of KSDE involves two key steps: intensity function estimation and bandwidth selection.
 
-
 ## Intensity function estimation
+
 The KSDE involves the first-order intensity function, which needs to be estimated. While nonparametric approaches (e.g., `spatstat::density.ppp()`) are available, the asymptotic properties of the KSDE are established under the parametric form of the intensity. Therefore, for each tree species, we fit a log-linear model for the intensity function using Cartesian coordinates:
 
 ```{r}
@@ -80,9 +81,9 @@ for (i in seq_along(spps)){
 
 Selecting a good bandwidth is crucial for reliable spectral estimation. This is handled by the `select_band()` function, which requires the following arguments:
 
--  `ppp`: The point pattern
--  `inten.formula`: The model for the intensity (mentioned in previous section), in our example, is `"~ x + y + x:y"`. Note that the formula here must be provided as a string.
--  `band.range`: A numeric vector defining the search space for the optimal bandwidth.
+-   `ppp`: The point pattern
+-   `inten.formula`: The model for the intensity (mentioned in previous section), in our example, is `"~ x + y + x:y"`. Note that the formula here must be provided as a string.
+-   `band.range`: A numeric vector defining the search space for the optimal bandwidth.
 
 If additional spatial covariates are specified in `inten.formula`, the corresponding data must be provided via the `data.covariate` argument. Other arguments of `select_band()` can be left at their default values.
 
@@ -98,46 +99,53 @@ abline(v = cv$OptimalBandwidth, col = "blue", lwd = 2, lty = "dashed")
 
 As you see in above figure, the `select_band()` calculates the spectral divergence across all candidate bandwidths in `band.range`. The bandwidth minimizing the spectral divergence is the optimal bandwidth we select, which is `cv$OptimalBandwidth` = `r cv$OptimalBandwidth` (marked by the blue dashed line).
 
+### *Important considerations for bandwidth selection*
 
-### Important considerations for bandwidth selection.
+-   **Resolution of `band.range`**: The search space should be neither too fine nor too coarse to balance the computational efficiency with accuracy.
 
--  **Resolution of `band.range`**: The search space should be neither too fine nor too coarse to balance the computational efficiency with accuracy.
-
-- **Coverage of `band.range`**: A narrow search range may fail to capture the global minimum. When the minimum lies at the boundary of the specified range, `select_band()` issues a warning suggesting a broader search space. However, this safeguard is not foolproof—there are cases where no warning appears even if a local minimum is selected.  For example, specifying `band.range = seq(0.96, 1.05, 0.01)` in this example fails to identify the global minimum, because the local minimum lies inside the search range.=
+-   **Coverage of `band.range`**: A narrow search range may fail to capture the global minimum. When the minimum lies at the boundary of the specified range, `select_band()` issues a warning suggesting a broader search space. However, this safeguard is not foolproof—there are cases where no warning appears even if a local minimum is selected. For example, specifying `band.range = seq(0.96, 1.05, 0.01)` in this example fails to identify the global minimum, because the local minimum lies inside the search range.
 
 To mitigate these risks, we recommend running `select_band()` multiple times with different `band.range`, visualizing the results to ensure the chosen bandwidth is robust and not constrained by an inadequate search space.
 
-
 ## Calculate the KSDE
+
 Finally, we can calculate the KSDE with the fitted intensity and cross-validated bandwidth.
+
 ```{r}
 KSDE = periodogram_smooth(ppp = spp,
                           inten.formula = "~ x + y + x:y",
                           bandwidth = cv$OptimalBandwidth)
 ```
+
 The output of `periodogram_smooth()` is a list of `r length(spp)` (marginal) + `r length(spp)*(length(spp)-1)/2` (cross) = `r length(spp) + length(spp)*(length(spp)-1)/2` KSDE matrices.
+
 ```{r}
 names(KSDE)
 ```
+
 Note that the KSDE for cross pseudo-spectrum is complex-valued. We need to visualize the real and imaginary parts separately. By default, `plot_pairs()` plot the real part of the radially averaged spectral estimate:
+
 ```{r, fig.height = 9, fig.width = 9}
 plot_pairs(est.list = KSDE, ppp = spp)
 ```
 
 To examine the imaginary part, we set `type = "Im"`. As below figure shows, the values are almost zero, particularly for marginal cases where they should be exactly zero. Thus, the real part is our primary focus of analysis.
+
 ```{r, fig.height = 9, fig.width = 9}
 plot_pairs(est.list = KSDE, ppp = spp, type = "Im")
 ```
 
 # Coherence analysis
+
 Similar to spectral analysis in time series, we can calculate the coherence and partial coherence based on the pseudo-spectrum for point processes. The `coherence()` function computes these measures for all non-overlaping frequencies and extracts their maxima. By default (`type = "partial"`), it returns the maximal partial coherence between any two point processes. In the code below, we calculate the maximal coherence and partial coherence for all pairwise point processes.
+
 ```{r}
 (coh.partial = coherence(sp.est = KSDE, ppp = spp)) # Maximal partial coherence
 (coh = coherence(sp.est = KSDE, ppp = spp, type = "normal")) # Maximal coherence
 ```
 
 Instead of summarizing by a single value, the `plot_coher()` function allows us to visualize the coherence and partial coherence values across all non-overlapping frequencies.
+
 ```{r, fig.height = 9, fig.width = 9}
 plot_coher(KSDE, coh, coh.partial)
 ```
-
