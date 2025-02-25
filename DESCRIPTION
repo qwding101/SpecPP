@@ -2,9 +2,7 @@ Package: SpecPP
 Title: Spectral Analysis for Point Processes
 Version: 1.0.0
 Authors@R: c(
-    person("Qi-Wen", "Ding", email = "r07227101@ntu.edu.tw", role = c("aut", "cre")),
-    person("Junho", "Yang", email = "junhoyang@stat.sinica.edu.tw", role = c("aut")),
-    person("Joonho", "Shin", email = "joonho.shin@sungshin.ac.kr", role = c("aut")))
+    person("Qi-Wen", "Ding", email = "r07227101@ntu.edu.tw", role = c("aut", "cre")))
 Description: An R package for spectral analysis of multivariate spatial point 
     patterns in a rectangular region. Given a multivariate point pattern and a 
     parametric model of the intensity function, this package facilitates the 
