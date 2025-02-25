@@ -175,7 +175,10 @@ covariates):</p>
 <span>  <span class="va">fit.lambda</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.model/man/predict.ppm.html" class="external-link">predict.ppm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html" class="external-link">ppm</a></span><span class="op">(</span><span class="va">spps</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x</span><span class="op">:</span><span class="va">y</span> <span class="op">+</span> <span class="va">pH</span> <span class="op">+</span> <span class="va">gradient</span>,</span>
 <span>                                    data <span class="op">=</span> <span class="va">covars</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>#HEREHERERE ## Bandwidth selection</p>
+</div>
+<div class="section level3">
+<h3 id="bandwidth-selection">Bandwidth selection<a class="anchor" aria-label="anchor" href="#bandwidth-selection"></a>
+</h3>
 <p>Selecting a good bandwidth is crucial for reliable spectral
 estimation. This is handled by the <code><a href="../reference/select_band.html">select_band()</a></code> function,
 which requires the following arguments:</p>
@@ -266,7 +269,7 @@ marginal cases where they should be exactly zero. Thus, the real part is
 our primary focus of analysis.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_pairs.html">plot_pairs</a></span><span class="op">(</span>est.list <span class="op">=</span> <span class="va">KSDE</span>, ppp <span class="op">=</span> <span class="va">spp</span>, type <span class="op">=</span> <span class="st">"Im"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="lansing_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
+<p><img src="lansing_files/figure-html/unnamed-chunk-11-1.png" width="864"></p>
 </div>
 </div>
 <div class="section level2">
@@ -278,7 +281,7 @@ our primary focus of analysis.</p>
 <span><span class="va">coh</span> <span class="op">=</span> <span class="fu"><a href="../reference/coherence.html">coherence</a></span><span class="op">(</span>sp.est <span class="op">=</span> <span class="va">KSDE</span>, ppp <span class="op">=</span> <span class="va">spp</span>, type <span class="op">=</span> <span class="st">"normal"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Number of frequencies to pick the maximum coherence: 25 (this value should not be too small).</span></span>
 <span><span class="fu"><a href="../reference/plot_coher.html">plot_coher</a></span><span class="op">(</span><span class="va">KSDE</span>, <span class="va">coh</span>, <span class="va">coh.partial</span><span class="op">)</span></span></code></pre></div>
-<p><img src="lansing_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p><img src="lansing_files/figure-html/unnamed-chunk-12-1.png" width="864"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
