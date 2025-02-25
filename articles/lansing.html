@@ -215,7 +215,8 @@ divergence is the optimal bandwidth we select, which is
 <code>cv$OptimalBandwidth</code> = 0.83 (marked by the blue dashed
 line).</p>
 <div class="section level4">
-<h4 id="important-considerations-for-bandwidth-selection-">Important considerations for bandwidth selection.<a class="anchor" aria-label="anchor" href="#important-considerations-for-bandwidth-selection-"></a>
+<h4 id="important-considerations-for-bandwidth-selection">
+<em>Important considerations for bandwidth selection</em><a class="anchor" aria-label="anchor" href="#important-considerations-for-bandwidth-selection"></a>
 </h4>
 <ul>
 <li><p><strong>Resolution of <code>band.range</code></strong>: The
@@ -229,7 +230,7 @@ safeguard is not foolproof—there are cases where no warning appears even
 if a local minimum is selected. For example, specifying
 <code>band.range = seq(0.96, 1.05, 0.01)</code> in this example fails to
 identify the global minimum, because the local minimum lies inside the
-search range.=</p></li>
+search range.</p></li>
 </ul>
 <p>To mitigate these risks, we recommend running
 <code><a href="../reference/select_band.html">select_band()</a></code> multiple times with different
