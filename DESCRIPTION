@@ -5,12 +5,12 @@ Authors@R: c(
     person("Qi-Wen", "Ding", email = "r07227101@ntu.edu.tw", role = c("aut", "cre")),
     person("Junho", "Yang", email = "junhoyang@stat.sinica.edu.tw", role = c("aut")),
     person("Joonho", "Shin", email = "joonho.shin@sungshin.ac.kr", role = c("aut")))
-Description: Frequency domain method for multivariate (multitype) inhomogeneous
-    spatial point processes on rectangle region. Given a multivariate point pattern
-    and parametric model of the intensity function, this package provides the kernel
-    spectral estimate of the pseudo-spectrum, the frequency-domain representation of
-    inhomogeneous point process. Functions for bandwidth selection, visualization, 
-    and coherence analysis for inhomogeneous point processes are also provided.
+Description: An R package for spectral analysis of multivariate spatial point 
+    patterns in a rectangular region. Given a multivariate point pattern and a 
+    parametric model of the intensity function, this package facilitates the 
+    characterization of frequency-domain features from your data through kernel 
+    smoothing. It includes functions for spectral density estimation, bandwidth 
+    selection, visualization, and coherence analysis.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
