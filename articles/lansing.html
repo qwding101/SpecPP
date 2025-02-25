@@ -74,13 +74,13 @@
     
 <p>In this tutorial, we use the Lansing Woods dataset to demonstrate how
 to extract frequency domain features from a multivariate inhomogeneous
-point pattern data by SpecPP.</p>
+point pattern data using SpecPP package.</p>
 <div class="section level2">
 <h2 id="import-package-and-data">Import package and data<a class="anchor" aria-label="anchor" href="#import-package-and-data"></a>
 </h2>
-<p>The Lansing Woods dataset can be imported from the
-<code>spatstat</code> package, which consists of the spatial
-distributions of six different types of trees.</p>
+<p>The Lansing Woods dataset, available in the <code>spatstat</code>
+package, contains the spatial distributions of six different tree
+species.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/qwding101/SpecPP" class="external-link">SpecPP</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://spatstat.org/" class="external-link">spatstat</a></span><span class="op">)</span></span>
@@ -109,23 +109,23 @@ distributions of six different types of trees.</p>
 <span><span class="co">#&gt; Window: rectangle = [0, 1] x [0, 1] units</span></span>
 <span><span class="co">#&gt; Window area = 1 square unit</span></span>
 <span><span class="co">#&gt; Unit of length: 924 feet</span></span></code></pre></div>
-<p>After importing the data, first we should check the side lengths of
-the observational window. If their values are too small, the spectral
-estimator would be evaluated at a coarse frequency grid, which can not
-capture the frequency domain characteristics of the point pattern
-thoroughly. On the other hand, if they are too large, it would make the
-computation unfeasible. We suggest that side lengths between 20 and 40
-strike a good balance between computational burden and high level of
-granularity.</p>
-<p>As we see in <code>summary(lansing)</code>, the window is the unit
-square (because <a href="https://search.r-project.org/CRAN/refmans/spatstat.data/html/lansing.html" class="external-link"><code>spatstat</code></a>
-rescaled the original window), which is too small for spectral analysis.
-Thus, we rescale it by a factor of 1/20:</p>
+<p>Before proceeding with the analysis, we first examine the side
+lengths of the observational window. If the window is too small, the
+spectral estimator will be evaluated on a coarse frequency grid,
+limiting its ability to capture the frequency-domain characteristics of
+the point pattern. By contrast, an excessively large window can make
+computations unfeasible. We recommend side lengths between 20 and 40, as
+they offer a good balance between computational efficiency and
+resolution.</p>
+<p>As shown in <code>summary(lansing)</code>, the window is the unit
+square (since <a href="https://search.r-project.org/CRAN/refmans/spatstat.data/html/lansing.html" class="external-link"><code>spatstat</code></a>
+rescaled the original window). This is too small for spectral analysis,
+so we rescale it by a factor of 1/20:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">scale.factor</span> <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">20</span></span>
 <span><span class="va">spp</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/rescale.html" class="external-link">rescale</a></span><span class="op">(</span><span class="va">lansing</span>, <span class="va">scale.factor</span><span class="op">)</span></span></code></pre></div>
 <p>Now the rescaled dataset <code>spp</code> with side lengths 20 is
-enough for our analysis.</p>
+suitable for our analysis.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/Window.html" class="external-link">Window</a></span><span class="op">(</span><span class="va">spp</span><span class="op">)</span></span>
 <span><span class="co">#&gt; window: rectangle = [0, 20] x [0, 20] units (one unit = 46.2 feet)</span></span></code></pre></div>
@@ -133,19 +133,19 @@ enough for our analysis.</p>
 <div class="section level2">
 <h2 id="estimate-pseudo-spectrum">Estimate pseudo-spectrum<a class="anchor" aria-label="anchor" href="#estimate-pseudo-spectrum"></a>
 </h2>
-<p>We use the kernel spectral density estimator (KSDE) to estimate the
-pseudo-spectrum of <code>spp</code>. The calculation of KSDE involves
-two critical intermediate steps: intensity function estimation and
-bandwidth selection.</p>
+<p>To estimate the pseudo-spectrum of <code>spp</code>, we use the
+kernel spectral density estimator (KSDE). This calculation of KSDE
+involves two key steps: intensity function estimation and bandwidth
+selection.</p>
 <div class="section level3">
 <h3 id="intensity-function-estimation">Intensity function estimation<a class="anchor" aria-label="anchor" href="#intensity-function-estimation"></a>
 </h3>
 <p>The KSDE involves the first-order intensity function, which needs to
-be estimated. Although it can be estimated nonparametrically
-(<code>spatstat::density.ppp()</code> does that!), the nice asymptotic
-properties of our KSDE are established under the parametric form of the
-intensity functions. Hence, for each tree species, we fit a log-liner
-model based on the Cartesian coordinates:</p>
+be estimated. While nonparametric approaches (e.g.,
+<code>spatstat::density.ppp()</code>) are available, the asymptotic
+properties of the KSDE are established under the parametric form of the
+intensity. Therefore, for each tree species, we fit a log-linear model
+for the intensity function using Cartesian coordinates:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spps</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">spp</span><span class="op">)</span></span>
 <span><span class="va">fit.lambda</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="st">"list"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">spps</span><span class="op">)</span><span class="op">)</span></span>
@@ -153,22 +153,21 @@ model based on the Cartesian coordinates:</p>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">spps</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">fit.lambda</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.model/man/predict.ppm.html" class="external-link">predict.ppm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html" class="external-link">ppm</a></span><span class="op">(</span><span class="va">spps</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x</span><span class="op">:</span><span class="va">y</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>Then, plot the fitted intensity to make sure it captures the spatial
-inhomogeneity of the data well. Below figure suggests that our model
-<code>~ x + y + x:y</code> might be too simple, but for pedagogical
-purpose, we’ll give it a pass here.</p>
+<p>We then plot the fitted intensity to verify whether it adequately
+captures spatial inhomogeneity. The figure below suggests that our model
+<code>~ x + y + x:y</code> may be overly simplistic. However, for
+pedagogical purposes, we proceed with this specification.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.solist.html" class="external-link">as.solist</a></span><span class="op">(</span><span class="va">fit.lambda</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Estimated intensity"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="lansing_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<p>In practice, we may include other spatial covariates into the model
-to better depict the inhomogeneity. To do that, specify the names of
-covariates in the model syntax, and assign the object storing covariates
-to the <code>data</code> argument of <code><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html" class="external-link">spatstat.model::ppm()</a></code>.
-For example, if you have two covariates <code>pH</code> and
-<code>gradient</code>, you need to combine them into a list and pass it
-to the <code>data</code> argument (check
-<code><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html" class="external-link">?spatstat.model::ppm</a></code> for more details about the format of
-the covariates):</p>
+<p>In practice, additional spatial covariates can be incorporated to
+improve the intensity model. These covariates should be specified in the
+model formula and provided through the <code>data</code> argument in
+<code><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html" class="external-link">spatstat.model::ppm()</a></code>. For example, if you have two
+covariates <code>pH</code> and <code>gradient</code>, they should be
+combined into a list and passed to the <code>data</code> argument (check
+<code><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html" class="external-link">?spatstat.model::ppm</a></code> for details on the format of the
+covariates):</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Just an example. This dataset from spatstat doesn't have any covariate.</span></span>
 <span><span class="va">covars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">pH</span>, <span class="va">gradient</span><span class="op">)</span></span>
@@ -176,30 +175,25 @@ the covariates):</p>
 <span>  <span class="va">fit.lambda</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.model/man/predict.ppm.html" class="external-link">predict.ppm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html" class="external-link">ppm</a></span><span class="op">(</span><span class="va">spps</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x</span><span class="op">:</span><span class="va">y</span> <span class="op">+</span> <span class="va">pH</span> <span class="op">+</span> <span class="va">gradient</span>,</span>
 <span>                                    data <span class="op">=</span> <span class="va">covars</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="bandwidth-selection">Bandwidth selection<a class="anchor" aria-label="anchor" href="#bandwidth-selection"></a>
-</h3>
-<p>To ensure better estimation performance, we need to select a good
-bandwidth for the KSDE, which is done by <code><a href="../reference/select_band.html">select_band()</a></code>. The
-required arguments for <code><a href="../reference/select_band.html">select_band()</a></code> are:</p>
+<p>#HEREHERERE ## Bandwidth selection</p>
+<p>Selecting a good bandwidth is crucial for reliable spectral
+estimation. This is handled by the <code><a href="../reference/select_band.html">select_band()</a></code> function,
+which requires the following arguments:</p>
 <ul>
 <li>
 <code>ppp</code>: The point pattern</li>
 <li>
 <code>inten.formula</code>: The model for the intensity (mentioned
 in previous section), in our example, is <code>"~ x + y + x:y"</code>.
-Note that here you need to enclose the syntax in quotation marks to make
-sure it is a string.</li>
+Note that the formula here must be provided as a string.</li>
 <li>
-<code>band.range</code>: A numeric vector indicating the search
-space for the optimal bandwidth.</li>
+<code>band.range</code>: A numeric vector defining the search space
+for the optimal bandwidth.</li>
 </ul>
-<p>Another argument <code>data.covariate</code>, which is used to store
-the covariate data, is also required if you specify any spatial
-covariate other than Cartesian coordinates in
-<code>inten.formula</code>. All the other arguments of
-<code><a href="../reference/select_band.html">select_band()</a></code> can be safely ignored.</p>
+<p>If additional spatial covariates are specified in
+<code>inten.formula</code>, the corresponding data must be provided via
+the <code>data.covariate</code> argument. Other arguments of
+<code><a href="../reference/select_band.html">select_band()</a></code> can be left at their default values.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cv</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_band.html">select_band</a></span><span class="op">(</span>ppp <span class="op">=</span> <span class="va">spp</span>,</span>
 <span>                 inten.formula <span class="op">=</span> <span class="st">"~ x + y + x:y"</span>,</span>
@@ -209,34 +203,35 @@ covariate other than Cartesian coordinates in
 <span>     xlab <span class="op">=</span> <span class="st">"Bandwidth"</span>, ylab <span class="op">=</span> <span class="st">"Spectral divergence"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="va">cv</span><span class="op">$</span><span class="va">OptimalBandwidth</span>, col <span class="op">=</span> <span class="st">"blue"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, lty <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="lansing_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
-<p>As you see in above figure, the <code><a href="../reference/select_band.html">select_band()</a></code> calculate
-the spectral divergence for all bandwidth specified in
+<p>As you see in above figure, the <code><a href="../reference/select_band.html">select_band()</a></code> calculates
+the spectral divergence across all candidate bandwidths in
 <code>band.range</code>. The bandwidth minimizing the spectral
 divergence is the optimal bandwidth we select, which is
 <code>cv$OptimalBandwidth</code> = 0.83 (marked by the blue dashed
 line).</p>
-</div>
-<div class="section level3">
-<h3 id="important">Important<a class="anchor" aria-label="anchor" href="#important"></a>
-</h3>
-<p>There are two caveats for bandwidth selection.</p>
+<div class="section level4">
+<h4 id="important-considerations-for-bandwidth-selection-">Important considerations for bandwidth selection.<a class="anchor" aria-label="anchor" href="#important-considerations-for-bandwidth-selection-"></a>
+</h4>
 <ul>
-<li>The <em>resolution</em> of the bandwidth search space
-<code>band.range</code> should not be either too fine or too coarse. It
-is a trade-off between the computational time and accuracy of your
-result.</li>
-<li>The <em>length</em> of your search space should not be too narrow;
-otherwise then there is a high chance that it can not cover the “global”
-minimum. Sometimes the “minimum” happens at the boundary of your search
-space, where <code><a href="../reference/select_band.html">select_band()</a></code> would give you a warning message
-to tell you to try a longer search range. Sometimes warning message does
-not pop out but you still might be wrong, because you find a local
-minimum which does not lie on the boundary, such as specifying
-<code>band.range = seq(0.96, 1.05, .01)</code> in this example.</li>
+<li><p><strong>Resolution of <code>band.range</code></strong>: The
+search space should be neither too fine nor too coarse to balance the
+computational efficiency with accuracy.</p></li>
+<li><p><strong>Coverage of <code>band.range</code></strong>: A narrow
+search range may fail to capture the global minimum. When the minimum
+lies at the boundary of the specified range, <code><a href="../reference/select_band.html">select_band()</a></code>
+issues a warning suggesting a broader search space. However, this
+safeguard is not foolproof—there are cases where no warning appears even
+if a local minimum is selected. For example, specifying
+<code>band.range = seq(0.96, 1.05, 0.01)</code> in this example fails to
+identify the global minimum, because the local minimum lies inside the
+search range.=</p></li>
 </ul>
-<p>Due to above reasons, in practice, you may run
-<code><a href="../reference/select_band.html">select_band()</a></code> and plot the result multiple times to check
-whether you have specified a good bandwidth search space.</p>
+<p>To mitigate these risks, we recommend running
+<code><a href="../reference/select_band.html">select_band()</a></code> multiple times with different
+<code>band.range</code>, visualizing the results to ensure the chosen
+bandwidth is robust and not constrained by an inadequate search
+space.</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="calculate-the-ksde">Calculate the KSDE<a class="anchor" aria-label="anchor" href="#calculate-the-ksde"></a>
@@ -258,16 +253,17 @@ cross-validated bandwidth.</p>
 <span><span class="co">#&gt; [13] "maple, misc"        "maple, redoak"      "maple, whiteoak"   </span></span>
 <span><span class="co">#&gt; [16] "misc, misc"         "misc, redoak"       "misc, whiteoak"    </span></span>
 <span><span class="co">#&gt; [19] "redoak, redoak"     "redoak, whiteoak"   "whiteoak, whiteoak"</span></span></code></pre></div>
-<p>Note that the KSDE for cross pseudo-spectrum is complex-valued. To
-visualize the result, we need to plot the real and imaginary parts
-separately. By default, <code><a href="../reference/plot_pairs.html">plot_pairs()</a></code> plot the real part of
-the radially averaged spectral estimate as follows.</p>
+<p>Note that the KSDE for cross pseudo-spectrum is complex-valued. We
+need to visualize the real and imaginary parts separately. By default,
+<code><a href="../reference/plot_pairs.html">plot_pairs()</a></code> plot the real part of the radially averaged
+spectral estimate:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_pairs.html">plot_pairs</a></span><span class="op">(</span>est.list <span class="op">=</span> <span class="va">KSDE</span>, ppp <span class="op">=</span> <span class="va">spp</span><span class="op">)</span></span></code></pre></div>
-<p><img src="lansing_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
-<p>We can also use <code>type = "Im"</code> to check the imaginary part.
-As below figure shows, the values are almost zero (for marginal cases
-they should be exactly zero) so we can focus on the real part.</p>
+<p><img src="lansing_files/figure-html/unnamed-chunk-10-1.png" width="864"></p>
+<p>To examine the imaginary part, we set <code>type = "Im"</code>. As
+below figure shows, the values are almost zero, particularly for
+marginal cases where they should be exactly zero. Thus, the real part is
+our primary focus of analysis.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_pairs.html">plot_pairs</a></span><span class="op">(</span>est.list <span class="op">=</span> <span class="va">KSDE</span>, ppp <span class="op">=</span> <span class="va">spp</span>, type <span class="op">=</span> <span class="st">"Im"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="lansing_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
