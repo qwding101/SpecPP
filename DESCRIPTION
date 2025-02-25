@@ -1,6 +1,6 @@
 Package: SpecPP
 Title: Spectral Analysis for Point Processes
-Version: 0.1.0.0000
+Version: 1.0.0
 Authors@R: c(
     person("Qi-Wen", "Ding", email = "r07227101@ntu.edu.tw", role = c("aut", "cre")),
     person("Junho", "Yang", email = "junhoyang@stat.sinica.edu.tw", role = c("aut")),
