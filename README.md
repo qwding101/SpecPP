@@ -11,8 +11,9 @@ patterns in a rectangular region ([Ding et al.,
 2025](https://arxiv.org/abs/2502.09948)). Given a multivariate point
 pattern and a parametric model of the intensity function, this package
 facilitates the characterization of frequency-domain features from your
-data through kernel smoothing. It includes functions for bandwidth
-selection, visualization, and coherence analysis.
+data through kernel smoothing. It includes functions for spectral
+density estimation, bandwidth selection, visualization, and coherence
+analysis.
 
 ## Installation
 
