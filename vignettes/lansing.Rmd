@@ -75,7 +75,7 @@ for (i in seq_along(spps)){
                                     data = covars))
 }
 ```
-#HEREHERERE
+
 ## Bandwidth selection
 
 Selecting a good bandwidth is crucial for reliable spectral estimation. This is handled by the `select_band()` function, which requires the following arguments:
@@ -120,18 +120,18 @@ The output of `periodogram_smooth()` is a list of `r length(spp)` (marginal) + `
 names(KSDE)
 ```
 Note that the KSDE for cross pseudo-spectrum is complex-valued. We need to visualize the real and imaginary parts separately. By default, `plot_pairs()` plot the real part of the radially averaged spectral estimate:
-```{r,fig.height = 9, fig.width = 9}
+```{r, fig.height = 9, fig.width = 9}
 plot_pairs(est.list = KSDE, ppp = spp)
 ```
 
 To examine the imaginary part, we set `type = "Im"`. As below figure shows, the values are almost zero, particularly for marginal cases where they should be exactly zero. Thus, the real part is our primary focus of analysis.
-```{r}
+```{r, fig.height = 9, fig.width = 9}
 plot_pairs(est.list = KSDE, ppp = spp, type = "Im")
 ```
 
 # Coherence analysis
 
-```{r}
+```{r, fig.height = 9, fig.width = 9}
 coh.partial = coherence(sp.est = KSDE, ppp = spp)
 coh = coherence(sp.est = KSDE, ppp = spp, type = "normal")
 plot_coher(KSDE, coh, coh.partial)
