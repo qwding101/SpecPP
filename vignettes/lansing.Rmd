@@ -14,11 +14,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-In this tutorial, we use the Lansing Woods dataset to demonstrate how to extract frequency domain features from a multivariate inhomogeneous point pattern data by SpecPP.
+In this tutorial, we use the Lansing Woods dataset to demonstrate how to extract frequency domain features from a multivariate inhomogeneous point pattern data using SpecPP package.
 
 # Import package and data
 
-The Lansing Woods dataset can be imported from the `spatstat` package, which consists of the spatial distributions of six different types of trees.
+The Lansing Woods dataset, available in the `spatstat` package, contains the spatial distributions of six different tree species.
 
 ```{r setup, message=FALSE}
 library(SpecPP)
@@ -28,28 +28,27 @@ plot(split(lansing), pch = 20, cex = .1, main = "Point pattern of Lansing Woods"
 summary(lansing)
 ```
 
-After importing the data, first we should check the side lengths of the observational window. If their values are too small, the spectral estimator would be evaluated at a coarse frequency grid, which can not capture the frequency domain characteristics of the point pattern thoroughly. On the other hand, if they are too large, it would make the computation unfeasible. We suggest that side lengths between 20 and 40 strike a good balance between computational burden and high level of granularity.
+Before proceeding with the analysis, we first examine the side lengths of the observational window. If the window is too small, the spectral estimator will be evaluated on a coarse frequency grid, limiting its ability to capture the frequency-domain characteristics of the point pattern. By contrast, an excessively large window can make computations unfeasible. We recommend side lengths between 20 and 40, as they offer a good balance between computational efficiency and resolution.
 
-As we see in `summary(lansing)`, the window is the unit square (because [`spatstat`](https://search.r-project.org/CRAN/refmans/spatstat.data/html/lansing.html) rescaled the original window), which is too small for spectral analysis. Thus, we rescale it by a factor of 1/20:
+As shown in `summary(lansing)`, the window is the unit square (since [`spatstat`](https://search.r-project.org/CRAN/refmans/spatstat.data/html/lansing.html) rescaled the original window). This is too small for spectral analysis, so we rescale it by a factor of 1/20:
 
 ```{r}
 scale.factor = 1/20
 spp = rescale(lansing, scale.factor)
 ```
 
-Now the rescaled dataset `spp` with side lengths 20 is enough for our analysis.
+Now the rescaled dataset `spp` with side lengths 20 is suitable for our analysis.
 
 ```{r}
 Window(spp)
 ```
 
 # Estimate pseudo-spectrum
+To estimate the pseudo-spectrum of `spp`, we use the kernel spectral density estimator (KSDE). This calculation of KSDE involves two key steps: intensity function estimation and bandwidth selection.
 
-We use the kernel spectral density estimator (KSDE) to estimate the pseudo-spectrum of `spp`. The calculation of KSDE involves two critical intermediate steps: intensity function estimation and bandwidth selection.
 
 ## Intensity function estimation
-
-The KSDE involves the first-order intensity function, which needs to be estimated. Although it can be estimated nonparametrically (`spatstat::density.ppp()` does that!), the nice asymptotic properties of our KSDE are established under the parametric form of the intensity functions. Hence, for each tree species, we fit a log-liner model based on the Cartesian coordinates:
+The KSDE involves the first-order intensity function, which needs to be estimated. While nonparametric approaches (e.g., `spatstat::density.ppp()`) are available, the asymptotic properties of the KSDE are established under the parametric form of the intensity. Therefore, for each tree species, we fit a log-linear model for the intensity function using Cartesian coordinates:
 
 ```{r}
 spps = split(spp)
@@ -60,13 +59,13 @@ for (i in seq_along(spps)){
 }
 ```
 
-Then, plot the fitted intensity to make sure it captures the spatial inhomogeneity of the data well. Below figure suggests that our model `~ x + y + x:y` might be too simple, but for pedagogical purpose, we'll give it a pass here.
+We then plot the fitted intensity to verify whether it adequately captures spatial inhomogeneity. The figure below suggests that our model `~ x + y + x:y` may be overly simplistic. However, for pedagogical purposes, we proceed with this specification.
 
 ```{r}
 plot(as.solist(fit.lambda), main = "Estimated intensity")
 ```
 
-In practice, we may include other spatial covariates into the model to better depict the inhomogeneity. To do that, specify the names of covariates in the model syntax, and assign the object storing covariates to the `data` argument of `spatstat.model::ppm()`. For example, if you have two covariates `pH` and `gradient`, you need to combine them into a list and pass it to the `data` argument (check `?spatstat.model::ppm` for more details about the format of the covariates):
+In practice, additional spatial covariates can be incorporated to improve the intensity model. These covariates should be specified in the model formula and provided through the `data` argument in `spatstat.model::ppm()`. For example, if you have two covariates `pH` and `gradient`, they should be combined into a list and passed to the `data` argument (check `?spatstat.model::ppm` for details on the format of the covariates):
 
 ```{r eval=FALSE}
 # Just an example. This dataset from spatstat doesn't have any covariate.
@@ -76,16 +75,16 @@ for (i in seq_along(spps)){
                                     data = covars))
 }
 ```
-
+#HEREHERERE
 ## Bandwidth selection
 
-To ensure better estimation performance, we need to select a good bandwidth for the KSDE, which is done by `select_band()`. The required arguments for `select_band()` are:
+Selecting a good bandwidth is crucial for reliable spectral estimation. This is handled by the `select_band()` function, which requires the following arguments:
 
 -  `ppp`: The point pattern
--  `inten.formula`: The model for the intensity (mentioned in previous section), in our example, is `"~ x + y + x:y"`. Note that here you need to enclose the syntax in quotation marks to make sure it is a string.
--  `band.range`: A numeric vector indicating the search space for the optimal bandwidth.
+-  `inten.formula`: The model for the intensity (mentioned in previous section), in our example, is `"~ x + y + x:y"`. Note that the formula here must be provided as a string.
+-  `band.range`: A numeric vector defining the search space for the optimal bandwidth.
 
-Another argument `data.covariate`, which is used to store the covariate data, is also required if you specify any spatial covariate other than Cartesian coordinates in `inten.formula`. All the other arguments of `select_band()` can be safely ignored.
+If additional spatial covariates are specified in `inten.formula`, the corresponding data must be provided via the `data.covariate` argument. Other arguments of `select_band()` can be left at their default values.
 
 ```{r}
 cv = select_band(ppp = spp,
@@ -97,17 +96,17 @@ plot(x = cv$Result[1,], y = cv$Result[2,], type = "l",
 abline(v = cv$OptimalBandwidth, col = "blue", lwd = 2, lty = "dashed")
 ```
 
-As you see in above figure, the `select_band()` calculate the spectral divergence for all bandwidth specified in `band.range`. The bandwidth minimizing the spectral divergence is the optimal bandwidth we select, which is `cv$OptimalBandwidth` = `r cv$OptimalBandwidth` (marked by the blue dashed line).
+As you see in above figure, the `select_band()` calculates the spectral divergence across all candidate bandwidths in `band.range`. The bandwidth minimizing the spectral divergence is the optimal bandwidth we select, which is `cv$OptimalBandwidth` = `r cv$OptimalBandwidth` (marked by the blue dashed line).
 
-::: {.callout-important}
-## Important
-There are two caveats for bandwidth selection.
 
--  The *resolution* of the bandwidth search space `band.range` should not be either too fine or too coarse. It is a trade-off between the computational time and accuracy of your result.
--  The *length* of your search space should not be too narrow; otherwise then there is a high chance that it can not cover the "global" minimum. Sometimes the "minimum" happens at the boundary of your search space, where `select_band()` would give you a warning message to tell you to try a longer search range. Sometimes warning message does not pop out but you still might be wrong, because you find a local minimum which does not lie on the boundary, such as specifying `band.range = seq(0.96, 1.05, .01)` in this example.
+### Important considerations for bandwidth selection.
 
-Due to above reasons, in practice, you may run `select_band()` and plot the result multiple times to check whether you have specified a good bandwidth search space.
-:::
+-  **Resolution of `band.range`**: The search space should be neither too fine nor too coarse to balance the computational efficiency with accuracy.
+
+- **Coverage of `band.range`**: A narrow search range may fail to capture the global minimum. When the minimum lies at the boundary of the specified range, `select_band()` issues a warning suggesting a broader search space. However, this safeguard is not foolproof—there are cases where no warning appears even if a local minimum is selected.  For example, specifying `band.range = seq(0.96, 1.05, 0.01)` in this example fails to identify the global minimum, because the local minimum lies inside the search range.=
+
+To mitigate these risks, we recommend running `select_band()` multiple times with different `band.range`, visualizing the results to ensure the chosen bandwidth is robust and not constrained by an inadequate search space.
+
 
 ## Calculate the KSDE
 Finally, we can calculate the KSDE with the fitted intensity and cross-validated bandwidth.
@@ -120,12 +119,12 @@ The output of `periodogram_smooth()` is a list of `r length(spp)` (marginal) + `
 ```{r}
 names(KSDE)
 ```
-Note that the KSDE for cross pseudo-spectrum is complex-valued. To visualize the result, we need to plot the real and imaginary parts separately. By default, `plot_pairs()` plot the real part of the radially averaged spectral estimate as follows.
-```{r}
+Note that the KSDE for cross pseudo-spectrum is complex-valued. We need to visualize the real and imaginary parts separately. By default, `plot_pairs()` plot the real part of the radially averaged spectral estimate:
+```{r,fig.height = 9, fig.width = 9}
 plot_pairs(est.list = KSDE, ppp = spp)
 ```
 
-We can also use `type = "Im"` to check the imaginary part. As below figure shows, the values are almost zero (for marginal cases they should be exactly zero) so we can focus on the real part.
+To examine the imaginary part, we set `type = "Im"`. As below figure shows, the values are almost zero, particularly for marginal cases where they should be exactly zero. Thus, the real part is our primary focus of analysis.
 ```{r}
 plot_pairs(est.list = KSDE, ppp = spp, type = "Im")
 ```
