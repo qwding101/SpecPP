@@ -24,12 +24,13 @@ Computes the coherence or partial coherence matrix for a multivatiate (multitype
 \examples{
 library(spatstat)
 lam <- function(x, y, m) {(x^2 + y) * ifelse(m == "A", 2, 1)}
+set.seed(227823)
 spp <- rmpoispp(lambda = lam, win = square(5), types = c("A","B"))
 
 # Compute kernel spectral estimator with fitted intensity by log-linear model:
 # with Cartesian coordinates
-spectra <- periodogram_smooth(spp, inten.formula = "~ x + y", bandwidth = 1.2)
-coh.partial <- coherence(spectra, spp) # Compute the maximum partial coherence
+KSDE.list <- periodogram_smooth(spp, inten.formula = "~ x + y", bandwidth = 1.15)
+coh.partial <- coherence(KSDE.list, spp) # Compute the maximum partial coherence
 attr(coh.partial, "CohTable") # Print the partial coherence values for all frequencies
 
 }

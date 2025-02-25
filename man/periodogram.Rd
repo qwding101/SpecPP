@@ -56,6 +56,6 @@ A matrix if \code{return.DFT = FALSE}; a list consisting of the periodogram and 
 centered DFT if \code{return.DFT = TRUE}.
 }
 \description{
-Given a multivariate point pattern \code{ppp}, compute the periodograms for each
+Given a multivariate point pattern \code{ppp}, compute the periodogram for each
 marginal point pattern.
 }
