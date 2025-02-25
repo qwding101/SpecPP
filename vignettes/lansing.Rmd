@@ -120,12 +120,21 @@ The output of `periodogram_smooth()` is a list of `r length(spp)` (marginal) + `
 ```{r}
 names(KSDE)
 ```
-Note that the KSDE for cross pseudo-spectrum is complex-valued. To visualize the result, we need to plot the real and imaginary parts separately.
+Note that the KSDE for cross pseudo-spectrum is complex-valued. To visualize the result, we need to plot the real and imaginary parts separately. By default, `plot_pairs()` plot the real part of the radially averaged spectral estimate as follows.
 ```{r}
-KSDE.real = lapply(KSDE, Re)
-KSDE.im = lapply(KSDE, Im)
+plot_pairs(est.list = KSDE, ppp = spp)
 ```
 
-
+We can also use `type = "Im"` to check the imaginary part. As below figure shows, the values are almost zero (for marginal cases they should be exactly zero) so we can focus on the real part.
+```{r}
+plot_pairs(est.list = KSDE, ppp = spp, type = "Im")
+```
 
 # Coherence analysis
+
+```{r}
+coh.partial = coherence(sp.est = KSDE, ppp = spp)
+coh = coherence(sp.est = KSDE, ppp = spp, type = "normal")
+plot_coher(KSDE, coh, coh.partial)
+```
+
