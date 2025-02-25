@@ -2,7 +2,7 @@
 #'
 #' @description
 #'
-#' Given a multivariate point pattern `ppp`, compute the periodograms for each
+#' Given a multivariate point pattern `ppp`, compute the periodogram for each
 #' marginal point pattern.
 #'
 #' @param i Mark index. An element in `levels(spatstat.geom::marks(ppp))`.
