@@ -1,4 +1,4 @@
-#' Scaled Battlett kernel (univariate)
+#' Scaled Battlett kernel
 #'
 #' @description
 #' This function calculates the scaled kernel \eqn{K_b(v) = b^{-1}K(v/b)} where

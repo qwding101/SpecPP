@@ -2,7 +2,7 @@
 % Please edit documentation in R/bartlett_uni.R
 \name{bartlett_uni}
 \alias{bartlett_uni}
-\title{Scaled Battlett kernel (univariate)}
+\title{Scaled Battlett kernel}
 \usage{
 bartlett_uni(v, b)
 }
