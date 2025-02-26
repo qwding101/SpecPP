@@ -81,8 +81,9 @@ If <code>NULL</code>, no extension is conducted.</p></dd>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This function generates the frequency grid which is used in <code><a href="periodogram.html">periodogram()</a></code> and <code><a href="periodogram_smooth.html">periodogram_smooth()</a></code>.
 In <code><a href="periodogram_smooth.html">periodogram_smooth()</a></code>, to correct the edge effect, the <code>ext.factor</code> argument in <code>generate_freq()</code>
-is set to <code>2</code> by default. Suppose the original frequency ranges from <code>-1.5*π</code> to <code>1.5*π</code>. Then the
-extended frequency ranges from <code>-1.5*π*ext.factor</code> to <code>1.5*π*ext.factor</code>.</p>
+is set to <code>1.5</code> by default. Suppose the original frequency ranges from \(-1.5\pi\) to \(1.5\pi\).
+Then the extended frequency ranges from \(-1.5\pi\times\text{ext.factor}\) to
+\(-1.5\pi\times\text{ext.factor}\).</p>
     </div>
 
     <div class="section level2">
