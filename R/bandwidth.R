@@ -1,4 +1,4 @@
-#' Bandwidth selection procedure for kernel spectral estimator
+#' Bandwidth selection procedure for kernel spectral density estimator
 #'
 #' @param ppp A point pattern of class `"ppp"`.
 #' @param inten.formula A [`formula`] syntax in character format specifying the
@@ -30,7 +30,7 @@
 #' cv <- select_band(spp, inten.formula = "~ x + y", band.range = b)
 #' cv$OptimalBandwidth # Print the optimal bandwidth
 #' plot(cv$Result[1,], cv$Result[2,], type = "b", pch = 20, las = 1,
-#'      xlab = "Bandwidth", ylab = "Whittle likelihood")
+#'      xlab = "Bandwidth", ylab = "Spectral divergence")
 #' abline(v = cv$OptimalBandwidth, col = "blue")
 #' @importFrom foreach %dopar%
 #' @export
@@ -58,7 +58,7 @@ select_band = function(ppp, inten.formula = NULL, data.covariate = NULL,
   cv = vector("list", 3)
   cv[[3]] = matrix(c(band.range, rep(NA, length(band.range))),
                    ncol = length(band.range), nrow = 2, byrow = TRUE)
-  rownames(cv[[3]]) = c("Bandwidth", "Whittle likelihood")
+  rownames(cv[[3]]) = c("Bandwidth", "Spectral divergence")
 
   # Enumerate all possible combination of spectra to compute
   if (!spatstat.geom::is.multitype(ppp)){ # Univariate point pattern
@@ -189,7 +189,7 @@ select_band = function(ppp, inten.formula = NULL, data.covariate = NULL,
 
   cv[[1]] = cv[[3]][1, which.min(cv[[3]][2,])]
   cv[[2]] = min(cv[[3]][2,])
-  names(cv) = c("OptimalBandwidth", "Likelihood", "Result")
+  names(cv) = c("OptimalBandwidth", "Divergence", "Result")
 
   if (which.min(cv[[3]][2,]) %in% c(1, length(band.range))){
     warning(paste0("The optimal bandwidth lies on the endpoint of the `band.range`. ",
