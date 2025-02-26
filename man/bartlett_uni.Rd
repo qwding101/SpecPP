@@ -12,5 +12,6 @@ bartlett_uni(v, b)
 \item{b}{Bandwidth.}
 }
 \description{
-Scaled Battlett kernel (univariate)
+This function calculates the scaled kernel \eqn{K_b(v) = b^{-1}K(v/b)} where
+\deqn{K(v) = \max\{1 - |v|\}.}
 }
