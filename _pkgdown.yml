@@ -4,7 +4,7 @@ template:
   light-switch: true
   theme: github-light
   theme-dark: github-dark
-  math-rendering: mathjax
+  math-rendering: katex
 reference:
 - title: "Main functions"
   contents:
