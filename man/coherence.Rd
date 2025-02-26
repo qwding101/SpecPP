@@ -2,12 +2,12 @@
 % Please edit documentation in R/coherence.R
 \name{coherence}
 \alias{coherence}
-\title{Maximum coherence and partial coherence matrix}
+\title{Maximal coherence and partial coherence}
 \usage{
 coherence(sp.est, ppp, type = "partial", all = FALSE)
 }
 \arguments{
-\item{sp.est}{List. The kernel spectral estimate from \code{\link[=periodogram_smooth]{periodogram_smooth()}}.}
+\item{sp.est}{List. The kernel spectral density estimate from \code{\link[=periodogram_smooth]{periodogram_smooth()}}.}
 
 \item{ppp}{A point pattern of class \code{"ppp"}.}
 
@@ -16,10 +16,11 @@ coherence(sp.est, ppp, type = "partial", all = FALSE)
 \item{all}{Logical. If \code{TRUE}, extract the maximum (partial) coherence across all frequencies, which is not recommended.}
 }
 \value{
-A matrix with each entry storing the maximum (partial) coherence of the two individual point processes.
+A matrix with each entry storing the maximal (partial) coherence between two individual point processes.
 }
 \description{
-Computes the coherence or partial coherence matrix for a multivatiate (multitype) point pattern.
+Returns a matrix containing the maximal coherence or partial coherence for
+all pairwise processes.
 }
 \examples{
 library(spatstat)
@@ -27,8 +28,8 @@ lam <- function(x, y, m) {(x^2 + y) * ifelse(m == "A", 2, 1)}
 set.seed(227823)
 spp <- rmpoispp(lambda = lam, win = square(5), types = c("A","B"))
 
-# Compute kernel spectral estimator with fitted intensity by log-linear model:
-# with Cartesian coordinates
+# Compute kernel spectral density estimator with fitted intensity by log-linear
+# model with Cartesian coordinates
 KSDE.list <- periodogram_smooth(spp, inten.formula = "~ x + y", bandwidth = 1.15)
 coh.partial <- coherence(KSDE.list, spp) # Compute the maximum partial coherence
 attr(coh.partial, "CohTable") # Print the partial coherence values for all frequencies

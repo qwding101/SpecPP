@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Given a multivariate (multitype) point pattern, use `ggplot2` package to
-#' visualize all (marginal and joint) spectral density estimates.
+#' visualize all (marginal and cross) spectral density estimates.
 #'
 #' @param est.list List. The kernel spectral density estimate from [`periodogram_smooth()`].
 #' @param ppp A point pattern of class `"ppp"`.

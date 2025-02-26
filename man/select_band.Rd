@@ -2,7 +2,7 @@
 % Please edit documentation in R/bandwidth.R
 \name{select_band}
 \alias{select_band}
-\title{Bandwidth selection procedure for kernel spectral estimator}
+\title{Bandwidth selection procedure for kernel spectral density estimator}
 \usage{
 select_band(
   ppp,
@@ -50,7 +50,7 @@ The default is \code{TRUE}.}
 A list.
 }
 \description{
-Bandwidth selection procedure for kernel spectral estimator
+Bandwidth selection procedure for kernel spectral density estimator
 }
 \examples{
 library(spatstat)
@@ -62,6 +62,6 @@ b <- seq(0.95, 1.4, 0.05) # You may use finer grid to search optimal bandwidth
 cv <- select_band(spp, inten.formula = "~ x + y", band.range = b)
 cv$OptimalBandwidth # Print the optimal bandwidth
 plot(cv$Result[1,], cv$Result[2,], type = "b", pch = 20, las = 1,
-     xlab = "Bandwidth", ylab = "Whittle likelihood")
+     xlab = "Bandwidth", ylab = "Spectral divergence")
 abline(v = cv$OptimalBandwidth, col = "blue")
 }

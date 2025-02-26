@@ -4,17 +4,17 @@
 #' Use `ggplot2` package to plot the heatmap of a single periodogram or kernel
 #' spectral density estimate.
 #'
-#' @param period Matrix. Output from `periodogram()` or [`periodogram_smooth()`].
+#' @param period Matrix. Output from [`periodogram()`] or [`periodogram_smooth()`].
 #' @param freq.list List. Output from [`generate_freq()`] with `return.comb = TRUE`.
 #' @param type If `type = "Re"` (default), plot the real part of the estimate.
 #' If `type = "Im"`, plot the imaginary part. This argument is useful for cross-
 #' spectrum estimate, which is complex-valued.
 #' @param remove An experimental feature. Please ignore.
 #' @param title Character. The title of the plot.
-#' @param palette Color schemes for visualization. Type `?scale_fill_distiller()`
+#' @param palette Color schemes for visualization. Type `?ggplot2::scale_fill_distiller()`
 #'  to check available options.
-#' @param legend.range Input `c(lower, upper)` to manually set the lower and upper
-#' limit of the spectral density to visualize.
+#' @param legend.range Specify `c(lower, upper)` to manually set the lower and upper
+#' bound of the spectral density to visualize.
 #' @seealso [`plot_pairs()`]
 #' @examples
 #' library(spatstat)

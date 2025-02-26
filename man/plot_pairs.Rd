@@ -30,7 +30,7 @@ If \code{type = "Im"}, plot the imaginary part.}
 }
 \description{
 Given a multivariate (multitype) point pattern, use \code{ggplot2} package to
-visualize all (marginal and joint) spectral density estimates.
+visualize all (marginal and cross) spectral density estimates.
 }
 \examples{
 library(spatstat)

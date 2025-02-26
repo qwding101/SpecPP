@@ -15,7 +15,7 @@ plot_period(
 )
 }
 \arguments{
-\item{period}{Matrix. Output from \code{periodogram()} or \code{\link[=periodogram_smooth]{periodogram_smooth()}}.}
+\item{period}{Matrix. Output from \code{\link[=periodogram]{periodogram()}} or \code{\link[=periodogram_smooth]{periodogram_smooth()}}.}
 
 \item{freq.list}{List. Output from \code{\link[=generate_freq]{generate_freq()}} with \code{return.comb = TRUE}.}
 
@@ -27,11 +27,11 @@ spectrum estimate, which is complex-valued.}
 
 \item{title}{Character. The title of the plot.}
 
-\item{palette}{Color schemes for visualization. Type \code{?scale_fill_distiller()}
+\item{palette}{Color schemes for visualization. Type \code{?ggplot2::scale_fill_distiller()}
 to check available options.}
 
-\item{legend.range}{Input \code{c(lower, upper)} to manually set the lower and upper
-limit of the spectral density to visualize.}
+\item{legend.range}{Specify \code{c(lower, upper)} to manually set the lower and upper
+bound of the spectral density to visualize.}
 }
 \description{
 Use \code{ggplot2} package to plot the heatmap of a single periodogram or kernel
