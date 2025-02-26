@@ -287,29 +287,34 @@ coherence between any two point processes. In the code below, we
 calculate the maximal coherence and partial coherence for all pairwise
 point processes.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">coh.partial</span> <span class="op">=</span> <span class="fu"><a href="../reference/coherence.html">coherence</a></span><span class="op">(</span>sp.est <span class="op">=</span> <span class="va">KSDE</span>, ppp <span class="op">=</span> <span class="va">spp</span><span class="op">)</span><span class="op">)</span> <span class="co"># Maximal partial coherence</span></span>
+<code class="sourceCode R"><span><span class="va">coh.partial</span> <span class="op">=</span> <span class="fu"><a href="../reference/coherence.html">coherence</a></span><span class="op">(</span>sp.est <span class="op">=</span> <span class="va">KSDE</span>, ppp <span class="op">=</span> <span class="va">spp</span><span class="op">)</span> <span class="co"># Maximal partial coherence</span></span>
 <span><span class="co">#&gt; Number of frequencies to pick the maximum partial coherence: 25 (this value should not be too small).</span></span>
-<span><span class="co">#&gt;           blackoak   hickory     maple      misc    redoak  whiteoak</span></span>
-<span><span class="co">#&gt; blackoak 1.0000000 0.8454405 0.9642206 0.9781249 0.9619755 0.9624718</span></span>
-<span><span class="co">#&gt; hickory  0.8454405 1.0000000 0.8813902 0.8764841 0.8558823 0.8556837</span></span>
-<span><span class="co">#&gt; maple    0.9642206 0.8813902 1.0000000 0.9883797 0.9615077 0.9780219</span></span>
-<span><span class="co">#&gt; misc     0.9781249 0.8764841 0.9883797 1.0000000 0.9820124 0.9814753</span></span>
-<span><span class="co">#&gt; redoak   0.9619755 0.8558823 0.9615077 0.9820124 1.0000000 0.9605055</span></span>
-<span><span class="co">#&gt; whiteoak 0.9624718 0.8556837 0.9780219 0.9814753 0.9605055 1.0000000</span></span>
-<span><span class="op">(</span><span class="va">coh</span> <span class="op">=</span> <span class="fu"><a href="../reference/coherence.html">coherence</a></span><span class="op">(</span>sp.est <span class="op">=</span> <span class="va">KSDE</span>, ppp <span class="op">=</span> <span class="va">spp</span>, type <span class="op">=</span> <span class="st">"normal"</span><span class="op">)</span><span class="op">)</span> <span class="co"># Maximal coherence</span></span>
+<span><span class="va">coh</span> <span class="op">=</span> <span class="fu"><a href="../reference/coherence.html">coherence</a></span><span class="op">(</span>sp.est <span class="op">=</span> <span class="va">KSDE</span>, ppp <span class="op">=</span> <span class="va">spp</span>, type <span class="op">=</span> <span class="st">"normal"</span><span class="op">)</span> <span class="co"># Maximal coherence</span></span>
 <span><span class="co">#&gt; Number of frequencies to pick the maximum coherence: 25 (this value should not be too small).</span></span>
-<span><span class="co">#&gt;           blackoak    hickory     maple      misc     redoak   whiteoak</span></span>
-<span><span class="co">#&gt; blackoak 1.0000000 0.10352810 0.1679937 0.5417001 0.19785089 0.19795953</span></span>
-<span><span class="co">#&gt; hickory  0.1035281 1.00000000 0.3083748 0.1280547 0.04678008 0.05012863</span></span>
-<span><span class="co">#&gt; maple    0.1679937 0.30837483 1.0000000 0.6412484 0.38138660 0.33303464</span></span>
-<span><span class="co">#&gt; misc     0.5417001 0.12805474 0.6412484 1.0000000 0.69904369 0.34918653</span></span>
-<span><span class="co">#&gt; redoak   0.1978509 0.04678008 0.3813866 0.6990437 1.00000000 0.21139300</span></span>
-<span><span class="co">#&gt; whiteoak 0.1979595 0.05012863 0.3330346 0.3491865 0.21139300 1.00000000</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">coh.partial</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          blackoak hickory maple misc redoak whiteoak</span></span>
+<span><span class="co">#&gt; blackoak     1.00    0.85  0.96 0.98   0.96     0.96</span></span>
+<span><span class="co">#&gt; hickory      0.85    1.00  0.88 0.88   0.86     0.86</span></span>
+<span><span class="co">#&gt; maple        0.96    0.88  1.00 0.99   0.96     0.98</span></span>
+<span><span class="co">#&gt; misc         0.98    0.88  0.99 1.00   0.98     0.98</span></span>
+<span><span class="co">#&gt; redoak       0.96    0.86  0.96 0.98   1.00     0.96</span></span>
+<span><span class="co">#&gt; whiteoak     0.96    0.86  0.98 0.98   0.96     1.00</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">coh</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          blackoak hickory maple misc redoak whiteoak</span></span>
+<span><span class="co">#&gt; blackoak     1.00    0.10  0.17 0.54   0.20     0.20</span></span>
+<span><span class="co">#&gt; hickory      0.10    1.00  0.31 0.13   0.05     0.05</span></span>
+<span><span class="co">#&gt; maple        0.17    0.31  1.00 0.64   0.38     0.33</span></span>
+<span><span class="co">#&gt; misc         0.54    0.13  0.64 1.00   0.70     0.35</span></span>
+<span><span class="co">#&gt; redoak       0.20    0.05  0.38 0.70   1.00     0.21</span></span>
+<span><span class="co">#&gt; whiteoak     0.20    0.05  0.33 0.35   0.21     1.00</span></span></code></pre></div>
 <p>Instead of summarizing by a single value, the
 <code><a href="../reference/plot_coher.html">plot_coher()</a></code> function allows us to visualize the coherence
 and partial coherence values across all non-overlapping frequencies.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_coher.html">plot_coher</a></span><span class="op">(</span><span class="va">KSDE</span>, <span class="va">coh</span>, <span class="va">coh.partial</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_coher.html">plot_coher</a></span><span class="op">(</span>sp.est <span class="op">=</span> <span class="va">KSDE</span>,</span>
+<span>           coh.mat <span class="op">=</span> <span class="va">coh</span>,</span>
+<span>           partial.coh.mat <span class="op">=</span> <span class="va">coh.partial</span>,</span>
+<span>           ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="lansing_files/figure-html/unnamed-chunk-13-1.png" width="864"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
