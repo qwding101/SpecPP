@@ -2,7 +2,7 @@
 % Please edit documentation in R/H.h.lambda.1.R
 \name{H.h.lambda.1}
 \alias{H.h.lambda.1}
-\title{Compute H.h.lambda.1 in the centered DFT}
+\title{Compute \eqn{\hat{H}^{(n)}_{h\hat{\lambda}^{(i)},1}} in the centered DFT}
 \usage{
 H.h.lambda.1(w2, w1, a, taper, A1, A2, inten.fitted)
 }
@@ -11,14 +11,18 @@ H.h.lambda.1(w2, w1, a, taper, A1, A2, inten.fitted)
 vertical directions, respectively.}
 
 \item{a}{Taper coefficient, a value within unit interval. If \code{a = 1}, then
-taper is not applied.}
+taper is not applied, i.e., \eqn{h(\boldsymbol{x}/\boldsymbol{A}) = 1}.}
 
-\item{taper}{Data taper function.}
+\item{taper}{Data taper function \eqn{h}.}
 
 \item{A1, A2}{Side lengths of the observation window.}
 
-\item{inten.fitted}{Intensity function of individual point pattern.}
+\item{inten.fitted}{Fitted intensity function of individual point pattern,
+\eqn{\hat{\lambda}^{(i)}(\cdot)}.}
 }
 \description{
-Compute H.h.lambda.1 in the centered DFT
+This function computes \deqn{\hat{H}^{(n)}_{h\hat{\lambda}^{(i)},1}(\boldsymbol\omega) =
+\int_{D_n}h(\boldsymbol{x}/\boldsymbol{A})\hat{\lambda}^{(i)}(\boldsymbol{x})
+\exp(-i\boldsymbol{x}^\intercal\boldsymbol\omega)d\boldsymbol{x}}
+for the \eqn{i}th point process, \eqn{i\in\{1,2,\ldots,m\}}.
 }
