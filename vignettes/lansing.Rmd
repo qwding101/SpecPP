@@ -152,5 +152,5 @@ Instead of summarizing by a single value, the `plot_coher()` function allows us 
 plot_coher(sp.est = KSDE,
            coh.mat = coh,
            partial.coh.mat = coh.partial,
-           ylim = c(0, 0.8))
+           ylim = c(0, 0.85))
 ```
