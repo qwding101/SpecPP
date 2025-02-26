@@ -1,16 +1,17 @@
-#' Maximum coherence and partial coherence matrix
+#' Maximal coherence and partial coherence
 #'
 #' @description
 #'
-#' Computes the coherence or partial coherence matrix for a multivatiate (multitype) point pattern.
+#' Returns a matrix containing the maximal coherence or partial coherence for
+#' all pairwise processes.
 #'
-#' @param sp.est List. The kernel spectral estimate from [periodogram_smooth()].
+#' @param sp.est List. The kernel spectral density estimate from [periodogram_smooth()].
 #' @param ppp A point pattern of class `"ppp"`.
 #' @param type If `"partial"` (default), calculate the partial coherence. If `"normal"`, calculate the coherence.
 #' @param all Logical. If `TRUE`, extract the maximum (partial) coherence across all frequencies, which is not recommended.
 #'
 #' @return
-#' A matrix with each entry storing the maximum (partial) coherence of the two individual point processes.
+#' A matrix with each entry storing the maximal (partial) coherence between two individual point processes.
 #'
 #' @examples
 #' library(spatstat)
@@ -18,8 +19,8 @@
 #' set.seed(227823)
 #' spp <- rmpoispp(lambda = lam, win = square(5), types = c("A","B"))
 #'
-#' # Compute kernel spectral estimator with fitted intensity by log-linear model:
-#' # with Cartesian coordinates
+#' # Compute kernel spectral density estimator with fitted intensity by log-linear
+#' # model with Cartesian coordinates
 #' KSDE.list <- periodogram_smooth(spp, inten.formula = "~ x + y", bandwidth = 1.15)
 #' coh.partial <- coherence(KSDE.list, spp) # Compute the maximum partial coherence
 #' attr(coh.partial, "CohTable") # Print the partial coherence values for all frequencies
