@@ -1,14 +1,25 @@
 #' Smooth an element from a matrix by averaging its neighbors
-#' @param w Single frequency to be smoothed.
-#' @param period.mat Matrix. The naive spectral estimate (i.e., periodogram),
-#' could be complex-valued.
+#'
+#' @description
+#' This function applies kernel smoothing on a matrix, \eqn{\hat{I}(\cdot)}
+#' under our context, as follows:
+#' \deqn{\hat{F}_{\boldsymbol{b}}(\boldsymbol\omega) = \frac{\sum_{\boldsymbol{k}
+#' \in\mathbb{Z}^2}K_{\boldsymbol{b}}(\boldsymbol\omega - \boldsymbol{x_{k,\Omega}})
+#' \hat{I}(\boldsymbol{x_{k,\Omega}})}{\sum_{\boldsymbol{k}\in\mathbb{Z}^2}K_{
+#' \boldsymbol{b}}(\boldsymbol\omega - \boldsymbol{x_{k,\Omega}})}}
+#'
+#' @param w Input frequency \eqn{\boldsymbol\omega = (\omega_1,\omega_2)^\intercal}.
+#' @param period.mat Matrix. The naive spectral estimate, i.e., periodogram \eqn{
+#' \hat{I}(\cdot)}, could be complex-valued.
 #' @param w.k1,w.k2 Vectors containing the whole frequencies at horizontal and
 #' vertical directions.
-#' @param b1,b2 Numeric. Bandwidths at horizontal and vertical direction, respectively.
+#' @param b1,b2 Numeric. Bandwidth vector \eqn{\boldsymbol b = (b_1,b_2)^\intercal}.
 #' @param loo Logical. If `TRUE`, conduct leave-one-out kernel smoothing (the
 #' center `w` will be excluded when averaging). Otherwise, keep the center `w`
 #' for averaging.
-#' @param kernel_uni Univariate kernel function.
+#' @param kernel_uni Univariate kernel function \eqn{K}.
+#'
+#' @return A matrix, \eqn{\hat{F}_{\boldsymbol{b}}(\boldsymbol\omega)}.
 
 smoother = function(w, period.mat, w.k1, w.k2, b1=1, b2=b1,
                     loo = FALSE, kernel_uni){

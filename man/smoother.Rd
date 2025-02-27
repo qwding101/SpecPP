@@ -7,22 +7,30 @@
 smoother(w, period.mat, w.k1, w.k2, b1 = 1, b2 = b1, loo = FALSE, kernel_uni)
 }
 \arguments{
-\item{w}{Single frequency to be smoothed.}
+\item{w}{Input frequency \eqn{\boldsymbol\omega = (\omega_1,\omega_2)^\intercal}.}
 
-\item{period.mat}{Matrix. The naive spectral estimate (i.e., periodogram),
-could be complex-valued.}
+\item{period.mat}{Matrix. The naive spectral estimate, i.e., periodogram \eqn{
+\hat{I}(\cdot)}, could be complex-valued.}
 
 \item{w.k1, w.k2}{Vectors containing the whole frequencies at horizontal and
 vertical directions.}
 
-\item{b1, b2}{Numeric. Bandwidths at horizontal and vertical direction, respectively.}
+\item{b1, b2}{Numeric. Bandwidth vector \eqn{\boldsymbol b = (b_1,b_2)^\intercal}.}
 
 \item{loo}{Logical. If \code{TRUE}, conduct leave-one-out kernel smoothing (the
 center \code{w} will be excluded when averaging). Otherwise, keep the center \code{w}
 for averaging.}
 
-\item{kernel_uni}{Univariate kernel function.}
+\item{kernel_uni}{Univariate kernel function \eqn{K}.}
+}
+\value{
+A matrix, \eqn{\hat{F}_{\boldsymbol{b}}(\boldsymbol\omega)}.
 }
 \description{
-Smooth an element from a matrix by averaging its neighbors
+This function applies kernel smoothing on a matrix, \eqn{\hat{I}(\cdot)}
+under our context, as follows:
+\deqn{\hat{F}_{\boldsymbol{b}}(\boldsymbol\omega) = \frac{\sum_{\boldsymbol{k}
+\in\mathbb{Z}^2}K_{\boldsymbol{b}}(\boldsymbol\omega - \boldsymbol{x_{k,\Omega}})
+\hat{I}(\boldsymbol{x_{k,\Omega}})}{\sum_{\boldsymbol{k}\in\mathbb{Z}^2}K_{
+\boldsymbol{b}}(\boldsymbol\omega - \boldsymbol{x_{k,\Omega}})}}
 }
