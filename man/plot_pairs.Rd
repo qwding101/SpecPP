@@ -4,14 +4,7 @@
 \alias{plot_pairs}
 \title{Plot all possible spectral density estimates}
 \usage{
-plot_pairs(
-  est.list,
-  ppp,
-  xnorm = TRUE,
-  type = "Re",
-  shared.legend = TRUE,
-  remove = NULL
-)
+plot_pairs(est.list, ppp, xnorm = TRUE, type = "Re", shared.legend = TRUE)
 }
 \arguments{
 \item{est.list}{List. The kernel spectral density estimate from \code{\link[=periodogram_smooth]{periodogram_smooth()}}.}
@@ -25,8 +18,6 @@ estimates. Otherwise, plot the raw values by heatmap.}
 If \code{type = "Im"}, plot the imaginary part.}
 
 \item{shared.legend}{Logical. Whether to share the legend across all plots.}
-
-\item{remove}{An experimental feature. Please ignore.}
 }
 \description{
 Given a multivariate (multitype) point pattern, use \code{ggplot2} package to

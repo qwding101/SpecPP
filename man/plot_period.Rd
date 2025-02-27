@@ -8,7 +8,6 @@ plot_period(
   period,
   freq.list = NULL,
   type = "Re",
-  remove = NULL,
   title = NULL,
   palette = "Spectral",
   legend.range = NULL
@@ -22,8 +21,6 @@ plot_period(
 \item{type}{If \code{type = "Re"} (default), plot the real part of the estimate.
 If \code{type = "Im"}, plot the imaginary part. This argument is useful for cross-
 spectrum estimate, which is complex-valued.}
-
-\item{remove}{An experimental feature. Please ignore.}
 
 \item{title}{Character. The title of the plot.}
 
