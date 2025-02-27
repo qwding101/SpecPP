@@ -2,7 +2,7 @@
 % Please edit documentation in R/IRspec.R
 \name{IRspec}
 \alias{IRspec}
-\title{Compute the spectrum of the intensity reweighted process}
+\title{Spectrum of the intensity reweighted process}
 \usage{
 IRspec(w1, w2, sp.est, i = NULL, j = NULL, H.list = NULL, ppp)
 }
@@ -18,5 +18,11 @@ IRspec(w1, w2, sp.est, i = NULL, j = NULL, H.list = NULL, ppp)
 \item{ppp}{Point pattern.}
 }
 \description{
-Compute the spectrum of the intensity reweighted process
+This function computes the estimator of the spectrum for a intensity reweighted
+point process \eqn{\widehat{\mathcal{F}^{-1}(L_2)}(\boldsymbol\omega)}, which
+is used to calculate the coherence and partial coherence.
+\deqn{\widehat{\mathcal{F}^{-1}(L_2)}(\boldsymbol\omega) = H_{h,2}\left(\hat{
+F}_b(\boldsymbol\omega)-(2\pi)^{-2}H^{-1}_{h,2}\text{diag}(H_{h^2\underline{\hat
+\lambda}})\right)\oslash H_{h^2\underline{\hat\lambda}\cdot\underline{\hat
+\lambda}^\intercal}}
 }
