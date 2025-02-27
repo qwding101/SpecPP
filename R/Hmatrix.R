@@ -1,7 +1,21 @@
-#' Compute the H matrix used in coherence.R
+#' \eqn{H} components used in coherence.R
 #'
-#' @param sp.est A list of kernel spectral estimate matrices of `ppp`.
+#' @description
+#' This function calculates the following terms used in coherence calculation.
+#' \itemize{
+#' \item \eqn{H_{h,2} = \int_{[-1/2,1/2]^d}h(\boldsymbol{x})^2d\boldsymbol{x}}
+#' \item \eqn{H_{h^2,\underline{\hat\lambda}} = \left(H_{h^2\hat{\lambda}^{(1)},1},
+#' \ldots, H_{h^2\hat{\lambda}^{(m)},1}\right)^\intercal}
+#' \item \eqn{H_{h^2,\underline{\hat{\lambda}}\cdot\underline{\hat{\lambda}}^\intercal} =
+#' (H_{h^2\hat{\lambda}^{(i)}\hat{\lambda}^{(j)}})_{1\leq i,j\leq m}}
+#' }
+#'
+#' @param sp.est A list of kernel spectral estimate matrices of `ppp` calculated
+#' by [`periodogram_smooth()`].
 #' @param ppp Point pattern.
+#'
+#' @return A list containing \eqn{H_{h,2}}, \eqn{H_{h^2,\underline{\hat\lambda}}},
+#' and \eqn{H_{h^2,\underline{\hat{\lambda}}\cdot\underline{\hat{\lambda}}^\intercal}}.
 
 Hmatrix = function(sp.est, ppp){
 

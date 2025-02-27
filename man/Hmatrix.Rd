@@ -2,15 +2,27 @@
 % Please edit documentation in R/Hmatrix.R
 \name{Hmatrix}
 \alias{Hmatrix}
-\title{Compute the H matrix used in coherence.R}
+\title{\eqn{H} components used in coherence.R}
 \usage{
 Hmatrix(sp.est, ppp)
 }
 \arguments{
-\item{sp.est}{A list of kernel spectral estimate matrices of \code{ppp}.}
+\item{sp.est}{A list of kernel spectral estimate matrices of \code{ppp} calculated
+by \code{\link[=periodogram_smooth]{periodogram_smooth()}}.}
 
 \item{ppp}{Point pattern.}
 }
+\value{
+A list containing \eqn{H_{h,2}}, \eqn{H_{h^2,\underline{\hat\lambda}}},
+and \eqn{H_{h^2,\underline{\hat{\lambda}}\cdot\underline{\hat{\lambda}}^\intercal}}.
+}
 \description{
-Compute the H matrix used in coherence.R
+This function calculates the following terms used in coherence calculation.
+\itemize{
+\item \eqn{H_{h,2} = \int_{[-1/2,1/2]^d}h(\boldsymbol{x})^2d\boldsymbol{x}}
+\item \eqn{H_{h^2,\underline{\hat\lambda}} = \left(H_{h^2\hat{\lambda}^{(1)},1},
+\ldots, H_{h^2\hat{\lambda}^{(m)},1}\right)^\intercal}
+\item \eqn{H_{h^2,\underline{\hat{\lambda}}\cdot\underline{\hat{\lambda}}^\intercal} =
+(H_{h^2\hat{\lambda}^{(i)}\hat{\lambda}^{(j)}})_{1\leq i,j\leq m}}
+}
 }
