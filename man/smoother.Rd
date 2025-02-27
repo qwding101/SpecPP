@@ -2,7 +2,7 @@
 % Please edit documentation in R/smoother.R
 \name{smoother}
 \alias{smoother}
-\title{Smooth an element from a matrix by averaging its neighbors}
+\title{Smooth an element by averaging its neighbors}
 \usage{
 smoother(w, period.mat, w.k1, w.k2, b1 = 1, b2 = b1, loo = FALSE, kernel_uni)
 }
@@ -24,13 +24,15 @@ for averaging.}
 \item{kernel_uni}{Univariate kernel function \eqn{K}.}
 }
 \value{
-A matrix, \eqn{\hat{F}_{\boldsymbol{b}}(\boldsymbol\omega)}.
+A value, \eqn{\hat{F}^{(i,j)}_{\boldsymbol{b}}(\boldsymbol\omega)}.
 }
 \description{
-This function applies kernel smoothing on a matrix, \eqn{\hat{I}(\cdot)}
-under our context, as follows:
-\deqn{\hat{F}_{\boldsymbol{b}}(\boldsymbol\omega) = \frac{\sum_{\boldsymbol{k}
+Given a value \eqn{\hat{I}^{(i,j)}(\boldsymbol\omega)} for a frequency \eqn{\boldsymbol\omega},
+this function applies kernel smoothing and returns the smoothed value as follows:
+\deqn{\hat{F}^{(i,j)}_{\boldsymbol{b}}(\boldsymbol\omega) = \frac{\sum_{\boldsymbol{k}
 \in\mathbb{Z}^2}K_{\boldsymbol{b}}(\boldsymbol\omega - \boldsymbol{x_{k,\Omega}})
-\hat{I}(\boldsymbol{x_{k,\Omega}})}{\sum_{\boldsymbol{k}\in\mathbb{Z}^2}K_{
-\boldsymbol{b}}(\boldsymbol\omega - \boldsymbol{x_{k,\Omega}})}}
+\hat{I}^{(i,j)}(\boldsymbol{x_{k,\Omega}})}{\sum_{\boldsymbol{k}\in\mathbb{Z}^2}K_{
+\boldsymbol{b}}(\boldsymbol\omega - \boldsymbol{x_{k,\Omega}})}.}
+This function is used in \code{\link[=periodogram_smooth]{periodogram_smooth()}} to evaluate the kernel spectral
+density estimate for all frequencies.
 }

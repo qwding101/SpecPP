@@ -1,12 +1,14 @@
-#' Smooth an element from a matrix by averaging its neighbors
+#' Smooth an element by averaging its neighbors
 #'
 #' @description
-#' This function applies kernel smoothing on a matrix, \eqn{\hat{I}(\cdot)}
-#' under our context, as follows:
-#' \deqn{\hat{F}_{\boldsymbol{b}}(\boldsymbol\omega) = \frac{\sum_{\boldsymbol{k}
+#' Given a value \eqn{\hat{I}^{(i,j)}(\boldsymbol\omega)} for a frequency \eqn{\boldsymbol\omega},
+#' this function applies kernel smoothing and returns the smoothed value as follows:
+#' \deqn{\hat{F}^{(i,j)}_{\boldsymbol{b}}(\boldsymbol\omega) = \frac{\sum_{\boldsymbol{k}
 #' \in\mathbb{Z}^2}K_{\boldsymbol{b}}(\boldsymbol\omega - \boldsymbol{x_{k,\Omega}})
-#' \hat{I}(\boldsymbol{x_{k,\Omega}})}{\sum_{\boldsymbol{k}\in\mathbb{Z}^2}K_{
-#' \boldsymbol{b}}(\boldsymbol\omega - \boldsymbol{x_{k,\Omega}})}}
+#' \hat{I}^{(i,j)}(\boldsymbol{x_{k,\Omega}})}{\sum_{\boldsymbol{k}\in\mathbb{Z}^2}K_{
+#' \boldsymbol{b}}(\boldsymbol\omega - \boldsymbol{x_{k,\Omega}})}.}
+#' This function is used in [`periodogram_smooth()`] to evaluate the kernel spectral
+#' density estimate for all frequencies.
 #'
 #' @param w Input frequency \eqn{\boldsymbol\omega = (\omega_1,\omega_2)^\intercal}.
 #' @param period.mat Matrix. The naive spectral estimate, i.e., periodogram \eqn{
@@ -19,7 +21,7 @@
 #' for averaging.
 #' @param kernel_uni Univariate kernel function \eqn{K}.
 #'
-#' @return A matrix, \eqn{\hat{F}_{\boldsymbol{b}}(\boldsymbol\omega)}.
+#' @return A value, \eqn{\hat{F}^{(i,j)}_{\boldsymbol{b}}(\boldsymbol\omega)}.
 
 smoother = function(w, period.mat, w.k1, w.k2, b1=1, b2=b1,
                     loo = FALSE, kernel_uni){
