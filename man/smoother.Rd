@@ -15,7 +15,7 @@ smoother(w, period.mat, w.k1, w.k2, b1 = 1, b2 = b1, loo = FALSE, kernel_uni)
 \item{w.k1, w.k2}{Vectors containing the whole frequencies at horizontal and
 vertical directions.}
 
-\item{b1, b2}{Numeric. Bandwidth vector \eqn{\boldsymbol b = (b_1,b_2)^\intercal}.}
+\item{b1, b2}{Numeric. Bandwidth values for horizontal and vertical directions.}
 
 \item{loo}{Logical. If \code{TRUE}, conduct leave-one-out kernel smoothing (the
 center \code{w} will be excluded when averaging). Otherwise, keep the center \code{w}

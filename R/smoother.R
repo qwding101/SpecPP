@@ -15,7 +15,7 @@
 #' \hat{I}(\cdot)}, could be complex-valued.
 #' @param w.k1,w.k2 Vectors containing the whole frequencies at horizontal and
 #' vertical directions.
-#' @param b1,b2 Numeric. Bandwidth vector \eqn{\boldsymbol b = (b_1,b_2)^\intercal}.
+#' @param b1,b2 Numeric. Bandwidth values for horizontal and vertical directions.
 #' @param loo Logical. If `TRUE`, conduct leave-one-out kernel smoothing (the
 #' center `w` will be excluded when averaging). Otherwise, keep the center `w`
 #' for averaging.
