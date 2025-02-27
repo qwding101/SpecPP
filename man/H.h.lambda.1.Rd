@@ -10,7 +10,7 @@ H.h.lambda.1(w2, w1, a, taper, A1, A2, inten.fitted)
 \item{w1, w2}{A numeric value or vector of frequency values at horizontal and
 vertical directions, respectively.}
 
-\item{a}{Taper coefficient, a value within unit interval. If \code{a = 1}, then
+\item{a}{Taper coefficient, a value within unit interval. If \code{a = 0}, then
 taper is not applied, i.e., \eqn{h(\boldsymbol{x}/\boldsymbol{A}) = 1}.}
 
 \item{taper}{Data taper function \eqn{h}.}

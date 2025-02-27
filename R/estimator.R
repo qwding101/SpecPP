@@ -13,7 +13,7 @@
 #' default is constant intensity `inten.formula = "~1"`.
 #' @param data.covariate Optional. The values of spatial covariates passed to
 #' the `data` argument in [`ppm()`].
-#' @param a Taper coefficient, a value within unit interval. If `a = 1`, then
+#' @param a Taper coefficient, a value within unit interval. If `a = 0`, then
 #' taper is not applied. Default is `a = 0.025`.
 #' @param A1,A2 Optional. Side lengths of the observation window.
 #' @param ext.factor Optional. If `NULL` (default), the frequency grid for the
@@ -134,7 +134,7 @@ periodogram = function(i, j, ppp,
 #' determined by [`select_band()`].
 #' @param correct Logical. If `TRUE` (default), conduct edge correction when
 #' computing the kernel spectral estimator.
-#' @param a Taper coefficient, a value within unit interval. If `a = 1`, then
+#' @param a Taper coefficient, a value within unit interval. If `a = 0`, then
 #' taper is not applied. Default is `a = 0.025`.
 #' @param A1,A2 Optional. Side lengths of the observation window.
 #' @param endpt A positive value indicating the scale factor of the endpoint frequency.

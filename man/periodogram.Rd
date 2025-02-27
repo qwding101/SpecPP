@@ -35,7 +35,7 @@ default is constant intensity \code{inten.formula = "~1"}.}
 \item{data.covariate}{Optional. The values of spatial covariates passed to
 the \code{data} argument in \code{\link[=ppm]{ppm()}}.}
 
-\item{a}{Taper coefficient, a value within unit interval. If \code{a = 1}, then
+\item{a}{Taper coefficient, a value within unit interval. If \code{a = 0}, then
 taper is not applied. Default is \code{a = 0.025}.}
 
 \item{return.DFT}{If \code{TRUE}, also return the centered discrete Fourier

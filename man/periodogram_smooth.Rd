@@ -40,7 +40,7 @@ determined by \code{\link[=select_band]{select_band()}}.}
 \item{correct}{Logical. If \code{TRUE} (default), conduct edge correction when
 computing the kernel spectral estimator.}
 
-\item{a}{Taper coefficient, a value within unit interval. If \code{a = 1}, then
+\item{a}{Taper coefficient, a value within unit interval. If \code{a = 0}, then
 taper is not applied. Default is \code{a = 0.025}.}
 
 \item{A1, A2}{Optional. Side lengths of the observation window.}

@@ -9,7 +9,7 @@ taper(x, a)
 \arguments{
 \item{x}{Cartesian coordinate of events. This argument is vectorized.}
 
-\item{a}{A value in unit interval. If \code{a = 1}, then taper is not applied.}
+\item{a}{A value in unit interval. If \code{a = 0}, then taper is not applied.}
 }
 \description{
 Univariate data taper

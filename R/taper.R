@@ -1,7 +1,7 @@
 #' Univariate data taper
 #'
 #' @param x Cartesian coordinate of events. This argument is vectorized.
-#' @param a A value in unit interval. If `a = 1`, then taper is not applied.
+#' @param a A value in unit interval. If `a = 0`, then taper is not applied.
 
 taper = function(x, a){
   if (a == 0){
