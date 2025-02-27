@@ -10,7 +10,7 @@
 #' @param type If `"partial"` (default), calculate the partial coherence. If `"normal"`, calculate the coherence.
 #' @param all Logical. If `TRUE`, extract the maximum (partial) coherence across all frequencies, which is not recommended.
 #'
-#' @return
+#' @returns
 #' A matrix with each entry storing the maximal (partial) coherence between two individual point processes.
 #'
 #' @examples

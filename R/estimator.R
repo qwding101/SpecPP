@@ -24,7 +24,7 @@
 #' transform (DFT).
 #' @param generate_freq.,taper.,H.h.lambda.1. Functions in their respective .R files.
 #'
-#' @return
+#' @returns
 #' A matrix if `return.DFT = FALSE`; a list consisting of the periodogram and the
 #' centered DFT if `return.DFT = TRUE`.
 periodogram = function(i, j, ppp,
@@ -141,7 +141,7 @@ periodogram = function(i, j, ppp,
 #' @param equal Logical. If `TRUE`, then use the same bandwidth for both x and y direction.
 #' @param kern Univariate scaled kernel function. The default is Barrlett kernel.
 #'
-#' @return
+#' @returns
 #' A list of matrices, or a single matrix if `i` and `j` are specified.
 #'
 #' @details

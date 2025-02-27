@@ -6,7 +6,7 @@
 #' @param return.comb Logical. If `TURE`, also return the `data.frame`.
 #' @param endpt A positive value indicating the scale factor of the endpoint frequency.
 #'
-#' @return A list of two frequency vectors. If `return.comb = TRUE`, also return a
+#' @returns A list of two frequency vectors. If `return.comb = TRUE`, also return a
 #' `data.frame` containing all combinations of frequencies.
 #' @details
 #' This function generates the frequency grid which is used in `periodogram()` and [periodogram_smooth()].

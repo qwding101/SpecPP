@@ -20,6 +20,9 @@ taper is not applied, i.e., \eqn{h(\boldsymbol{x}/\boldsymbol{A}) = 1}.}
 \item{inten.fitted}{Fitted intensity function of individual point pattern,
 \eqn{\hat{\lambda}^{(i)}(\cdot)}.}
 }
+\value{
+A value.
+}
 \description{
 This function computes \deqn{\hat{H}^{(n)}_{h\hat{\lambda}^{(i)},1}(\boldsymbol\omega) =
 \int_{D_n}h(\boldsymbol{x}/\boldsymbol{A})\hat{\lambda}^{(i)}(\boldsymbol{x})

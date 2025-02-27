@@ -17,6 +17,10 @@ IRspec(w1, w2, sp.est, i = NULL, j = NULL, H.list = NULL, ppp)
 
 \item{ppp}{Point pattern.}
 }
+\value{
+If both \code{i} and \code{j} are not specified (default), return a \eqn{m
+\times m} matrix. If they are specified, return a value.
+}
 \description{
 This function computes the estimator of the spectrum for a intensity reweighted
 point process \eqn{\widehat{\mathcal{F}^{-1}(L_2)}(\boldsymbol\omega)}, which

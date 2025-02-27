@@ -14,6 +14,8 @@
 #' @param A1,A2 Side lengths of the observation window.
 #' @param inten.fitted Fitted intensity function of individual point pattern,
 #' \eqn{\hat{\lambda}^{(i)}(\cdot)}.
+#'
+#' @returns A value.
 
 H.h.lambda.1 = Vectorize(function(w2, w1, a, taper, A1, A2, inten.fitted){
   surface = spatstat.geom::as.im(X = function(x,y,a,A1,A2,w1,w2) taper(x,a)*taper(y,a)*inten.fitted(x*A1,y*A2)*exp(-1i*(A1*x*w1+A2*y*w2)),

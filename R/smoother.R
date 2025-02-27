@@ -21,7 +21,7 @@
 #' for averaging.
 #' @param kernel_uni Univariate kernel function \eqn{K}.
 #'
-#' @return A value, \eqn{\hat{F}^{(i,j)}_{\boldsymbol{b}}(\boldsymbol\omega)}.
+#' @returns A value, \eqn{\hat{F}^{(i,j)}_{\boldsymbol{b}}(\boldsymbol\omega)}.
 
 smoother = function(w, period.mat, w.k1, w.k2, b1=1, b2=b1,
                     loo = FALSE, kernel_uni){

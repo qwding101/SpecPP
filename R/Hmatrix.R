@@ -14,7 +14,7 @@
 #' by [`periodogram_smooth()`].
 #' @param ppp Point pattern.
 #'
-#' @return A list containing \eqn{H_{h,2}}, \eqn{H_{h^2,\underline{\hat\lambda}}},
+#' @returns A list containing \eqn{H_{h,2}}, \eqn{H_{h^2,\underline{\hat\lambda}}},
 #' and \eqn{H_{h^2,\underline{\hat{\lambda}}\cdot\underline{\hat{\lambda}}^\intercal}}.
 
 Hmatrix = function(sp.est, ppp){

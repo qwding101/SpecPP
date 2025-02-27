@@ -12,6 +12,9 @@
 #' if `sp.IR` is unspecified.
 #' @param ppp Optional. Point pattern. This argument is only required if `H.list`
 #'  is unspecified.
+#'
+#' @returns If both `i` and `j` are not specified (default), return a \eqn{m \times m}
+#' matrix. If they are specified, return a value.
 
 CohByFreq = function(w1, w2, sp.est, type = "partial", i = NULL, j = NULL,
                      sp.IR = NULL, H.list = NULL, ppp = NULL){

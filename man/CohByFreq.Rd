@@ -36,6 +36,10 @@ if \code{sp.IR} is unspecified.}
 \item{ppp}{Optional. Point pattern. This argument is only required if \code{H.list}
 is unspecified.}
 }
+\value{
+If both \code{i} and \code{j} are not specified (default), return a \eqn{m \times m}
+matrix. If they are specified, return a value.
+}
 \description{
 (Partial) coherence for a given frequency
 }

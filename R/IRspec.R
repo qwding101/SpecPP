@@ -14,6 +14,9 @@
 #' @param i,j Optional. Index of the multivariate point process.
 #' @param H.list Optional. A list from [`Hmatrix()`].
 #' @param ppp Point pattern.
+#'
+#' @returns If both `i` and `j` are not specified (default), return a \eqn{m
+#' \times m} matrix. If they are specified, return a value.
 
 IRspec = function(w1, w2, sp.est, i = NULL, j = NULL, H.list = NULL, ppp){
 

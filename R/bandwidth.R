@@ -18,7 +18,7 @@
 #'  The default is `TRUE`.
 #' @param kern Univariate scaled kernel function. The default is Barlett kernel.
 #'
-#' @return
+#' @returns
 #' A list.
 #' @examples
 #' library(spatstat)
