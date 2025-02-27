@@ -2,7 +2,7 @@
 % Please edit documentation in R/CohByFreq.R
 \name{CohByFreq}
 \alias{CohByFreq}
-\title{Compute (partial) coherence for a given frequency}
+\title{(Partial) coherence for a given frequency}
 \usage{
 CohByFreq(
   w1,
@@ -22,7 +22,7 @@ CohByFreq(
 \item{sp.est}{A list of kernel spectral estimate matrices of the point pattern.}
 
 \item{type}{If \code{type = 'partial'}, compute partial coherence. If \code{type = 'normal'},
-compute coherence}
+compute coherence.}
 
 \item{i, j}{Optional. Index of the multivariate point process.}
 
@@ -37,5 +37,5 @@ if \code{sp.IR} is unspecified.}
 is unspecified.}
 }
 \description{
-Compute (partial) coherence for a given frequency
+(Partial) coherence for a given frequency
 }

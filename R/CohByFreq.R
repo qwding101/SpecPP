@@ -1,9 +1,9 @@
-#' Compute (partial) coherence for a given frequency
+#' (Partial) coherence for a given frequency
 #'
 #' @param w1,w2 Frequency vector (only allow frequency values evaluated in `sp.est`)
 #' @param sp.est A list of kernel spectral estimate matrices of the point pattern.
 #' @param type If `type = 'partial'`, compute partial coherence. If `type = 'normal'`,
-#'  compute coherence
+#'  compute coherence.
 #' @param i,j Optional. Index of the multivariate point process.
 #' @param sp.IR Optional. Spectrum estimate of the intensity reweighted process, which is
 #' calculated by [`IRspec()`]. If this argument is specified, then `w1`, `w2`, `H.list`,
