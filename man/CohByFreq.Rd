@@ -41,5 +41,15 @@ If both \code{i} and \code{j} are not specified (default), return a \eqn{m \time
 matrix. If they are specified, return a value.
 }
 \description{
-(Partial) coherence for a given frequency
+For a frequency \eqn{\boldsymbol\omega}, compute its squared magnitude coherence
+\eqn{\hat{R}^{(a,b)}(\boldsymbol\omega)} and partial coherence \eqn{\hat{D}^
+{(a,b)}(\boldsymbol\omega)} between two point processes \eqn{X_a} and \eqn{X_b}
+as follows:
+\deqn{\hat{R}^{(a,b)}(\boldsymbol\omega) = \frac{|\hat{F}^{(a,b)}(\boldsymbol
+\omega)|^2}{\hat{F}^{(a,a)}(\boldsymbol\omega)\hat{F}^{(b,b)}(\boldsymbol\omega)}
+\quad \text{and} \quad
+\hat{D}^{(a,b)}(\boldsymbol\omega) = \frac{|\hat{F}^{-(a,b)}(\boldsymbol
+\omega)|^2}{\hat{F}^{-(a,a)}(\boldsymbol\omega)\hat{F}^{-(b,b)}(\boldsymbol\omega)},}
+where \eqn{\hat{F}^{-(a,b)}} is the \eqn{(a,b)}th element of the inverse spectrum
+estimator \eqn{\hat{F}(\boldsymbol\omega)^{-1}}.
 }
