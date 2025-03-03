@@ -1,5 +1,18 @@
 #' Univariate data taper
 #'
+#' @description
+#' This function implements
+#' \deqn{
+#' h(x) =
+#' \begin{cases}
+#' (x+\frac{1}{2})/a - \frac{1}{2\pi}\sin\left(2\pi(x+\frac{1}{2})/a\right), &
+#' -\frac{1}{2} \leq x \leq -\frac{1}{2}+a \\
+#' 1, & -\frac{1}{2}+a \leq x \leq \frac{1}{2}-a \\
+#' h(-x), & \frac{1}{2}-a \leq x \leq \frac{1}{2}
+#' \end{cases}
+#' ,}
+#' where \eqn{a\in (0,1/2)}. If \eqn{a = 0}, set \eqn{h(x) = 1}.
+#'
 #' @param x Cartesian coordinate of events. This argument is vectorized.
 #' @param a A value in unit interval. If `a = 0`, then taper is not applied.
 
