@@ -14,7 +14,7 @@
 #' `data.frame` containing all combinations of frequencies.
 #' @details
 #' The frequency grid \eqn{(\omega_1,\omega_2)} is constructed
-#' as follows. For \eqn{i=1,2}, \eqn{\omega_i = 1.5\pi k/A_i}, where \eqn{k\in\{
+#' as follows. For \eqn{i=1,2}, \eqn{\omega_i = 1.5\pi k_i/A_i}, where \eqn{k_i\in\{
 #' -A_i,-A_i+1,\ldots,A_i\}} with side length \eqn{A_i}. The original frequency
 #' ranges from \eqn{-1.5\pi} to \eqn{1.5\pi}.
 #'
