@@ -50,7 +50,12 @@ The default is \code{TRUE}.}
 A list.
 }
 \description{
-Bandwidth selection procedure for kernel spectral density estimator
+Select the optimal bandwidth for a given dataset by minimizing the spectral
+divergence between the periodogram \eqn{\hat{I}} and the leave-one-out kernel
+estimator \eqn{\hat{F}^{(-1)}_b}:
+\deqn{L(b) = \sum_{\boldsymbol\omega}\text{tr}\left\{\hat{I}(\boldsymbol\omega)
+\hat{F}^{(-1)}_b(\boldsymbol\omega)^{-1}\right\} +
+\log\text{det}\hat{F}^{(-1)}_b(\boldsymbol\omega).}
 }
 \examples{
 library(spatstat)

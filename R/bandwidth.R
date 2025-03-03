@@ -1,5 +1,13 @@
 #' Bandwidth selection procedure for kernel spectral density estimator
 #'
+#' @description
+#' Select the optimal bandwidth for a given dataset by minimizing the spectral
+#' divergence between the periodogram \eqn{\hat{I}} and the leave-one-out kernel
+#' estimator \eqn{\hat{F}^{(-1)}_b}:
+#' \deqn{L(b) = \sum_{\boldsymbol\omega}\text{tr}\left\{\hat{I}(\boldsymbol\omega)
+#' \hat{F}^{(-1)}_b(\boldsymbol\omega)^{-1}\right\} +
+#' \log\text{det}\hat{F}^{(-1)}_b(\boldsymbol\omega).}
+#'
 #' @param ppp A point pattern of class `"ppp"`.
 #' @param inten.formula A [`formula`] syntax in character format specifying the
 #' log-liner model for the intensity function, which is passed to [`ppm()`]. The
