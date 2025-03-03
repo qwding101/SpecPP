@@ -21,14 +21,19 @@ A list of two frequency vectors. If \code{return.comb = TRUE}, also return a
 \code{data.frame} containing all combinations of frequencies.
 }
 \description{
-Frequency grid generator
+This function generates the frequency grid which is used in \code{periodogram()}
+and \code{\link[=periodogram_smooth]{periodogram_smooth()}}.
 }
 \details{
-This function generates the frequency grid which is used in \code{periodogram()} and \code{\link[=periodogram_smooth]{periodogram_smooth()}}.
-In \code{\link[=periodogram_smooth]{periodogram_smooth()}}, to correct the edge effect, the \code{ext.factor} argument in \code{\link[=generate_freq]{generate_freq()}}
-is set to \code{1.5} by default. Suppose the original frequency ranges from \eqn{-1.5\pi} to \eqn{1.5\pi}.
-Then the extended frequency ranges from \eqn{-1.5\pi\times\text{ext.factor}} to
-\eqn{-1.5\pi\times\text{ext.factor}}.
+The frequency grid \eqn{(\omega_1,\omega_2)} is constructed
+as follows. For \eqn{i=1,2}, \eqn{\omega_i = 1.5\pi k/A_i}, where \eqn{k\in\{
+-A_i,-A_i+1,\ldots,A_i\}} with side length \eqn{A_i}. The original frequency
+ranges from \eqn{-1.5\pi} to \eqn{1.5\pi}.
+
+The extended frequency ranges from \eqn{-1.5\pi\times\text{ext.factor}} to
+\eqn{-1.5\pi\times\text{ext.factor}}. This grid is used in \code{\link[=periodogram_smooth]{periodogram_smooth()}}
+to correct the edge effect by setting \code{correct = TRUE}, where \code{ext.factor}
+argument in \code{\link[=generate_freq]{generate_freq()}} is set to \code{2}.
 }
 \examples{
 generate_freq(A1 = 8, A2 = 5, return.comb = TRUE)

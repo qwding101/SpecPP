@@ -1,5 +1,9 @@
 #' Frequency grid generator
 #'
+#' @description
+#' This function generates the frequency grid which is used in `periodogram()`
+#' and [periodogram_smooth()].
+#'
 #' @param A1,A2 Side lengths of the observational window.
 #' @param ext.factor A positive value indicating the extension factor of frequency.
 #' If `NULL`, no extension is conducted.
@@ -9,11 +13,15 @@
 #' @returns A list of two frequency vectors. If `return.comb = TRUE`, also return a
 #' `data.frame` containing all combinations of frequencies.
 #' @details
-#' This function generates the frequency grid which is used in `periodogram()` and [periodogram_smooth()].
-#' In [periodogram_smooth()], to correct the edge effect, the `ext.factor` argument in [generate_freq()]
-#' is set to `1.5` by default. Suppose the original frequency ranges from \eqn{-1.5\pi} to \eqn{1.5\pi}.
-#' Then the extended frequency ranges from \eqn{-1.5\pi\times\text{ext.factor}} to
-#' \eqn{-1.5\pi\times\text{ext.factor}}.
+#' The frequency grid \eqn{(\omega_1,\omega_2)} is constructed
+#' as follows. For \eqn{i=1,2}, \eqn{\omega_i = 1.5\pi k/A_i}, where \eqn{k\in\{
+#' -A_i,-A_i+1,\ldots,A_i\}} with side length \eqn{A_i}. The original frequency
+#' ranges from \eqn{-1.5\pi} to \eqn{1.5\pi}.
+#'
+#' The extended frequency ranges from \eqn{-1.5\pi\times\text{ext.factor}} to
+#' \eqn{-1.5\pi\times\text{ext.factor}}. This grid is used in [periodogram_smooth()]
+#' to correct the edge effect by setting `correct = TRUE`, where `ext.factor`
+#' argument in [generate_freq()] is set to `2`.
 #' @examples
 #' generate_freq(A1 = 8, A2 = 5, return.comb = TRUE)
 #' @export
