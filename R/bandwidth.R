@@ -6,7 +6,7 @@
 #' default is constant intensity `inten.formula = "~1"`.
 #' @param data.covariate Optional. The values of spatial covariates passed to
 #' the `data` argument in [`ppm()`].
-#' @param a Taper coefficient, a value within unit interval. If `a = 0`, then
+#' @param a Taper coefficient, a value within \eqn{(0,1/2)}. If `a = 0`, then
 #' taper is not applied.
 #' @param band.range Numeric vector. Search space for the optimal bandwidth.
 #' @param correct Logical. If `TRUE` (default), conduct edge correction when

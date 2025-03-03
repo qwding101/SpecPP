@@ -8,7 +8,7 @@
 #'
 #' @param w1,w2 A numeric value or vector of frequency values at horizontal and
 #' vertical directions, respectively.
-#' @param a Taper coefficient, a value within unit interval. If `a = 0`, then
+#' @param a Taper coefficient, a value within \eqn{(0,1/2)}. If `a = 0`, then
 #'  taper is not applied, i.e., \eqn{h(\boldsymbol{x}/\boldsymbol{A}) = 1}.
 #' @param taper Data taper function \eqn{h}.
 #' @param A1,A2 Side lengths of the observation window.

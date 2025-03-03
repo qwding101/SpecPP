@@ -9,7 +9,7 @@ taper(x, a)
 \arguments{
 \item{x}{Cartesian coordinate of events. This argument is vectorized.}
 
-\item{a}{A value in unit interval. If \code{a = 0}, then taper is not applied.}
+\item{a}{A value within \eqn{(0,1/2)}. If \code{a = 0}, then taper is not applied.}
 }
 \description{
 This function implements

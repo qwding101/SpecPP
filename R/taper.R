@@ -14,7 +14,7 @@
 #' where \eqn{a\in (0,1/2)}. If \eqn{a = 0}, set \eqn{h(x) = 1}.
 #'
 #' @param x Cartesian coordinate of events. This argument is vectorized.
-#' @param a A value in unit interval. If `a = 0`, then taper is not applied.
+#' @param a A value within \eqn{(0,1/2)}. If `a = 0`, then taper is not applied.
 
 taper = function(x, a){
   if (a == 0){
