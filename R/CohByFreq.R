@@ -1,6 +1,7 @@
 #' (Partial) coherence for a given frequency
 #'
 #' @description
+#' Let \eqn{\underline{X}=(X_1,\ldots,X_m)} be a \eqn{m}-variate point process.
 #' For a frequency \eqn{\boldsymbol\omega}, compute its squared magnitude coherence
 #' \eqn{\hat{R}^{(a,b)}(\boldsymbol\omega)} and partial coherence \eqn{\hat{D}^
 #' {(a,b)}(\boldsymbol\omega)} between two point processes \eqn{X_a} and \eqn{X_b}
