@@ -11,7 +11,6 @@
 #' @param type If `type = "Re"` (default), plot the real part of the estimates.
 #' If `type = "Im"`, plot the imaginary part.
 #' @param shared.legend Logical. Whether to share the legend across all plots.
-#' @param remove An experimental feature. Please ignore.
 #'
 #' @examples
 #' library(spatstat)
@@ -27,7 +26,8 @@
 #' @importFrom ggplot2 .data
 #' @export
 plot_pairs = function(est.list, ppp, xnorm = TRUE, type = "Re",
-                      shared.legend = TRUE, remove = NULL){
+                      shared.legend = TRUE#, remove = NULL
+                      ){
 
   cate = levels(spatstat.geom::marks(ppp))
   plot.layout = matrix(NA, ncol = length(cate), nrow = length(cate))
@@ -88,7 +88,7 @@ plot_pairs = function(est.list, ppp, xnorm = TRUE, type = "Re",
       period.plot.li[[r]] = plot_period(est.list[[r]],
                                         #freq.list = attr(est.list, "freq.list"),
                                         freq.list = freq.list,
-                                        remove = remove,
+                                        #remove = remove,
                                         title = names(est.list)[r],
                                         legend.range = legend.range) +
         ggplot2::labs(title = titles[r], x = NULL, y = NULL) +
