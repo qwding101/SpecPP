@@ -3,12 +3,12 @@ Title: Spectral Analysis for Point Processes
 Version: 1.0.0
 Authors@R: c(
     person("Qi-Wen", "Ding", email = "r07227101@ntu.edu.tw", role = c("aut", "cre")))
-Description: An R package for spectral analysis of multivariate spatial point 
-    patterns in a rectangular region. Given a multivariate point pattern and a 
-    parametric model of the intensity function, this package facilitates the 
-    characterization of frequency-domain features from your data through kernel 
-    smoothing. It includes functions for spectral density estimation, bandwidth 
-    selection, visualization, and coherence analysis.
+Description: This R package performs spectral analysis of multivariate spatial
+    point patterns observed in a rectangular region. By specifying a parametric 
+    model for the intensity, it extracts the frequency‐domain characteristics of
+    your data by smoothing the periodogram. Key features of this tool include
+    spectral density estimation, cross-validated bandwidth selection, 
+    spectrum visualization, and coherence analysis.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
