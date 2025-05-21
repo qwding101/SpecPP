@@ -26,7 +26,7 @@ pak::pak("qwding101/SpecPP")
 
 ## FAQ
 
-**Q:** What is a spatial point pattern?
+**Q:** What is a *(spatial) point pattern*?
 
 **A:** Please refer to [link
 1](https://geographicdata.science/book/notebooks/08_point_pattern_analysis.html)
