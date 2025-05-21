@@ -24,9 +24,19 @@ You can install the development version of SpecPP from
 pak::pak("qwding101/SpecPP")
 ```
 
-## Tutorial
+## FAQ
 
-[This
+**Q:** What is a spatial point pattern?
+
+**A:** Please refer to [link
+1](https://geographicdata.science/book/notebooks/08_point_pattern_analysis.html)
+or [link
+2](https://documentation.sas.com/doc/en/pgmsascdc/v_063/statug/statug_spp_overview02.htm)
+for an introduction to point patterns.
+
+**Q:** How to use this R package?
+
+**A:** [This
 tutorial](https://qwding101.github.io/SpecPP/articles/lansing.html)
 demonstrates how to use SpecPP to analyze multivariate point pattern
 data.
