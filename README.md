@@ -36,7 +36,8 @@ for an introduction to point patterns. Point patterns are very common in
 daily life, e.g.,
 [earthquakes](https://earthquake.usgs.gov/earthquakes/map/?extent=-89.1006,-517.5&extent=89.1006,66.09375&range=month&magnitude=4.5&baseLayer=terrain&settings=true),
 [crimes](https://www.crimemapping.com/map/agency/98), [disease
-outbreaks](https://www.healthmap.org/en/).
+outbreaks](https://www.healthmap.org/en/), [geotagged
+photos](https://www.kaggle.com/datasets/ifeanyichukwunwobodo/tokyo-geotagged-flickr-images).
 
 **Q:** How to use this R package?
 
