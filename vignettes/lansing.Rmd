@@ -12,9 +12,11 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+# Use `devtools::build_rmd("vignettes/lansing.Rmd")` to render the vignette.
 ```
 
-In this tutorial, we use the Lansing Woods dataset to demonstrate how to extract frequency domain features from a multivariate inhomogeneous point pattern data using SpecPP package. Here, we focus on the usage of this package. For the interpretation of the result, please refer to [Ding et al.](https://arxiv.org/abs/2502.09948) (2025, Section 3.2, Section 8, and Appendix F.3).
+In this tutorial, we use the [Lansing Woods dataset](https://search.r-project.org/CRAN/refmans/spatstat.data/html/lansing.html) to demonstrate how to extract frequency domain features from a multivariate inhomogeneous point pattern data using SpecPP package. Here, we focus on the usage of this package. For the interpretation of the result, please refer to [Ding et al.](https://arxiv.org/abs/2502.09948) (2025, Section 3.2, Section 8, and Appendix F.3).
 
 # Import package and data
 
