@@ -37,7 +37,7 @@ accidents](http://www2.wagmap.jp/jikomap/APIDetail/Gate?API=1&linkid=7ca308ba-e6
 [rental housing spots](https://www.homes.co.jp/chintai/tokyo/map/), and
 [geotagged
 photos](https://www.kaggle.com/datasets/ifeanyichukwunwobodo/tokyo-geotagged-flickr-images).
-A point pattern is *multivariate* if the events belong to one of the
+A point pattern is *multivariate* if each event belongs to one of the
 finite set of categories. For an introduction to point pattern analysis,
 please refer to [link
 1](https://documentation.sas.com/doc/en/pgmsascdc/v_063/statug/statug_spp_overview02.htm)
