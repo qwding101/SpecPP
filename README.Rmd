@@ -34,7 +34,7 @@ pak::pak("qwding101/SpecPP")
 
 **Q:** What is a *(spatial) point pattern*?
 
-**A:** Please refer to [link 1](https://geographicdata.science/book/notebooks/08_point_pattern_analysis.html) or [link 2](https://documentation.sas.com/doc/en/pgmsascdc/v_063/statug/statug_spp_overview02.htm) for an introduction to point patterns. Point patterns are very common in daily life, e.g., [earthquakes](https://earthquake.usgs.gov/earthquakes/map/?extent=-89.1006,-517.5&extent=89.1006,66.09375&range=month&magnitude=4.5&baseLayer=terrain&settings=true), [crimes](https://www.crimemapping.com/map/agency/98), [disease outbreaks](https://www.healthmap.org/en/), [geotagged photos](https://www.kaggle.com/datasets/ifeanyichukwunwobodo/tokyo-geotagged-flickr-images). 
+**A:** *Spatial point pattern* is a collection of locations of some event (observations) of interest on the space, such as [earthquakes](https://earthquake.usgs.gov/earthquakes/map/?extent=-89.1006,-517.5&extent=89.1006,66.09375&range=month&magnitude=4.5&baseLayer=terrain&settings=true), [crimes](https://www.crimemapping.com/map/agency/98), [disease outbreaks](https://www.healthmap.org/en/), [traffic accidents](http://www2.wagmap.jp/jikomap/APIDetail/Gate?API=1&linkid=7ca308ba-e675-436a-a50c-320662f5ff78&mid=1), and [geotagged photos](https://www.kaggle.com/datasets/ifeanyichukwunwobodo/tokyo-geotagged-flickr-images). A point pattern is *multivariate* if the events belong to one of the finite set of categories. For an introduction to point pattern analysis, please refer to [link 1](https://documentation.sas.com/doc/en/pgmsascdc/v_063/statug/statug_spp_overview02.htm) or [link 2](https://geographicdata.science/book/notebooks/08_point_pattern_analysis.html). 
 
 **Q:** How to use this R package?
 
