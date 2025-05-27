@@ -229,8 +229,8 @@ computational efficiency with accuracy.</p></li>
 search range may fail to capture the global minimum. When the minimum
 lies at the boundary of the specified range, <code><a href="../reference/select_band.html">select_band()</a></code>
 issues a warning suggesting a broader search space. However, this
-safeguard is not foolproof—there are cases where no warning appears even
-if a local minimum is selected. For example, specifying
+safeguard is not foolproof. There are cases where no warning appears
+even if a local minimum is selected. For example, specifying
 <code>band.range = seq(0.96, 1.05, 0.01)</code> in this example fails to
 identify the global minimum, because the local minimum lies inside the
 search range.</p></li>
@@ -238,7 +238,7 @@ search range.</p></li>
 <p>To mitigate these risks, we recommend running
 <code><a href="../reference/select_band.html">select_band()</a></code> multiple times with different
 <code>band.range</code>, visualizing the results to ensure the chosen
-bandwidth is robust and not constrained by an inadequate search
+bandwidth is robust and not restricted by an inadequate search
 space.</p>
 </div>
 </div>
