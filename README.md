@@ -34,7 +34,8 @@ event (observations) of interest on the space, such as
 [crimes](https://www.crimemapping.com/map/agency/98), [disease
 outbreaks](https://www.healthmap.org/en/), [traffic
 accidents](http://www2.wagmap.jp/jikomap/APIDetail/Gate?API=1&linkid=7ca308ba-e675-436a-a50c-320662f5ff78&mid=1),
-and [geotagged
+[rental housing spots](https://www.homes.co.jp/chintai/tokyo/map/), and
+[geotagged
 photos](https://www.kaggle.com/datasets/ifeanyichukwunwobodo/tokyo-geotagged-flickr-images).
 A point pattern is *multivariate* if the events belong to one of the
 finite set of categories. For an introduction to point pattern analysis,
