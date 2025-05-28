@@ -26,10 +26,10 @@ pak::pak("qwding101/SpecPP")
 
 ## FAQ
 
-**Q:** What is a *(spatial) point pattern*?
+#### **Q:** What is a *(spatial) point pattern*?
 
-**A:** *Spatial point pattern* is a collection of locations of some
-event (observations) of interest on the space, such as
+*Spatial point pattern* is a collection of locations of some event
+(observations) of interest on the space, such as
 [earthquakes](https://earthquake.usgs.gov/earthquakes/map/?extent=-89.1006,-517.5&extent=89.1006,66.09375&range=month&magnitude=4.5&baseLayer=terrain&settings=true),
 [crimes](https://www.crimemapping.com/map/agency/98), [disease
 outbreaks](https://www.healthmap.org/en/), [traffic
@@ -44,9 +44,21 @@ please refer to [link
 or [link
 2](https://geographicdata.science/book/notebooks/08_point_pattern_analysis.html).
 
-**Q:** How to use this R package?
+#### **Q:** What is the main advantage or unique contribution of SpecPP?
 
-**A:** [This
+Traditional tools for point pattern analysis (in both spatial and
+frequency domains) often rely on the assumption of homogeneity, which is
+stringent for applications. Point pattern data in real life usually
+exhibits inhomogeneous behavior, that is, the locations of events are
+not scattered uniformly in space. In this package, we developed a
+frequency-domain method for analyzing inhomogeneous point patterns,
+which extends spectral techniques to multivariate and nonstationary
+settings. It also provides computational advantages, especially when
+there is a large number or type of events in the data.
+
+#### **Q:** How to use SpecPP?
+
+[This
 tutorial](https://qwding101.github.io/SpecPP/articles/lansing.html)
 demonstrates how to use SpecPP to analyze multivariate point pattern
 data.
