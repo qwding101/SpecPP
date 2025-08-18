@@ -2,7 +2,7 @@
 % Please edit documentation in R/estimator.R
 \name{periodogram}
 \alias{periodogram}
-\title{Periodogram of a univatiate point pattern}
+\title{Periodogram of a point pattern}
 \usage{
 periodogram(
   i,
@@ -56,6 +56,9 @@ A matrix if \code{return.DFT = FALSE}; a list consisting of the periodogram and 
 centered DFT if \code{return.DFT = TRUE}.
 }
 \description{
-Given a multivariate point pattern \code{ppp}, compute the periodogram for each
-marginal point pattern.
+Given a multivariate point pattern \eqn{\underline{X} = (X_1, \ldots, X_m)},
+compute the periodogram for \eqn{X^{(i,j)}}. The indices \code{i} and \code{j} denotes
+the \eqn{i}-th and \eqn{j}-th individual point process (\eqn{i,j\in\{1,2,\ldots,
+m\}}). If the point pattern \code{ppp} is univariate (\eqn{m=1}), then set \code{i = 1}
+and \code{j = 1} to compute the periodogram.
 }

@@ -1,9 +1,12 @@
-#' Periodogram of a univatiate point pattern
+#' Periodogram of a point pattern
 #'
 #' @description
 #'
-#' Given a multivariate point pattern `ppp`, compute the periodogram for each
-#' marginal point pattern.
+#' Given a multivariate point pattern \eqn{\underline{X} = (X_1, \ldots, X_m)},
+#' compute the periodogram for \eqn{X^{(i,j)}}. The indices `i` and `j` denotes
+#' the \eqn{i}-th and \eqn{j}-th individual point process (\eqn{i,j\in\{1,2,\ldots,
+#' m\}}). If the point pattern `ppp` is univariate (\eqn{m=1}), then set `i = 1`
+#' and `j = 1` to compute the periodogram.
 #'
 #' @param i Mark index. An element in `levels(spatstat.geom::marks(ppp))`.
 #' @param j Mark index. An element in `levels(spatstat.geom::marks(ppp))`.
@@ -27,6 +30,7 @@
 #' @returns
 #' A matrix if `return.DFT = FALSE`; a list consisting of the periodogram and the
 #' centered DFT if `return.DFT = TRUE`.
+#' @export
 periodogram = function(i, j, ppp,
                        inten.formula = "~1", data.covariate = NULL,
                        a = 0.025, return.DFT = FALSE, A1 = NULL, A2 = A1,
@@ -105,7 +109,7 @@ periodogram = function(i, j, ppp,
     }
   }
   else{
-    # Calculate the cross-spectrum directly
+    # Calculate the cross-spectral estimate directly
     period.mat = center_DFT(i)*Conj(center_DFT(j))
     colnames(period.mat) = freq.list$omega1
     rownames(period.mat) = freq.list$omega2
