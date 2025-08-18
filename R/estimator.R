@@ -45,27 +45,27 @@ periodogram = function(i, j, ppp,
   freq.list = generate_freq.(A1, A2, ext.factor = ext.factor, return.comb = TRUE,
                              endpt = endpt)
 
-  center_DFT = function(i){
-    pppi = ppp[spatstat.geom::marks(ppp) == i] # Select data from ith process
+  center_DFT = function(k){
+    ppp.k = ppp[spatstat.geom::marks(ppp) == k] # Select data from kth process
 
     if (is.null(inten.formula)){ # Estimate intensity function by kernel smoothing
-      inten.fitted = as.function(spatstat.explore::density.ppp(spatstat.geom::unmark(pppi)))
+      inten.fitted = as.function(spatstat.explore::density.ppp(spatstat.geom::unmark(ppp.k)))
     } else if (is.list(inten.formula)){ # Use population intensity functions
       stopifnot("The list should include the population intensity functions for all univariate processes."= length(inten.formula) == length(levels(spatstat.geom::marks(ppp))))
       names(inten.formula) = levels(spatstat.geom::marks(ppp))
-      inten.fitted = inten.formula[[i]]
+      inten.fitted = inten.formula[[k]]
     } else if (is.character(inten.formula)){
       # Estimate intensity function by log-linear model
-      inten.ppm = spatstat.model::ppm(Q = stats::as.formula(paste("unmark(pppi)", inten.formula)),
+      inten.ppm = spatstat.model::ppm(Q = stats::as.formula(paste("unmark(ppp.k)", inten.formula)),
                                 data = data.covariate)
       inten.fitted = as.function(stats::predict(inten.ppm))
     }
 
     # Compute DFT
-    const = ((2*pi)^(-2/2))*(spatstat.geom::area(pppi)^(-1/2))/(1+a*(5/(4*pi^2) - 4/3))
-    V1 = outer(freq.list$omega1, pppi$x, function(w, x, a, A) taper.(x/A, a)*exp(-1i*x*w),
+    const = ((2*pi)^(-2/2))*(spatstat.geom::area(ppp.k)^(-1/2))/(1+a*(5/(4*pi^2) - 4/3))
+    V1 = outer(freq.list$omega1, ppp.k$x, function(w, x, a, A) taper.(x/A, a)*exp(-1i*x*w),
                a=a, A=A1)
-    V2 = outer(freq.list$omega2, pppi$y, function(w, x, a, A) taper.(x/A, a)*exp(-1i*x*w),
+    V2 = outer(freq.list$omega2, ppp.k$y, function(w, x, a, A) taper.(x/A, a)*exp(-1i*x*w),
                a=a, A=A2)
     J_h.woconst = V2 %*% t(V1)
     mat.left = outer(freq.list$omega2, freq.list$omega1[freq.list$omega1 < 0], H.h.lambda.1.,
@@ -73,7 +73,7 @@ periodogram = function(i, j, ppp,
     mat.center = outer(freq.list$omega2, 0, H.h.lambda.1.,
                        a=a, taper=taper., A1=A1, A2=A2, inten.fitted=inten.fitted)
     mat.right = Conj(matrix(rev(as.vector(mat.left)), ncol = ncol(mat.left), nrow = nrow(mat.left)))
-    C_h.woconst = spatstat.geom::area(pppi)*cbind(mat.left, mat.center, mat.right)
+    C_h.woconst = spatstat.geom::area(ppp.k)*cbind(mat.left, mat.center, mat.right)
     # Center the DFT
     DFT = const * (J_h.woconst - C_h.woconst)
     attr(DFT, "inten.fitted") = inten.fitted
