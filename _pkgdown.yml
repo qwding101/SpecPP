@@ -11,14 +11,18 @@ template:
       <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 reference:
 - title: "Main functions"
+  desc: "Functions to extract the frequnecy-domain features from your point pattern data"
   contents:
   - periodogram_smooth
+  - periodogram
   - select_band
   - coherence
 - title: "Plot functions"
+  desc: Functions to visualize the results.
   contents:
   - starts_with("plot")
 - title: "Ancillary functions"
+  desc: "Building blocks of the main functions, only for expert use."
   contents:
   - bartlett_uni
   - CohByFreq
@@ -27,7 +31,6 @@ reference:
   - H.h.lambda.1
   - Hmatrix
   - IRspec
-  - periodogram
   - scale2unitarea
   - smoother
   - taper
