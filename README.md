@@ -8,11 +8,11 @@
 
 This R package performs spectral analysis of multivariate spatial point
 patterns observed in a rectangular region ([Ding et al.,
-2025](https://arxiv.org/abs/2502.09948)). By specifying a parametric
-model for the intensity, it extracts the frequency‐domain
-characteristics of your data by smoothing the periodogram. Key features
-of this tool include spectral density estimation, cross-validated
-bandwidth selection, spectrum visualization, and coherence analysis.
+2025](https://arxiv.org/abs/2502.09948)). By smoothing the periodogram,
+it extracts the frequency‐domain characteristics of your data. Key
+features of this package include spectral density estimation,
+cross-validated bandwidth selection, spectrum visualization, and
+coherence analysis.
 
 ## Installation
 
@@ -49,10 +49,9 @@ Traditional tools for point pattern analysis (in both spatial and
 frequency domains) often rely on the assumption of homogeneity, which is
 stringent for applications. Point pattern data in real life usually
 exhibits inhomogeneous behavior, that is, the locations of events are
-not scattered uniformly in space. In this package, we developed a
-frequency-domain method for analyzing inhomogeneous point patterns,
-which extends spectral techniques to multivariate and nonstationary
-settings. It also provides computational advantages and am robust to
+not scattered uniformly in space. In this package, we developed the
+first frequency-domain method for analyzing inhomogeneous point
+patterns. It also provides computational advantages and am robust to
 model misspecification for the intensity function.
 
 #### **Q:** How to use SpecPP?
