@@ -82,19 +82,25 @@
 <h4 id="q-what-is-a-spatial-point-pattern">
 <strong>Q:</strong> What is a <em>(spatial) point pattern</em>?<a class="anchor" aria-label="anchor" href="#q-what-is-a-spatial-point-pattern"></a>
 </h4>
-<p><em>Spatial point pattern</em> is a collection of locations of some event (observations) of interest on the space, such as <a href="https://earthquake.usgs.gov/earthquakes/map/?extent=-89.1006,-517.5&amp;extent=89.1006,66.09375&amp;range=month&amp;magnitude=4.5&amp;baseLayer=terrain&amp;settings=true" class="external-link">earthquakes</a>, <a href="https://www.crimemapping.com/map/agency/98" class="external-link">crimes</a>, <a href="https://www.healthmap.org/en/" class="external-link">disease outbreaks</a>, <a href="http://www2.wagmap.jp/jikomap/APIDetail/Gate?API=1&amp;linkid=7ca308ba-e675-436a-a50c-320662f5ff78&amp;mid=1" class="external-link">traffic accidents</a>, <a href="https://www.homes.co.jp/chintai/tokyo/map/" class="external-link">rental housing spots</a>, and <a href="https://www.kaggle.com/datasets/ifeanyichukwunwobodo/tokyo-geotagged-flickr-images" class="external-link">geotagged photos</a>. A point pattern is <em>multivariate</em> if each event belongs to one of the finite set of categories. For an introduction to point pattern analysis, please refer to <a href="https://documentation.sas.com/doc/en/pgmsascdc/v_063/statug/statug_spp_overview02.htm" class="external-link">link 1</a> or <a href="https://geographicdata.science/book/notebooks/08_point_pattern_analysis.html" class="external-link">link 2</a>.</p>
+<p><em>Spatial point pattern</em> is a collection of locations of some event (observations) of interest on the space, such as <a href="https://earthquake.usgs.gov/earthquakes/map/?extent=-89.1006,-517.5&amp;extent=89.1006,66.09375&amp;range=month&amp;magnitude=4.5&amp;baseLayer=terrain&amp;settings=true" class="external-link">earthquakes</a>, <a href="https://www.crimemapping.com/map/agency/98" class="external-link">crimes</a>, <a href="http://www2.wagmap.jp/jikomap/APIDetail/Gate?API=1&amp;linkid=7ca308ba-e675-436a-a50c-320662f5ff78&amp;mid=1" class="external-link">traffic accidents</a>, <a href="https://www.homes.co.jp/chintai/tokyo/map/" class="external-link">rental housing spots</a>, and <a href="https://www.kaggle.com/datasets/ifeanyichukwunwobodo/tokyo-geotagged-flickr-images" class="external-link">geotagged photos</a>. A point pattern is <em>multivariate</em> if each event belongs to one of the finite set of categories. For an introduction to point pattern analysis, please refer to <a href="https://documentation.sas.com/doc/en/pgmsascdc/v_063/statug/statug_spp_overview02.htm" class="external-link">link 1</a> or <a href="https://geographicdata.science/book/notebooks/08_point_pattern_analysis.html" class="external-link">link 2</a>.</p>
 </div>
 <div class="section level4">
 <h4 id="q-what-is-the-main-advantage-or-unique-contribution-of-specpp">
 <strong>Q:</strong> What is the main advantage or unique contribution of SpecPP?<a class="anchor" aria-label="anchor" href="#q-what-is-the-main-advantage-or-unique-contribution-of-specpp"></a>
 </h4>
-<p>Traditional tools for point pattern analysis (in both spatial and frequency domains) often rely on the assumption of homogeneity, which is stringent for applications. Point pattern data in real life usually exhibits inhomogeneous behavior, that is, the locations of events are not scattered uniformly in space. In this package, we developed a frequency-domain method for analyzing inhomogeneous point patterns, which extends spectral techniques to multivariate and nonstationary settings. It also provides computational advantages, especially when there is a large number or type of events in the data.</p>
+<p>Traditional tools for point pattern analysis (in both spatial and frequency domains) often rely on the assumption of homogeneity, which is stringent for applications. Point pattern data in real life usually exhibits inhomogeneous behavior, that is, the locations of events are not scattered uniformly in space. In this package, we developed a frequency-domain method for analyzing inhomogeneous point patterns, which extends spectral techniques to multivariate and nonstationary settings. It also provides computational advantages and am robust to model misspecification for the intensity function.</p>
 </div>
 <div class="section level4">
 <h4 id="q-how-to-use-specpp">
 <strong>Q:</strong> How to use SpecPP?<a class="anchor" aria-label="anchor" href="#q-how-to-use-specpp"></a>
 </h4>
 <p><a href="https://qwding101.github.io/SpecPP/articles/lansing.html">This tutorial</a> demonstrates how to use SpecPP to analyze multivariate point pattern data.</p>
+</div>
+<div class="section level4">
+<h4 id="q-where-is-the-code-to-reproduce-the-results-in-ding-et-al-2025">
+<strong>Q:</strong> Where is the code to reproduce the results in Ding et al. (2025)?<a class="anchor" aria-label="anchor" href="#q-where-is-the-code-to-reproduce-the-results-in-ding-et-al-2025"></a>
+</h4>
+<p>Please refer to the <a href="https://github.com/qwding101/SpecPP-sim" class="external-link">SpecPP-sim</a> repository.</p>
 </div>
 </div>
 <div class="section level2">
